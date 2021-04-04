@@ -17,7 +17,7 @@ export default function Home() {
 
               <div class="mb-3">
                 <label htmlFor="exampleFormControlInput1" class="form-label">Nama Panggilan</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nama Panggilan Mempelai Perempuan" />
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nama Panggilan Mempelai Laki-laki" />
               </div>
 
               <div class="mb-3">
