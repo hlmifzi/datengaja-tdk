@@ -23,7 +23,7 @@ export default function Home() {
 
       <section className="home_portofolio">
         <div className="d-flex">
-          <h2>Lebih dari <span>100++</span> pasangan mempercayai kami</h2>
+          <h2>Klien yang telah menggunakan jasa kami</h2>
         </div>
 
         <div className="home_portofolioContent p-section">
