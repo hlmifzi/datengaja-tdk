@@ -3,7 +3,7 @@ export default function Home() {
   return (
     <Layout>
       <div className="createInvitation container-fluid bg-grey-light p-section">
-        <section className="container">
+        <section className="createInvitation_container container">
           <div className="box-main">
             <div className="createInvitation_title">
               <h4>Mempelai Pria</h4>
@@ -33,7 +33,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="container">
+        <section className="createInvitation_container container">
 
           <div className="box-main">
             <div className="createInvitation_title">
@@ -63,7 +63,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="container">
+        <section className="createInvitation_container container">
           <div className="box-main">
             <div className="createInvitation_title">
               <h4>Akad Pernikahan</h4>
@@ -93,7 +93,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="container">
+        <section className="createInvitation_container container">
           <div className="box-main">
             <div className="createInvitation_title">
               <h4>Resepsi</h4>
@@ -123,7 +123,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="container">
+        <section className="createInvitation_container container">
           <div className="box-main">
             <div className="createInvitation_title">
               <h4>Akun Admin</h4>
@@ -147,7 +147,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="container">
+        <section className="createInvitation_container container">
           <div className="box-main">
             <div className="createInvitation_submit">
               <button type="button" class="btn btn-main">Buat Undangan</button>
