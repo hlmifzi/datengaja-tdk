@@ -1,5 +1,5 @@
 import LayoutAdmin from '../../components/Layout/LayoutAdmin'
-import { getAnalytic } from '../../client/AdminApiServices'
+// import { getAnalytic } from '../../client/AdminApiServices'
 
 const Admin = ({ data }) => {
 
@@ -8,7 +8,7 @@ const Admin = ({ data }) => {
       <div className="cards">
         <div className="cards_single">
           <div>
-            <h1>{data.customers}</h1>
+            <h1>{data?.customers || 0}</h1>
             <span>Customers</span>
           </div>
           <div>
@@ -18,7 +18,7 @@ const Admin = ({ data }) => {
 
         <div className="cards_single">
           <div>
-            <h1>{data.project}</h1>
+            <h1>{data?.project || 0}</h1>
             <span>Project</span>
           </div>
           <div>
@@ -28,7 +28,7 @@ const Admin = ({ data }) => {
 
         <div className="cards_single">
           <div>
-            <h1>{data.orders}</h1>
+            <h1>{data?.orders || 0}</h1>
             <span>Orders</span>
           </div>
           <div>
@@ -37,7 +37,7 @@ const Admin = ({ data }) => {
         </div>
         <div className="cards_single">
           <div>
-            <h1>{data.income}</h1>
+            <h1>{data?.income || 0}</h1>
             <span>Income</span>
           </div>
           <div>
@@ -209,16 +209,16 @@ const Admin = ({ data }) => {
 }
 
 
-export const getServerSideProps = async () => {
+// export const getServerSideProps = async () => {
 
-  const { data } = await getAnalytic()
+//   const { data } = await getAnalytic()
 
-  return {
-    props: {
-      data
-    }
-  }
-}
+//   return {
+//     props: {
+//       data
+//     }
+//   }
+// }
 
 
 export default Admin;
