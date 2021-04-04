@@ -1,0 +1,30 @@
+.navbar {
+  border-bottom: rgba(0,0,0,0.08);
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+
+  &_container {
+    @extend .d-flex-space-between;
+  }
+
+  &_brand {
+    width: 100px;
+    padding: 20px 0;
+  }
+
+  &_menuItem {
+    color: $c_grey;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 22px 10px;
+    border-bottom: 3px solid $c_white;
+
+    &.active {
+      color: $c_main;
+      border-bottom: 3px solid $c_main;
+    }
+
+    &:hover {
+      color: $c_main;
+    }
+  }
+}

@@ -1,0 +1,62 @@
+
+
+html{
+  scrollbar-width: thin !important;
+  scrollbar-color: $c_main !important;
+  scrollbar-highlight-color: $c_main;
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-corner{
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #DBDBDB; 
+  border-radius: 4px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $c_main; 
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $c_main; 
+}
+
+
+/*  for mozilla */
+::-moz-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-moz-scrollbar-corner{
+  width: 6px;
+}
+
+/* Track */
+::-moz-scrollbar-track {
+  background: $c_main; 
+  border-radius: 4px;
+}
+ 
+/* Handle */
+::-moz-scrollbar-thumb {
+  background: $c_main; 
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+::-moz-scrollbar-thumb:hover {
+  background: $c_main; 
+}

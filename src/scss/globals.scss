@@ -1,0 +1,162 @@
+@import './bootstrap.scss';
+@import '../resources/scss/abstract/_color_variables.scss';
+@import '../resources/scss/abstract/_helper.scss';
+
+:root {
+  --c-primary: #cf2f3e;
+}
+
+.bg-main {
+  background-color: $c_main;
+  color: $c_white;
+}
+
+.bg-grey-light {
+  background-color: $c_grey_light;
+}
+
+.p-section {
+  padding: 4rem 0;
+}
+
+.c_main {
+  color: $c_main;
+}
+
+.line-through {
+  text-decoration-line: line-through;
+}
+
+ul,
+span {
+  padding: 0;
+  list-style-type: none;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+//component
+.box-main{
+  border-radius: .5rem;
+  margin: 0 0 20px;
+  background: var(--white,#fff);
+  color: var(--warm-gray-60,#84878a);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 100%;
+}
+
+.btn {
+  &-main {
+    background-color: $c_main;
+    color: $c_white;
+    border: 1px solid $c_main;
+    padding: 10px 0;
+    width: 100%;
+    border-radius: 4px;
+    
+    &:hover {
+      opacity: .75;
+      color: $c_white;
+    }
+  }
+}
+
+//
+
+.layout
+{
+  &_contactWA
+  {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    cursor: pointer;
+
+    img {
+      width: 40px;
+    }
+  }
+}
+
+.createInvitation {
+
+  @extend .flex-center-center;
+  @extend .flex-direction-column;
+  padding-top: 40px;
+
+  &_title {
+    margin: 0 20px;
+    padding-top: 10px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid $c_grey_light;
+  }
+
+  &_content {
+    margin: 10px 20px 20px 20px;
+    width: 50vw;
+  }
+
+  &_submit {
+    margin: 20px;
+    width: 50vw;
+  }
+}
+
+.footer 
+{
+  &_inner
+  {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+  }
+
+  &_brandDesc
+  {
+    width: 20vw;
+  }
+
+  @media only screen and (max-width: 768px) 
+  {
+    &_inner
+    {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      flex-direction: column;
+      width: 95vw;
+    }
+
+    &_brandDesc
+    {
+      width: 95vw;
+    }
+  }
+}
+
+
+@import './base/scrollBar.scss';
+
+@import './components/header.scss';
+@import './components/_sidebar.scss';
+
+@import './pages/home.scss';
+@import './pages/login.scss';
+

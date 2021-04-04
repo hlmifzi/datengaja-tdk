@@ -1,52 +1,67 @@
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMicrophoneSlash, faMusic } from "@fortawesome/free-solid-svg-icons";
 import './Design01.module.scss'
-const Design01 = props => {
+const Design01 = () => {
+    const { query } = useRouter()
+    const guest = query.kepada || "Nama Tamu"
 
-    // const countDate = new Date('Jun 10, 2020 00:00:00').getTime();
+    const countDate = new Date('Maret 11, 2021 00:00:00').getTime();
 
-    // const timeToEvent = () => {
-    //     const now = new Date().getTime();
-    //     const gap = countDate - now;
+    const timeToEvent = () => {
+        const now = new Date().getTime();
+        const gap = countDate - now;
 
-    //     const second = 1000;
-    //     const minute = second * 60;
-    //     const hour = minute * 60;
-    //     const day = hour * 24;
+        const second = 1000;
+        const minute = second * 60;
+        const hour = minute * 60;
+        const day = hour * 24;
 
-    //     const d = Math.floor(gap / day);
-    //     const h = Math.floor((gap % day) / hour);
-    //     const m = Math.floor((gap % hour) / minute);
-    //     const s = Math.floor((gap % minute) / second);
+        const d = Math.floor(gap / day);
+        const h = Math.floor((gap % day) / hour);
+        const m = Math.floor((gap % hour) / minute);
+        const s = Math.floor((gap % minute) / second);
 
-    //     document.getElementById('day').innerText = d;
-    //     document.getElementById('hour').innerText = h;
-    //     document.getElementById('minute').innerText = m;
-    //     document.getElementById('second').innerText = s;
-    // }
+        document.getElementById('day').innerText = d;
+        document.getElementById('hour').innerText = h;
+        document.getElementById('minute').innerText = m;
+        document.getElementById('second').innerText = s;
+    }
 
-    // setInterval(() => {
-    //     timeToEvent();
-    // }, 1000);
+    useEffect(() => {
+        setInterval(() => {
+            timeToEvent();
+        }, 1000);
 
-    // const muteSound = document.querySelector('.mute-sound');
-    // const unMuteSound = document.querySelector('.unmute-sound');
+        const muteSound = document.querySelector('.mute-sound');
+        const unMuteSound = document.querySelector('.unmute-sound');
 
-    // muteSound.addEventListener('click', () => {
-    //     muteSound.classList.replace('d-block', 'd-none');
-    //     unMuteSound.classList.replace('d-none', 'd-block');
-    //     document.getElementById('audio').pause();
-    // });
+        muteSound.addEventListener('click', () => {
+            muteSound.classList.replace('d-block', 'd-none');
+            unMuteSound.classList.replace('d-none', 'd-block');
+            document.getElementById('audio').pause();
+        });
 
-    // unMuteSound.addEventListener('click', () => {
-    //     unMuteSound.classList.replace('d-block', 'd-none');
-    //     muteSound.classList.replace('d-none', 'd-block');
-    //     document.getElementById('audio').play();
-    // });
+        unMuteSound.addEventListener('click', () => {
+            unMuteSound.classList.replace('d-block', 'd-none');
+            muteSound.classList.replace('d-none', 'd-block');
+            document.getElementById('audio').play();
+        });
+    }, [])
+
     return (
         <div className="design01__container">
             <audio src="/music/1.mp3" id="audio"></audio>
             <div className="bgsound-container">
-                <div className="unmute-sound d-block"><i className="fas fa-microphone-slash"></i></div>
-                <div className="mute-sound d-none"><i className="fas fa-music"></i></div>
+                <div className="unmute-sound d-block">
+                    <FontAwesomeIcon icon={faMicrophoneSlash} size='1x' color='#000' />
+                </div>
+                <div className="mute-sound d-none">
+                    <FontAwesomeIcon icon={faMusic} size='1x' color='#000' />
+                </div>
             </div>
 
 
@@ -72,6 +87,10 @@ const Design01 = props => {
                         <img src="/icon/conversation.png" />
                         <span>Story</span>
                     </a>
+                    <a href="#story">
+                        <img src="/icon/conversation.png" />
+                        <span>Send Gift</span>
+                    </a>
                 </div>
             </nav>
 
@@ -79,7 +98,7 @@ const Design01 = props => {
                 <section className="guest-section text-center">
                     <img src="/img/1.jpg" className="circle-img" />
                     <p>Kepada Yth. <br /> Bapak/Ibu/Saudara/i</p>
-                    <h2 className="font-segoe-ui">Nama Tamu</h2>
+                    <h2 className="font-segoe-ui text-capitalize">{guest}</h2>
                 </section>
             </div>
 
@@ -97,7 +116,7 @@ const Design01 = props => {
                         <path className="shape-fill" d="M15.6,13.2c0-0.1,4.3,0,6.7,0.5c2.4,0.5,5,1.9,5,2c0,0.1-2.7-0.8-5.1-1.4	C19.9,13.7,15.7,13.3,15.6,13.2z"></path>
                     </svg>
                 </div>
-                <img src="img/gif_ourwedding_wh.gif" />
+                <img src="/img/gif_ourwedding_wh.gif" />
                 <h1 className="font-dancing-script">Awan & Pelangi</h1>
                 <p>- SABTU, 26 DESEMBER 2020 -</p>
                 <div className="shape-bottom">
@@ -159,7 +178,7 @@ const Design01 = props => {
                     <div className="date">
                         <div className="card">
                             <div className="card-header">
-                                <img src="icon/wedding-rings-white.png" />
+                                <img src="/icon/wedding-rings-white.png" />
                                 <h3 className="font-dancing-script">Akad Pernikahan</h3>
                             </div>
                             <div className="card-body">
@@ -333,10 +352,10 @@ const Design01 = props => {
                     </div>
 
                     <form>
-                        <div className="form-control">
-                            <input type="text" placeholder="Nama" />
+                        <div className="form-control border-0">
+                            <input type="text" value={guest} />
                         </div>
-                        <div className="form-control">
+                        <div className="form-control border-0">
                             <textarea placeholder="Ucapan Do'a & Harapan"></textarea>
                         </div>
                         <button type="button" className="btn">Kirim</button>

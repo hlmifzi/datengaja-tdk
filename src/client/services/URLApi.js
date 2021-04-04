@@ -1,18 +1,17 @@
 import axios from 'axios';
 
-export const developmentHost = 'https://stagging-api-kta.pks.id/api';
+export const developmentHost = 'https://5eb092a0e6828200164a6b46.mockapi.io/v1/';
 export const productionHost = 'https://stagging-api-kta.pks.id/api';
 
 const ROOT_API = axios.create({
     baseURL: `${process.env.NODE_ENV === "development" ? developmentHost : productionHost}`,
     headers: {
-        'Authorization': `Bearer ${localStorage.getItem("token")}`,
         'Content-Type': 'application/json',
 
     }
 })
 
-export const clientGet = async (endPoint, params) => {
+export const clientGet = async (endPoint, params = {}) => {
     try {
         let res = await ROOT_API.get(endPoint, params)
         return { data: res.data }

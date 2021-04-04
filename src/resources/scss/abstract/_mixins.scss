@@ -1,0 +1,110 @@
+@mixin clearfix() {
+    &:before,
+    &:after {
+      content: " "; // 1
+      display: table; // 2
+    }
+    &:after {
+      clear: both;
+    }
+  }
+  
+  @mixin centerFlex() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  @mixin spaceBetweenFlex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  @mixin startFlex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  @mixin absCenter() {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  @mixin cursorPointer() {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  
+  @mixin overflowAuto() {
+    overflow-x: hidden;
+  }
+  
+  @mixin overflowXOnHover {
+    overflow: hidden;
+    &:hover {
+      overflow-x: overlay;
+    }
+  }
+  
+  @mixin overflowYOnHover {
+    overflow: hidden;
+    &:hover {
+      overflow-y: overlay;
+    }
+  }
+  @mixin alignFlex($alignment) {
+    display: flex;
+    align-items: $alignment;
+  }
+  @mixin absolute($top, $right, $bottom, $left) {
+    position: absolute;
+    @if $top {
+      top: $top;
+    }
+    @if $left {
+      left: $left;
+    }
+    @if $bottom {
+      bottom: $bottom;
+    }
+    @if $right {
+      right: $right;
+    }
+  }
+  @mixin transitionAll($duration) {
+    -webkit-transition: all $duration;
+    transition: all $duration;
+  }
+  @mixin fontAttribute($weight, $line-height, $font-size) {
+    @if $line-height {
+      line-height: $line-height;
+    }
+    @if $weight {
+      font-weight: $weight;
+    }
+    @if $font-size {
+      font-size: $font-size;
+    }
+  }
+  
+  /*================================
+  Mixins for Components
+  ==================================*/
+  @mixin tooltip($right, $bottom, $left) {
+    position: absolute;
+    color: var(--n-000);
+    border-radius: 4px;
+    background: var(--v-900);
+    bottom: $bottom;
+    z-index: 100;
+    @if $right {
+      right: $right;
+    }
+    @if $left {
+      left: $left;
+    }
+  }
