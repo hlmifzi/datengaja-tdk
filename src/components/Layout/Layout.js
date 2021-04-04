@@ -12,7 +12,7 @@ const Layout = ({ children, className }) => {
         <img src="icon/undangan-nikah-wa.png"></img>
       </div>
 
-      <footer className="container-fluid bg-main p-section">
+      <footer className="container-fluid footer bg-main p-section">
         <div className="container footer_inner">
           <div className="footer_brandDesc">
             <img
@@ -23,29 +23,37 @@ const Layout = ({ children, className }) => {
             <p> Jalan Serdang Baru RT 015 RW 004 Kelurahan serdang Kecamatan kemayoran Jakarta Pusat 1650</p>
           </div>
 
-          <div className="footer_menu">
+          <div className="footer_options">
             <ul>
+              <li>Menu</li>
               <li>Beranda</li>
               <li>Buat Undangan</li>
-              <li>Syarat Ketentuan</li>
+              <li>Harga</li>
+              <li>Masuk</li>
             </ul>
           </div>
-          <div className="footer_mediaSocial">
+          <div className="footer_options">
             <ul>
+              <li>Social Media</li>
               <li>Instagram</li>
               <li>Facebook</li>
               <li>Twitter</li>
               <li>Tiktok</li>
             </ul>
           </div>
-          <div className="footer_mediaSocial">
+          <div className="footer_options">
             <ul>
+              <li>Social Media</li>
               <li>Instagram</li>
               <li>Facebook</li>
               <li>Twitter</li>
               <li>Tiktok</li>
             </ul>
           </div>
+        </div>
+
+        <div className="footer_copyright">
+          copyright datengaja.id, all right reserved.
         </div>
       </footer>
     </>

@@ -15,18 +15,10 @@
   &_promotionWord 
   {
     width: 40vw;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    animation-name: floating;
-    -webkit-animation-name: floating;
-    animation-iteration-count: infinite;
-    -webkit-animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
 
     h1
     {
-      margin: 1rem 0;
+      margin: 3rem 0;
 
       span {
         color: $c_main;
@@ -143,6 +135,10 @@
 
     &_promotionWord
     {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
       width: calc(100vw - 20px);
     }
 
@@ -172,12 +168,15 @@
 
     &_createInvitation
     {
+      text-align: center;
+      padding-left: 20px;
+      padding-right: 20px;
   
-    button
-    {
-      width: 50%;
+      button
+      {
+        width: 80%;
+      }
     }
-  }
   }
 }
 

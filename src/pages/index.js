@@ -26,7 +26,7 @@ export default function Home() {
 
       <LazyLoadComponent>
         <section className="home_portofolio">
-          <div className="d-flex">
+          <div className="text-center">
             <h2>Klien yang telah menggunakan jasa kami</h2>
           </div>
 
@@ -37,7 +37,7 @@ export default function Home() {
               <div class="card-body  text-center">
                 <h5 class="card-title line-through">Rp 200,000 - 400,000</h5>
                 <h5 class="card-title c_main font-weight-bold">GRATIS</h5>
-                <Link href="/design01" as={`/design01`}>
+                <Link href="/undangan01" as={`/undangan01`}>
                   <button href="#" class="btn-main">Lihat Demo</button>
                 </Link>
               </div>
@@ -48,7 +48,7 @@ export default function Home() {
               <div class="card-body text-center">
                 <h5 class="card-title line-through">Rp 200,000 - 400,000</h5>
                 <h5 class="card-title c_main font-weight-bold">GRATIS</h5>
-                <Link href="/design01" as={`/design01`}>
+                <Link href="/undangan01" as={`/undangan01`}>
                   <button href="#" class="btn-main">Lihat Demo</button>
                 </Link>
               </div>
@@ -59,7 +59,7 @@ export default function Home() {
               <div class="card-body  text-center">
                 <h5 class="card-title line-through">Rp 200,000 - 400,000</h5>
                 <h5 class="card-title c_main font-weight-bold">GRATIS</h5>
-                <Link href="/design01" as={`/design01`}>
+                <Link href="/undangan01" as={`/undangan01`}>
                   <button href="#" class="btn-main">Lihat Demo</button>
                 </Link>
               </div>
@@ -70,7 +70,7 @@ export default function Home() {
               <div class="card-body text-center">
                 <h5 class="card-title line-through">Rp 200,000 - 400,000</h5>
                 <h5 class="card-title c_main font-weight-bold">GRATIS</h5>
-                <Link href="/design02" as={`/design02`}>
+                <Link href="/undangan02" as={`/undangan02`}>
                   <button href="#" class="btn-main">Lihat Demo</button>
                 </Link>
               </div>
@@ -81,18 +81,9 @@ export default function Home() {
               <div class="card-body  text-center">
                 <h5 class="card-title line-through">Rp 200,000 - 400,000</h5>
                 <h5 class="card-title c_main font-weight-bold">GRATIS</h5>
-                <Link href="/design01" as={`/design01`}>
+                <Link href="/undangan01" as={`/undangan01`}>
                   <button href="#" class="btn-main">Lihat Demo</button>
                 </Link>
-              </div>
-            </div>
-            <div class="home_portofolioCard">
-              <h5 class="card-title">Sulaiman dan Aisyah</h5>
-              <img class="card-img-top" src="/img/design02.png" alt="Card image cap" />
-              <div class="card-body text-center">
-                <h5 class="card-title line-through">Rp 200,000 - 400,000</h5>
-                <h5 class="card-title c_main font-weight-bold">GRATIS</h5>
-                <button href="#" class="btn-main">Lihat Demo</button>
               </div>
             </div>
           </div>

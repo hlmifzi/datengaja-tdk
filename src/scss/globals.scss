@@ -60,6 +60,11 @@ a {
   flex-direction: column;
   height: 100%;
   max-height: 100%;
+
+  @media only screen and (max-width: 768px) 
+  {
+    width: 100%;
+  }
 }
 
 .btn {
@@ -111,26 +116,66 @@ a {
   &_content {
     margin: 10px 20px 20px 20px;
     width: 50vw;
+    
+    @media only screen and (max-width: 768px) 
+    {
+      width: calc(100% - 40px);  
+    }
   }
 
   &_submit {
     margin: 20px;
     width: 50vw;
+
+    @media only screen and (max-width: 768px) 
+    {
+      width: calc(100% - 40px);  
+    }
   }
 }
 
 .footer 
 {
+  padding-bottom: 1rem;
   &_inner
   {
     display: flex;
     justify-content: space-between;
     align-items: start;
+    padding-bottom: 20px;
   }
 
   &_brandDesc
   {
     width: 20vw;
+
+    & > img
+    {
+      width: 10rem;
+    }
+  }
+  
+
+  &_options 
+  {
+    ul
+    {
+      li:first-child
+      {
+        font-weight: 600;
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  &_copyright
+  {
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid $c_white;
+    font-size: 11px;
+    margin: 0 50px;
+    padding-top: 10px;
   }
 
   @media only screen and (max-width: 768px) 
@@ -146,7 +191,7 @@ a {
 
     &_brandDesc
     {
-      width: 95vw;
+      width: 100%;
     }
   }
 }

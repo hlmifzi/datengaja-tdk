@@ -24,7 +24,12 @@ module.exports = withPWA(
 
     return {
       env,
-      cssModules: true
+      cssModules: true,
+      target: "server",
+      pwa: {
+        dest: "public",
+        disable: process.env.NODE_ENV === "development",
+      },
     }
   })
 )
