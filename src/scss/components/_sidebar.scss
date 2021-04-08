@@ -185,17 +185,6 @@
     color: var(--text-grey);
   }
   
-  .cards_single:last-child {
-    background: $c_main;
-  }
-  
-  
-  .cards_single:last-child h1,
-  .cards_single:last-child div:first-child span,
-  .cards_single:last-child div:last-child span {
-    color: #fff;
-  }
-  
   .recent_grid {
     margin-top: 3.5rem;
     display: grid;

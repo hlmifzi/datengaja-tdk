@@ -1,25 +1,50 @@
+import Link from "next/link";
 import LayoutAdmin from '../../components/Layout/LayoutAdmin'
 // import { getAnalytic } from '../../client/AdminApiServices'
 
 const Admin = ({ data }) => {
 
   return (
-    <LayoutAdmin>
-      <div className="cards">
+    <LayoutAdmin mainClassName="admin">
+      <div className="admin_welcomeCards">
+        <div className="admin_welcomeContent cards_single">
+          <h5>Halo, Helmi Fauzi</h5>
+          <p>Undanganmu kamu sudah jadi loh, kamu bisa langsung lihat undanganmu!</p>
+          <div className="admin_welcomeFooter">
+            <Link href="/undangan01/pernikahanAwan&Pelangi">
+              <a target="_blank">
+                <button className="btn-second">Lihat disini {">"}</button>
+              </a>
+            </Link>
+            <Link href="/admin/tamu" as={`/admin/tamu`}>
+              <button className="btn-second ml-2">Edit disini {">"}</button>
+            </Link>
+          </div>
+        </div>
         <div className="cards_single">
           <div>
             <h1>{data?.customers || 0}</h1>
-            <span>Customers</span>
+            <span>Undangan</span>
           </div>
           <div>
             <span className="las la-users"></span>
           </div>
         </div>
-
+      </div>
+      <div className="cards">
+        <div className="cards_single">
+          <div>
+            <h1>{data?.customers || 0}</h1>
+            <span>Bisa Hadir</span>
+          </div>
+          <div>
+            <span className="las la-users"></span>
+          </div>
+        </div>
         <div className="cards_single">
           <div>
             <h1>{data?.project || 0}</h1>
-            <span>Project</span>
+            <span>Berhalangan</span>
           </div>
           <div>
             <span className="las la-clipboard"></span>
@@ -29,7 +54,7 @@ const Admin = ({ data }) => {
         <div className="cards_single">
           <div>
             <h1>{data?.orders || 0}</h1>
-            <span>Orders</span>
+            <span>Batal</span>
           </div>
           <div>
             <span className="las la-shopping-bag"></span>
@@ -38,7 +63,7 @@ const Admin = ({ data }) => {
         <div className="cards_single">
           <div>
             <h1>{data?.income || 0}</h1>
-            <span>Income</span>
+            <span>Telah Hadir</span>
           </div>
           <div>
             <span className="lab la-google-wallet"></span>
@@ -50,7 +75,7 @@ const Admin = ({ data }) => {
         <div className="projects">
           <div className="card">
             <div className="card_header">
-              <h3>Recent Projects</h3>
+              <h3>Recent Tamu</h3>
               <button> See All <span className="las la-arrow-right">
               </span></button>
             </div>
@@ -59,59 +84,43 @@ const Admin = ({ data }) => {
               <table width="100%">
                 <thead>
                   <tr>
-                    <td>Project Title</td>
-                    <td>UI Team</td>
+                    <td>Nama</td>
+                    <td>Kategori</td>
                     <td>Status</td>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Ui/UX Design</td>
-                    <td>UI Team</td>
+                    <td>Affiasca</td>
+                    <td>Teman Kuliah Laki-laki</td>
                     <td>
                       <span className="status purple"></span>
-                                                    review
+                                                    Akan Hadir
                     </td>
                   </tr>
                   <tr>
-                    <td>Web Development</td>
-                    <td>Frontend</td>
+                    <td>Helmi Fauzi</td>
+                    <td>Teman Kuliah Perempuan</td>
                     <td>
                       <span className="status pink"></span>
-                                                    in progress
-                      </td>
+                        Berhalangan
+                    </td>
                   </tr>
                   <tr>
-                    <td>Ushpo app</td>
-                    <td>Mobile Team</td>
+                    <td>Sulaiman</td>
+                    <td>Temen SD laki-laki</td>
                     <td>
                       <span className="status orange"></span>
-                                                    pending
-                       </td>
+                        Telah Hadir
+                    </td>
                   </tr>
 
                   <tr>
-                    <td>Ui/UX Design</td>
-                    <td>UI Team</td>
+                    <td>Iqbal</td>
+                    <td>Temen Mama Perempuan</td>
                     <td>
                       <span className="status purple"></span>
-                                                    review
-                      </td>
-                  </tr>
-                  <tr>
-                    <td>Web Development</td>
-                    <td>Frontend</td>
-                    <td>
-                      <span className="status pink"></span>
-                                                    in progress
-                       </td>
-                  </tr>
-                  <tr>
-                    <td>Ushpo app</td>
-                    <td>Mobile Team</td>
-                    <td>
-                      <span className="status orange"></span>
-                        pending
+                      Batal Hadir
                     </td>
                   </tr>
                 </tbody>
@@ -122,7 +131,7 @@ const Admin = ({ data }) => {
         <div className="customers">
           <div className="card">
             <div className="card_header">
-              <h3>New customer</h3>
+              <h3>Kategori Tamu</h3>
               <button> See All <span className="las la-arrow-right">
               </span></button>
             </div>
@@ -130,73 +139,53 @@ const Admin = ({ data }) => {
             <div className="card_body">
               <div className="customer">
                 <div className="info">
-                  <img src="img/2.jpg" width="40px" height="40px" alt="" />
                   <div>
-                    <h4>Lewis S. Cunningham</h4>
-                    <small>CEO Excerpt</small>
+                    <h4>Teman Kuliah Laki-laki</h4>
                   </div>
                 </div>
                 <div className="contact">
-                  <span className="las la-user-circle"></span>
-                  <span className="las la-comment"></span>
-                  <span className="las la-phone"></span>
+                  19
                 </div>
               </div>
               <div className="customer">
                 <div className="info">
-                  <img src="pages/2.jpg" width="40px" height="40px" alt="" />
                   <div>
-                    <h4>Lewis S. Cunningham</h4>
-                    <small>CEO Excerpt</small>
+                    <h4>Teman Kuliah Perempuan</h4>
                   </div>
                 </div>
                 <div className="contact">
-                  <span className="las la-user-circle"></span>
-                  <span className="las la-comment"></span>
-                  <span className="las la-phone"></span>
+                  40
                 </div>
               </div>
               <div className="customer">
                 <div className="info">
-                  <img src="pages/2.jpg" width="40px" height="40px" alt="" />
                   <div>
-                    <h4>Lewis S. Cunningham</h4>
-                    <small>CEO Excerpt</small>
+                    <h4>Temen SD laki-laki</h4>
                   </div>
                 </div>
                 <div className="contact">
-                  <span className="las la-user-circle"></span>
-                  <span className="las la-comment"></span>
-                  <span className="las la-phone"></span>
+                  5
                 </div>
               </div>
               <div className="customer">
                 <div className="info">
-                  <img src="pages/2.jpg" width="40px" height="40px" alt="" />
                   <div>
-                    <h4>Lewis S. Cunningham</h4>
-                    <small>CEO Excerpt</small>
+                    <h4>Teman Nongkrong Laki-laki</h4>
                   </div>
                 </div>
                 <div className="contact">
-                  <span className="las la-user-circle"></span>
-                  <span className="las la-comment"></span>
-                  <span className="las la-phone"></span>
+                  2
                 </div>
               </div>
               <div className="customer">
                 <div className="info">
-                  <img src="pages/2.jpg" width="40px" height="40px" alt="" />
                   <div>
-                    <h4>Lewis S. Cunningham</h4>
-                    <small>CEO Excerpt</small>
+                    <h4>Teman Mama Perempuan</h4>
                   </div>
                 </div>
                 <div className="contact">
                   <div>
-                    <span className="las la-user-circle"></span>
-                    <span className="las la-comment"></span>
-                    <span className="las la-phone"></span>
+                    50
                   </div>
                 </div>
               </div>
@@ -204,6 +193,7 @@ const Admin = ({ data }) => {
           </div>
         </div>
       </div>
+
     </LayoutAdmin>
   )
 }

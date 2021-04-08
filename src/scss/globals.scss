@@ -6,6 +6,10 @@
   --c-primary: #cf2f3e;
 }
 
+p {
+  margin: 0;
+}
+
 .bg-main {
   background-color: $c_main;
   color: $c_white;
@@ -79,6 +83,19 @@ a {
     &:hover {
       opacity: .75;
       color: $c_white;
+    }
+  }
+
+  &-second {
+    background-color: $c_white;
+    color: $c_main;
+    border: 1px solid $c_main;
+    padding: .75rem .75rem;
+    width: 100%;
+    border-radius: 4px;
+
+    &:hover {
+      opacity: .9;
     }
   }
 }
@@ -207,4 +224,5 @@ a {
 
 @import './pages/home.scss';
 @import './pages/login.scss';
+@import './pages/_admin.scss';
 

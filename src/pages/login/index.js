@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Layout from '../../components/Layout/Layout'
 export default function Home() {
   return (
@@ -15,15 +16,13 @@ export default function Home() {
               <label htmlFor="password" class="form-label">Password</label>
               <input type="password" class="form-control" id="password" placeholder="Masukkan Password Anda" />
             </div>
-
-            {/* <div class="login_forgotPassword mb-3 text-right">
-              <label><small>Lupa Password ?</small></label>
-            </div> */}
           </div>
         </div>
         <div className="box-main">
           <div className="login_content">
-            <button type="button" class="btn btn-main">Masuk</button>
+            <Link href="/admin" as={`/admin`}>
+              <button type="button" class="btn btn-main">Masuk</button>
+            </Link>
           </div>
         </div>
 

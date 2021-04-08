@@ -4,56 +4,66 @@
   z-index: 2;
   position: sticky;
 
-  &_container {
+  &_container 
+  {
     @extend .d-flex-space-between;
   }
 
-  &_brand {
+  &_brand 
+  {
     width: 100px;
     padding: 20px 0;
   }
 
-  &_menuItem {
+  &_menuItem 
+  {
     color: $c_grey;
     font-weight: 600;
     cursor: pointer;
     padding: 22px 10px;
     border-bottom: 3px solid $c_white;
 
-    &.active {
+    &.active 
+    {
       color: $c_main;
       border-bottom: 3px solid $c_main;
     }
 
-    &:hover {
+    &:hover 
+    {
       color: $c_main;
     }
   }
 
-  &_menuToogle {
+  &_menuToogle 
+  {
     display: none;
     flex-direction: column;
     height: 20px;
     justify-content: space-between;
     position: relative;
 
-    span {
+    span 
+    {
       display: block;
       width: 28px;
       height: 3px;
       background-color: $c_main;
       transition: all 0.5s;
 
-      &:nth-child(2){
+      &:nth-child(2)
+      {
         transform-origin: 0 0 ;
       }
 
-      &:nth-child(4){
+      &:nth-child(4)
+      {
         transform-origin: 0 100% ;
       }
     }
 
-    & > input {
+    & > input 
+    {
       position: absolute;
       width: 40px;
       height:28px;
@@ -63,15 +73,18 @@
       cursor: pointer;
       z-index: 1;
 
-      &:checked ~ span:nth-child(2) {
+      &:checked ~ span:nth-child(2) 
+      {
         transform:rotate(45deg) translate(-1px, -1px);
       }
 
-      &:checked ~ span:nth-child(4) {
+      &:checked ~ span:nth-child(4) 
+      {
         transform:rotate(-45deg)  translate(-1px, 0px);
       }
 
-      &:checked ~ span:nth-child(3) {
+      &:checked ~ span:nth-child(3) 
+      {
         transform: scale(0);
       }
     }
@@ -79,11 +92,13 @@
 
   @media only screen and (max-width: 768px) 
   {
-    &_menuToogle {
+    &_menuToogle 
+    {
       display: flex;
     }
 
-    &_menu{
+    &_menu
+    {
       position :absolute !important;
       min-height: 50px;
       flex-direction: column !important;;
@@ -96,19 +111,22 @@
       transition: all 1s;
       z-index: -1;
 
-      &.slide{
+      &.slide
+      {
         transform: translateY(-48%);
       }
       
     }
   
-    &_menuItem {
+    &_menuItem
+    {
       display: flex;
       min-height: 50px;
       cursor: pointer;
       border-bottom: 1px solid $c_grey_light;
 
-      &:hover{
+      &:hover
+      {
         display: flex;
         min-height: 50px;
         background-color: $c_main;

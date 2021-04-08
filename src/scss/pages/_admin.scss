@@ -1,0 +1,34 @@
+.admin {
+  &_welcomeCards {
+    display: grid;
+    grid-template-columns: 65% 32%;
+    grid-gap: 2rem;
+    margin-top: 1rem;
+  }
+
+  &_welcomeContent {
+    padding: 1rem;
+    border-radius: 2px;
+    background: $c_white;
+    display: flex;
+    flex-direction: column;
+    background: $c_main !important;
+    color: $c_white;
+
+    p {
+      font-size: 12px;
+      margin-bottom: .5rem;
+    }
+  }
+
+  &_welcomeFooter {
+    display: grid;
+    grid-template-columns: 20% 20%;
+
+    button {
+      font-size: 11px;
+      padding: .5rem .5rem;
+    }
+  }
+  
+}

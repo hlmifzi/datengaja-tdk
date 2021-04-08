@@ -1,4 +1,5 @@
 import Layout from '../../components/Layout/Layout'
+import Link from "next/link"
 export default function Home() {
   return (
     <Layout>
@@ -150,7 +151,9 @@ export default function Home() {
         <section className="createInvitation_container container">
           <div className="box-main">
             <div className="createInvitation_submit">
-              <button type="button" class="btn btn-main">Buat Undangan</button>
+              <Link href="/admin" as={`/admin`}>
+                <button type="button" class="btn btn-main">Buat Undangan</button>
+              </Link>
             </div>
           </div>
         </section>

@@ -9,7 +9,7 @@ const Sidebar = () => {
       <div className="sidebar">
         <div className="sidebar_brand">
           <img
-            src="icon/datengaja-white.png"
+            src="/icon/datengaja-white.png"
             alt="datengaja_icon"
             className="navbar_brand cursor-pointer"
           />
@@ -25,44 +25,30 @@ const Sidebar = () => {
                 </a>
               </li>
             </Link>
-            <li>
-              <a href="">
-                <span className="las la-users"></span>
-                <span>Customers</span>
-              </a>
-            </li>
-            <Link href="/admin/projects" as={`/admin/projects`}>
+            <Link href="/admin/dashboardTamu" as={`/admin/dashboard-tamu`}>
               <li>
                 <a href="">
-                  <span className="las la-clipboard-list"></span>
-                  <span>Projects</span>
+                  <span className="las la-igloo"></span>
+                  <span>DashBoard Tamu</span>
                 </a>
               </li>
             </Link>
-            <li>
-              <a href="">
-                <span className="las la-shopping-bag"></span>
-                <span>Orders</span>
-              </a>
-            </li>
-            <li>
-              <a href="">
-                <span className="las la-receipt"></span>
-                <span>Inventory</span>
-              </a>
-            </li>
-            <li>
-              <a href="">
-                <span className="las la-user-circle"></span>
-                <span>Accounts</span>
-              </a>
-            </li>
-            <li>
-              <a href="">
-                <span className="las la-clipboard-list"></span>
-                <span>Tasks</span>
-              </a>
-            </li>
+            <Link href="/admin/bukuTamu" as={`/admin/buku-tamu`}>
+              <li>
+                <a href="">
+                  <span className="las la-clipboard-list"></span>
+                  <span>Buku Tamu</span>
+                </a>
+              </li>
+            </Link>
+            <Link href="/admin/tamu" as={`/admin/tamu`}>
+              <li>
+                <a href="">
+                  <span className="las la-users"></span>
+                  <span>Atur Tamu</span>
+                </a>
+              </li>
+            </Link>
           </ul>
         </div>
       </div>
