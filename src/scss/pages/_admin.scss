@@ -4,6 +4,17 @@
     grid-template-columns: 65% 32%;
     grid-gap: 2rem;
     margin-top: 1rem;
+
+    &.aturUndangan {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+
+      .cards_single {
+        width: 100%;
+      }
+    }
   }
 
   &_welcomeContent {

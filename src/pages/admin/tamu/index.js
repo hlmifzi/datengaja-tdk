@@ -6,6 +6,20 @@ const Tamu = ({ data }) => {
 
   return (
     <LayoutAdmin mainClassName="tamu">
+      <div className="admin_welcomeCards aturUndangan">
+        <div className="admin_welcomeContent cards_single">
+          <h5>Halo, Selamat datang di halaman <b>ATUR TAMU</b></h5>
+          <p>Di halaman ini kamu dapat mengatur tamu yang akan diundang dan membagikannya</p>
+          <div className="admin_welcomeFooter">
+            <Link href="/undangan01/pernikahanAwan&Pelangi">
+              <a target="_blank">
+                <button className="btn-second">Lihat Undangan disini {">"}</button>
+              </a>
+            </Link>
+          </div>
+        </div>
+      </div>
+
       <div className="recent_grid">
         <div className="projects">
           <div className="card">

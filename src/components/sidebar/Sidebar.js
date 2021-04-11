@@ -1,6 +1,11 @@
-import Link from "next/link";
+import Link from "next/link"
+import { useRouter } from 'next/router'
 
 const Sidebar = () => {
+  const router = useRouter()
+
+  const getIsActive = (url) => `${router.pathname === url && 'active'}`
+
   return (
     <>
       <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"></link>
@@ -19,23 +24,23 @@ const Sidebar = () => {
           <ul>
             <Link href="/admin" as={`/admin`}>
               <li>
-                <a href="" className="active">
+                <a href="" className={getIsActive("/admin")}>
                   <span className="las la-igloo"></span>
                   <span>DashBoard</span>
                 </a>
               </li>
             </Link>
-            <Link href="/admin/dashboardTamu" as={`/admin/dashboard-tamu`}>
+            <Link href="/admin/dashboardTamu" as={`/admin/dashboardTamu`}>
               <li>
-                <a href="">
+                <a href="" className={getIsActive("/admin/dashboardTamu")}>
                   <span className="las la-igloo"></span>
                   <span>DashBoard Tamu</span>
                 </a>
               </li>
             </Link>
-            <Link href="/admin/bukuTamu" as={`/admin/buku-tamu`}>
+            <Link href="/admin/bukuTamu" as={`/admin/bukuTamu`}>
               <li>
-                <a href="">
+                <a href="" className={getIsActive("/admin/bukuTamu")}>
                   <span className="las la-clipboard-list"></span>
                   <span>Buku Tamu</span>
                 </a>
@@ -43,9 +48,17 @@ const Sidebar = () => {
             </Link>
             <Link href="/admin/tamu" as={`/admin/tamu`}>
               <li>
-                <a href="">
+                <a href="" className={getIsActive("/admin/tamu")}>
                   <span className="las la-users"></span>
                   <span>Atur Tamu</span>
+                </a>
+              </li>
+            </Link>
+            <Link href="/admin/aturUndangan" as={`/admin/aturUndangan`}>
+              <li>
+                <a href="" className={getIsActive("/admin/aturUndangan")}>
+                  <span className="las la-clipboard-list"></span>
+                  <span>Atur Undangan</span>
                 </a>
               </li>
             </Link>

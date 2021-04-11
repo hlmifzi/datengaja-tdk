@@ -1,10 +1,24 @@
-import LayoutAdmin from '../../../components/Layout/LayoutAdmin'
-// import { getAnalytic } from '../../client/AdminApiServices'
+import Link from "next/link";
 
-const BukuTamu = ({ data }) => {
+import LayoutAdmin from '../../../components/Layout/LayoutAdmin'
+const BukuTamu = () => {
 
   return (
     <LayoutAdmin mainClassName="bukuTamu">
+      <div className="admin_welcomeCards aturUndangan">
+        <div className="admin_welcomeContent cards_single">
+          <h5>Halo, Selamat datang di halaman <b>BUKU TAMU</b></h5>
+          <p>Aduh udah ga zaman lagi pake buku tamu loh! <br /> Halaman ini penggantinya buku tamu yang akan dipakai <b>Hari-H</b> yang dashboardnya nanti bisa di tampilkan di hari H menggunakan monitor kamu</p>
+          <div className="admin_welcomeFooter">
+            <Link href="/undangan01/pernikahanAwan&Pelangi">
+              <a target="_blank">
+                <button className="btn-second">Lihat Undangan disini {">"}</button>
+              </a>
+            </Link>
+          </div>
+        </div>
+      </div>
+
       <div className="recent_grid">
         <div className="projects">
           <div className="card">
@@ -32,7 +46,6 @@ const BukuTamu = ({ data }) => {
                     </td>
                     <td>
                       <div className="d-flex">
-                        <button className="btn-second px-4">Batal</button>
                         <button className="btn-main px-8 ml-4">Hadir</button>
                       </div>
                     </td>
@@ -46,7 +59,6 @@ const BukuTamu = ({ data }) => {
                     </td>
                     <td>
                       <div className="d-flex">
-                        <button className="btn-second px-4">Batal</button>
                         <button className="btn-main px-8 ml-4">Hadir</button>
                       </div>
                     </td>
@@ -60,7 +72,6 @@ const BukuTamu = ({ data }) => {
                     </td>
                     <td>
                       <div className="d-flex">
-                        <button className="btn-second px-4">Batal</button>
                         <button className="btn-main px-8 ml-4">Hadir</button>
                       </div>
                     </td>
@@ -75,7 +86,6 @@ const BukuTamu = ({ data }) => {
                     </td>
                     <td>
                       <div className="d-flex">
-                        <button className="btn-second px-4">Batal</button>
                         <button className="btn-main px-8 ml-4">Hadir</button>
                       </div>
                     </td>
@@ -89,18 +99,5 @@ const BukuTamu = ({ data }) => {
     </LayoutAdmin>
   )
 }
-
-
-// export const getServerSideProps = async () => {
-
-//   const { data } = await getAnalytic()
-
-//   return {
-//     props: {
-//       data
-//     }
-//   }
-// }
-
 
 export default BukuTamu;

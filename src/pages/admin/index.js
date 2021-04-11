@@ -16,7 +16,7 @@ const Admin = ({ data }) => {
                 <button className="btn-second">Lihat disini {">"}</button>
               </a>
             </Link>
-            <Link href="/admin/tamu" as={`/admin/tamu`}>
+            <Link href="/admin/aturUndangan" as={`/admin/atur-undangan`}>
               <button className="btn-second ml-2">Edit disini {">"}</button>
             </Link>
           </div>
