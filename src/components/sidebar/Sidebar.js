@@ -26,7 +26,7 @@ const Sidebar = () => {
               <li>
                 <a href="" className={getIsActive("/admin")}>
                   <span className="las la-igloo"></span>
-                  <span>DashBoard</span>
+                  <span>DashBoard Utama</span>
                 </a>
               </li>
             </Link>

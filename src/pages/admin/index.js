@@ -9,14 +9,14 @@ const Admin = ({ data }) => {
       <div className="admin_welcomeCards">
         <div className="admin_welcomeContent cards_single">
           <h5>Halo, Helmi Fauzi</h5>
-          <p>Undanganmu kamu sudah jadi loh, kamu bisa langsung lihat undanganmu!</p>
+          <p>Undanganmu kamu sudah jadi loh, kamu bisa mengatur dan melihat undanganmu sekarang!</p>
           <div className="admin_welcomeFooter">
             <Link href="/undangan01/pernikahanAwan&Pelangi">
               <a target="_blank">
                 <button className="btn-second">Lihat disini {">"}</button>
               </a>
             </Link>
-            <Link href="/admin/aturUndangan" as={`/admin/atur-undangan`}>
+            <Link href="/admin/aturUndangan" as={`/admin/aturUndangan`}>
               <button className="btn-second ml-2">Edit disini {">"}</button>
             </Link>
           </div>
@@ -25,6 +25,9 @@ const Admin = ({ data }) => {
           <div>
             <h1>{data?.customers || 0}</h1>
             <span>Undangan</span>
+            <Link href="/admin/tamu" as={`/admin/tamu`}>
+              <button className="btn-main mt-2">Atur Tamu</button>
+            </Link>
           </div>
           <div>
             <span className="las la-users"></span>
