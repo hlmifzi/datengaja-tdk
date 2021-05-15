@@ -323,7 +323,7 @@ const Design01 = () => {
                                 </div>
                             </div>
                             <div className="form-control border-0 user_qtyPartner">
-                                <input type="number" placeholder="perkiraan yang akan diajak (istri/anak/pasangan)"></input>
+                                <input type="number" placeholder="jumlah yang akan diajak (istri/anak/pasangan)"></input>
                             </div>
                         </div>
                         <div className="form-control border-0">
