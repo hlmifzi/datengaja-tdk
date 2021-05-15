@@ -309,20 +309,22 @@ const Design01 = () => {
                     </div>
 
                     <form>
-                        <div className="form-control border-0">
-                            <input type="text" onChange={() => { }} value={guest} />
-                        </div>
-                        <div className="user_statusChoose">
-                            <div className="input-group">
-                                <select className="custom-select" id="inputGroupSelect04">
-                                    <option selected>Pilih Status</option>
-                                    <option value="1">Akan Hadir</option>
-                                    <option value="2">Behalangan</option>
-                                </select>
+                        <div className="d-flex">
+                            <div className="form-control border-0 user_name">
+                                <input type="text" onChange={() => { }} value={guest} />
                             </div>
-                        </div>
-                        <div className="form-control border-0">
-                            <input type="number" placeholder="perkiraan yang akan diajak (istri/anak/pasangan)"></input>
+                            <div className="user_statusChoose">
+                                <div className="input-group">
+                                    <select className="custom-select" id="inputGroupSelect04">
+                                        <option selected>Pilih Status</option>
+                                        <option value="1">Akan Hadir</option>
+                                        <option value="2">Behalangan</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="form-control border-0 user_qtyPartner">
+                                <input type="number" placeholder="perkiraan yang akan diajak (istri/anak/pasangan)"></input>
+                            </div>
                         </div>
                         <div className="form-control border-0">
                             <textarea placeholder="Ucapan Do'a & Harapan"></textarea>

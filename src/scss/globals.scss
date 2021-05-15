@@ -294,9 +294,35 @@ a {
       border: 1px solid #ced4da;
       border-radius: 5px;
       padding: 0 8px !important;
-      min-height: 40px !important;
       cursor: pointer
     }
+  }
+  
+  &_search
+  {
+    min-height: 40px !important;
+  }
+
+  &_statusChoose,
+  &_qtyPartner
+  {
+    width: 30% !important;
+    margin-left: 16px !important;
+  }
+
+  &_statusChoose
+  {
+    margin-top: 10px !important;
+    
+    & > div
+    {
+      height: 75% !important;
+    }
+  }
+
+  &_name
+  {
+    width: 30% !important;
   }
 }
 
