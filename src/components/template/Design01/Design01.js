@@ -273,7 +273,7 @@ const Design01 = () => {
                                 <img src="/img/instgramIcon.jpg" className="liveStreaming_instagramIcon" alt="zoomIcon" />
                                 <button className="btn liveStreaming_buttonInstagram">Live Streaming Via Instagram</button>
                             </div>
-                        </div>
+                        </div><br />
                         <p>Meeting ID: 123 123 12 312</p>
                         <p>Password: 12342</p>
                         <p>instagram: @hlmifzi</p>
