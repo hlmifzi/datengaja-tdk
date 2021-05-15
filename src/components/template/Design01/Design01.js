@@ -349,13 +349,13 @@ const Design01 = () => {
                                 <div className="user">
                                     <div className="user_status">
                                         <div>
-                                            <b>Cholis</b>
+                                            <div>Cholis</div>
+                                            <span className="user_category">Temen Ayah Laki Laki  <b>(sesi II (14:00-16:00 WIB))</b></span>
                                         </div>
                                     </div>
                                     <div className="sticker sticker_waiting">Menunggu Konfirmasi</div>
                                 </div>
                                 <p>Lorem ipsum dolor sit, amet</p>
-                                <span className="user_category">Temen Ayah Laki Laki  <b>(sesi II (14:00-16:00 WIB))</b></span>
                             </div>
                         </div>
                         <div className="comment-user">
@@ -363,11 +363,11 @@ const Design01 = () => {
                                 <div className="user">
                                     <div className="user_status">
                                         <div>Affiasca</div>
+                                        <span className="user_category">Temen SD Perempuan  <b>(sesi II (12:00-14:00 WIB))</b></span>
                                     </div>
                                     <div className="sticker sticker_confirm">Akan Hadir</div>
                                 </div>
                                 <p>Lorem ipsum dolor sit, amet</p>
-                                <span className="user_category">Temen SD Perempuan  <b>(sesi II (12:00-14:00 WIB))</b></span>
                             </div>
                         </div>
                         <div className="comment-user">
@@ -375,11 +375,11 @@ const Design01 = () => {
                                 <div className="user">
                                     <div className="user_status">
                                         <div>Rian</div>
+                                        <span className="user_category">Temen SMK Laki-laki  <b>(sesi I (10:00-12:00 WIB))</b></span>
                                     </div>
                                     <div className="sticker sticker_cancel">Berhalangan</div>
                                 </div>
                                 <p>Lorem ipsum dolor sit, amet</p>
-                                <span className="user_category">Temen SMK Laki-laki  <b>(sesi I (10:00-12:00 WIB))</b></span>
                             </div>
                         </div>
                         <div className="comment-user">
@@ -387,11 +387,11 @@ const Design01 = () => {
                                 <div className="user">
                                     <div className="user_status">
                                         <div>Sheila</div>
+                                        <span className="user_category">Temen Kuliah Laki-laki <b>(sesi I (10:00-12:00 WIB))</b></span>
                                     </div>
                                     <div className="sticker sticker_present">Telah Hadir</div>
                                 </div>
                                 <p>Lorem ipsum dolor sit, amet</p>
-                                <span className="user_category">Temen Kuliah Laki-laki <b>(sesi I (10:00-12:00 WIB))</b></span>
                             </div>
                         </div>
                     </div>

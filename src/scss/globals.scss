@@ -249,6 +249,13 @@ a {
   &_status
   {
     display: flex;
+    flex-direction: column;
+
+    & > div 
+    {
+      font-weight: bold;
+      color: black;
+    }
   }
   
   &_category
