@@ -32,7 +32,7 @@ export default function Home() {
 
           <div className="home_portofolioContent p-section">
             <div class="home_portofolioCard">
-              <h5 class="card-title">Awan & Pelangi</h5>
+              <h5 class="card-title">Helmi & Jannah</h5>
               <img class="card-img-top" src="/img/design01.png" alt="Card image cap" />
               <div class="card-body  text-center">
                 <h5 class="card-title line-through">Rp 200,000 - 400,000</h5>

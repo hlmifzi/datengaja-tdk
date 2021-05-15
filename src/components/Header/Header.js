@@ -32,11 +32,11 @@ const Header = () => {
               Buat Undangan
             </div>
           </Link>
-          <Link href="/harga" as={`/harga`}>
+          {/* <Link href="/harga" as={`/harga`}>
             <div className={`navbar_menuItem ${getIsActive("/harga")}`}>
               Harga
             </div>
-          </Link>
+          </Link> */}
           <Link href="/login" as={`/login`}>
             <div className={`navbar_menuItem ${getIsActive("/login")}`}>
               Masuk

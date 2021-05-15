@@ -216,6 +216,165 @@ a {
   }
 }
 
+.sticker
+{
+  color: $c_white;
+  border-radius: 30px;
+  margin-left: .5rem !important;
+  padding: 0 10px !important;
+  font-size: 10px;
+  height: 20px;
+  padding-top: 2px !important;
+  
+  &_waiting
+  {
+    background-color: $c_grey;
+  }
+  &_confirm
+  {
+    background-color: $c_orange;
+  }
+  &_cancel
+  {
+    background-color: $c_red;
+  }
+  &_present
+  {
+    background-color:$c_green ;
+  }
+}
+
+.user
+{
+  &_status
+  {
+    display: flex;
+  }
+  
+  &_category
+  {
+    font-size: 10px !important;
+    color: $c_grey;
+  }
+  
+  &_search
+  {
+    margin: 2rem 0 1rem 0 !important;
+    display: flex;
+    height: 50px;
+  }
+  
+  &_searchName
+  {
+    height: 100%;
+    padding: 2px 10px !important;
+    margin-top: 0 !important;
+    margin-left: .5rem !important;
+  }
+  
+  &_btnSearch
+  {
+    background-color: $c_green !important;
+    width: 200px !important; 
+    margin-left: .5rem !important;
+  }
+
+  &_statusChoose,
+  &_search
+  {
+    select
+    {
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+      padding: 0 8px !important;
+      min-height: 40px !important;
+      cursor: pointer
+    }
+  }
+}
+
+.popUp
+{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  i
+  {
+    position: absolute;
+    color: $c_white;
+    font-weight: bold;
+    cursor: pointer;
+    right: 0;
+    top: -20px;
+    font-size: 12px !important;
+
+    &:hover
+    {
+      opacity: .8;
+    }
+  }
+
+  &_background
+  {
+    position: absolute;
+    background-color: $c_grey;
+    opacity: .5;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  &_container
+  {
+    position: relative;
+    padding: 2rem;
+    background-color: $c_white;
+    max-width: 60vw;
+    height: fit-content;
+    border-radius: 6px;
+    display: flex;
+    z-index: 5;
+    
+    img
+    {
+      border-radius: 6px;
+      width: 100%;
+      max-width: 30vw;
+      height: auto;
+    }
+  }
+}
+
+.gift
+{
+  &_thankYouText
+  {
+    padding: 1rem !important;
+    max-width: 50% !important;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  &_sendTransferBtn
+  {
+    background-color: $c_green !important;
+    width: 100% !important;
+    height: 60px !important;
+    padding: 10px 15px !important;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    margin-top: 1rem !important;
+  }
+}
 
 @import './base/scrollBar.scss';
 
@@ -226,4 +385,6 @@ a {
 @import './pages/login.scss';
 @import './pages/_admin.scss';
 @import './pages/_aturUndangan.scss';
+
+
 

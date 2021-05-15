@@ -18,7 +18,7 @@ html{
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #DBDBDB; 
+  background: transparent; 
   border-radius: 4px;
 }
  
@@ -46,7 +46,7 @@ html{
 
 /* Track */
 ::-moz-scrollbar-track {
-  background: $c_main; 
+  background: transparent; 
   border-radius: 4px;
 }
  
