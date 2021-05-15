@@ -46,30 +46,20 @@ const Admin = ({ data }) => {
         </div>
         <div className="cards_single">
           <div>
-            <h1>{data?.project || 0}</h1>
-            <span>Berhalangan</span>
-          </div>
-          <div>
-            <span className="las la-clipboard"></span>
-          </div>
-        </div>
-
-        <div className="cards_single">
-          <div>
-            <h1>{data?.orders || 0}</h1>
-            <span>Batal</span>
-          </div>
-          <div>
-            <span className="las la-shopping-bag"></span>
-          </div>
-        </div>
-        <div className="cards_single">
-          <div>
             <h1>{data?.income || 0}</h1>
             <span>Telah Hadir</span>
           </div>
           <div>
             <span className="lab la-google-wallet"></span>
+          </div>
+        </div>
+        <div className="cards_single">
+          <div>
+            <h1>{data?.project || 0}</h1>
+            <span>Berhalangan</span>
+          </div>
+          <div>
+            <span className="las la-clipboard"></span>
           </div>
         </div>
       </div>
@@ -115,15 +105,6 @@ const Admin = ({ data }) => {
                     <td>
                       <span className="status orange"></span>
                         Telah Hadir
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>Iqbal</td>
-                    <td>Temen Mama Perempuan</td>
-                    <td>
-                      <span className="status purple"></span>
-                      Batal Hadir
                     </td>
                   </tr>
                 </tbody>

@@ -80,15 +80,6 @@ const dashboardTamu = ({ data }) => {
                         Telah Hadir
                     </td>
                   </tr>
-
-                  <tr>
-                    <td>Iqbal</td>
-                    <td>Temen Mama Perempuan</td>
-                    <td>
-                      <span className="status purple"></span>
-                      Batal Hadir
-                    </td>
-                  </tr>
                 </tbody>
               </table>
             </div>

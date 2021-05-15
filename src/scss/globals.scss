@@ -376,6 +376,65 @@ a {
   }
 }
 
+
+.liveStreaming
+{
+  background-color: $c_grey_light;
+  width: 100%;
+  
+  &_zoomIcon
+  {
+    width: 80px;
+  }
+  
+  &_instagramIcon
+  {
+    width: 80px;
+    height: 80px;
+  }
+
+  &_body
+  {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &_buttonZoom,
+  &_buttonInstagram
+  {
+    width: fit-content !important;
+    height: 60px !important;
+    padding: 10px 15px !important;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    margin-top: 1rem !important;
+
+    &:hover
+    {
+      opacity: .8;
+    }
+  }
+
+  &_buttonZoom 
+  {
+    background-color: $c_blue !important;
+  }
+  
+  &_buttonInstagram
+  {
+    background-color: $c_red !important;
+    margin-left: .5rem !important;
+  }
+
+  &_instagramContainer
+  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
 @import './base/scrollBar.scss';
 
 @import './components/header.scss';

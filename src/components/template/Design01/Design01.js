@@ -257,6 +257,29 @@ const Design01 = () => {
                     <a href="/img/6.jpeg" target="__blank"><img src="/img/6.jpeg" /></a>
                 </div>
             </section>
+            <section className="liveStreaming">
+                <div className="container">
+                    <div className="text-center">
+                        <h2 className="title">Live Streaming pernikahan kami</h2>
+                    </div>
+
+                    <div className="liveStreaming_body">
+                        <div className="d-flex">
+                            <div className="liveStreaming_instagramContainer">
+                                <img src="/img/zoomIcon.png" className="liveStreaming_zoomIcon" alt="zoomIcon" />
+                                <button className="btn liveStreaming_buttonZoom">Live Streaming Via Zoom</button>
+                            </div>
+                            <div className="liveStreaming_instagramContainer">
+                                <img src="/img/instgramIcon.jpg" className="liveStreaming_instagramIcon" alt="zoomIcon" />
+                                <button className="btn liveStreaming_buttonInstagram">Live Streaming Via Instagram</button>
+                            </div>
+                        </div>
+                        <p>Meeting ID: 123 123 12 312</p>
+                        <p>Password: 12342</p>
+                        <p>instagram: @hlmifzi</p>
+                    </div>
+                </div>
+            </section>
 
             {showGiftModal &&
                 <div className="popUp">
@@ -267,7 +290,7 @@ const Design01 = () => {
                         <div className="gift_thankYouText">
                             <h3>Terima Kasih!</h3>
                             <p>Telah mengkonfirmasi kehadiran di acara pernikahan kami.</p><br />
-                            <p>Pemberian hadiah bisa di hari-H maupun via Bank Transfer di rekening<br />
+                            <p>Tanpa mengurangi rasa hormat, bagi Anda yang ingin memberikan tanda kasih untuk kami dapat melalui<br />
                                 <b>BCA: 0940894832</b><br />
                                 <b>BSI: 0912013123</b>
                             </p>
@@ -299,6 +322,9 @@ const Design01 = () => {
                             </div>
                         </div>
                         <div className="form-control border-0">
+                            <input type="number" placeholder="perkiraan yang akan diajak (istri/anak/pasangan)"></input>
+                        </div>
+                        <div className="form-control border-0">
                             <textarea placeholder="Ucapan Do'a & Harapan"></textarea>
                         </div>
                         <button type="button" onClick={() => setShowGiftModal(true)} className="btn">Kirim</button>
@@ -308,9 +334,9 @@ const Design01 = () => {
                         <div className="input-group">
                             <select className="custom-select" id="inputGroupSelect04">
                                 <option selected>Cari Kategori</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                <option value="1">Temen Ayah Laki Laki (sesi II (14:00-16:00 WIB))</option>
+                                <option value="2">Temen SD Perempuan (sesi II (12:00-14:00 WIB))</option>
+                                <option value="3">Temen SMK Laki-laki (sesi I (10:00-12:00 WIB))</option>
                             </select>
                         </div>
                         <input type="text" class="form-control user_searchName" placeholder="Cari Nama Tamu" aria-describedby="basic-addon2" />
