@@ -53,6 +53,7 @@ const dashboardTamu = ({ data }) => {
                     <td>Nama</td>
                     <td>Kategori</td>
                     <td>Status</td>
+                    <td>Waktu</td>
                   </tr>
                 </thead>
                 <tbody>
@@ -60,25 +61,45 @@ const dashboardTamu = ({ data }) => {
                     <td>Affiasca</td>
                     <td>Teman Kuliah Laki-laki</td>
                     <td>
-                      <span className="status purple"></span>
-                                                    Akan Hadir
+                      <span className="sticker sticker_waiting">
+                        Menunggu Konfirmasi
+                      </span>
                     </td>
+                    <td>11-07-21 16:00</td>
+
                   </tr>
                   <tr>
                     <td>Helmi Fauzi</td>
                     <td>Teman Kuliah Perempuan</td>
                     <td>
-                      <span className="status pink"></span>
-                        Berhalangan
+                      <span className="sticker sticker_confirm">
+                        Akan Hadir
+                      </span>
+
                     </td>
+                    <td>11-07-21 16:00</td>
+
                   </tr>
                   <tr>
                     <td>Sulaiman</td>
                     <td>Temen SD laki-laki</td>
                     <td>
-                      <span className="status orange"></span>
-                        Telah Hadir
+                      <span className="sticker sticker_cancel">
+                        Berhalangan
+                      </span>
                     </td>
+                    <td>11-07-21 13:00</td>
+
+                  </tr>
+                  <tr>
+                    <td>Sulaiman</td>
+                    <td>Temen SD laki-laki</td>
+                    <td>
+                      <span className="sticker sticker_present">
+                        Telah Hadir
+                      </span>
+                    </td>
+                    <td>11-07-21 16:00</td>
                   </tr>
                 </tbody>
               </table>
@@ -86,7 +107,6 @@ const dashboardTamu = ({ data }) => {
           </div>
         </div>
       </div>
-
     </LayoutAdmin>
   )
 }

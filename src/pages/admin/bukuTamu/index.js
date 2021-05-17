@@ -41,8 +41,9 @@ const BukuTamu = () => {
                     <td>Affiasca</td>
                     <td>Teman Kuliah Laki-laki</td>
                     <td>
-                      <span className="status purple"></span>
-                                                    Akan Hadir
+                      <span className="sticker sticker_confirm">
+                        Akan Hadir
+                      </span>
                     </td>
                     <td>
                       <div className="d-flex">
@@ -54,8 +55,9 @@ const BukuTamu = () => {
                     <td>Helmi Fauzi</td>
                     <td>Teman Kuliah Perempuan</td>
                     <td>
-                      <span className="status pink"></span>
-                        Akan Hadir
+                      <span className="sticker sticker_present">
+                        Telah Hadir
+                      </span>
                     </td>
                     <td>
                       <div className="d-flex">
@@ -67,8 +69,9 @@ const BukuTamu = () => {
                     <td>Sulaiman</td>
                     <td>Temen SD laki-laki</td>
                     <td>
-                      <span className="status orange"></span>
+                      <span className="sticker sticker_confirm">
                         Akan Hadir
+                      </span>
                     </td>
                     <td>
                       <div className="d-flex">
@@ -81,8 +84,9 @@ const BukuTamu = () => {
                     <td>Iqbal</td>
                     <td>Temen Mama Perempuan</td>
                     <td>
-                      <span className="status purple"></span>
-                      Akan Hadir
+                      <span className="sticker sticker_confirm">
+                        Akan Hadir
+                      </span>
                     </td>
                     <td>
                       <div className="d-flex">

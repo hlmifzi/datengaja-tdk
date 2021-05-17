@@ -87,24 +87,38 @@ const Admin = ({ data }) => {
                     <td>Affiasca</td>
                     <td>Teman Kuliah Laki-laki</td>
                     <td>
-                      <span className="status purple"></span>
-                                                    Akan Hadir
+                      <span className="sticker sticker_waiting">
+                        Menunggu Konfirmasi
+                      </span>
                     </td>
                   </tr>
                   <tr>
                     <td>Helmi Fauzi</td>
                     <td>Teman Kuliah Perempuan</td>
                     <td>
-                      <span className="status pink"></span>
-                        Berhalangan
+                      <span className="sticker sticker_confirm">
+                        Akan Hadir
+                      </span>
+
                     </td>
                   </tr>
                   <tr>
                     <td>Sulaiman</td>
                     <td>Temen SD laki-laki</td>
                     <td>
-                      <span className="status orange"></span>
+                      <span className="sticker sticker_cancel">
+                        Berhalangan
+                      </span>
+
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Sulaiman</td>
+                    <td>Temen SD laki-laki</td>
+                    <td>
+                      <span className="sticker sticker_present">
                         Telah Hadir
+                      </span>
                     </td>
                   </tr>
                 </tbody>

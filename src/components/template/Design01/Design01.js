@@ -267,11 +267,11 @@ const Design01 = () => {
                         <div className="d-flex">
                             <div className="liveStreaming_instagramContainer">
                                 <img src="/img/zoomIcon.png" className="liveStreaming_zoomIcon" alt="zoomIcon" />
-                                <button className="btn liveStreaming_buttonZoom"> Via Zoom</button>
+                                <button className="btn liveStreaming_buttonZoom">Live Via Zoom</button>
                             </div>
                             <div className="liveStreaming_instagramContainer">
                                 <img src="/img/instgramIcon.jpg" className="liveStreaming_instagramIcon" alt="zoomIcon" />
-                                <button className="btn liveStreaming_buttonInstagram">Via Instagram</button>
+                                <button className="btn liveStreaming_buttonInstagram">Live Via Instagram</button>
                             </div>
                         </div><br />
                         <p>Meeting ID: 123 123 12 312</p>
