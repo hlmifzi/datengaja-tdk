@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
-
+import SEO from '../../SEO'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrophoneSlash, faMusic } from "@fortawesome/free-solid-svg-icons";
 import './Design01.module.scss'
@@ -55,6 +55,11 @@ const Design01 = () => {
 
     return (
         <div className="design01__container">
+            <SEO
+                title="pernikahanAwan&Pelangi"
+                description="undangan01/pernikahanAwan&Pelangi?kepada=sheila"
+                image="../../../../public/img/1.jpg"
+            />
             <audio src="/music/1.mp3" id="audio"></audio>
             <div className="bgsound-container">
                 <div className="unmute-sound d-block">
