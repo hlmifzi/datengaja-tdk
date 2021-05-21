@@ -38,11 +38,11 @@ const Sidebar = () => {
                 </a>
               </li>
             </Link>
-            <Link href="/admin/bukuTamu" as={`/admin/bukuTamu`}>
+            <Link href="/admin/aturUndangan" as={`/admin/aturUndangan`}>
               <li>
-                <a href="" className={getIsActive("/admin/bukuTamu")}>
+                <a href="" className={getIsActive("/admin/aturUndangan")}>
                   <span className="las la-clipboard-list"></span>
-                  <span>Buku Tamu</span>
+                  <span>Atur Undangan</span>
                 </a>
               </li>
             </Link>
@@ -54,11 +54,11 @@ const Sidebar = () => {
                 </a>
               </li>
             </Link>
-            <Link href="/admin/aturUndangan" as={`/admin/aturUndangan`}>
+            <Link href="/admin/bukuTamu" as={`/admin/bukuTamu`}>
               <li>
-                <a href="" className={getIsActive("/admin/aturUndangan")}>
+                <a href="" className={getIsActive("/admin/bukuTamu")}>
                   <span className="las la-clipboard-list"></span>
-                  <span>Atur Undangan</span>
+                  <span>Buku Tamu</span>
                 </a>
               </li>
             </Link>

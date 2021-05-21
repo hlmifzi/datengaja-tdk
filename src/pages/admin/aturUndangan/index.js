@@ -92,7 +92,6 @@ const Tamu = ({ data }) => {
       </section>
 
       <section className="createInvitation_container container">
-
         <div className="box-main">
           <div className="createInvitation_title">
             <h4>Mempelai Perempuan</h4>
@@ -198,6 +197,26 @@ const Tamu = ({ data }) => {
           </div>
         </div>
       </section>
+
+
+      <section className="createInvitation_container container">
+        <div className="box-main">
+          <div className="createInvitation_title">
+            <h4>Live Streaming</h4>
+          </div>
+          <div className="createInvitation_content">
+            <div class="mb-3">
+              <label htmlFor="exampleFormControlInput1" class="form-label">Zoom</label>
+              <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan Link Streaming Zoom" />
+            </div>
+            <div class="mb-3">
+              <label htmlFor="exampleFormControlInput1" class="form-label">Instagram</label>
+              <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan Link Streaming akun instagram" />
+            </div>
+          </div>
+        </div>
+      </section>
+
 
       <section className="createInvitation_container container">
         <div className="box-main">
