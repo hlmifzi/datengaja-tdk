@@ -20,7 +20,7 @@ const Tamu = ({ data }) => {
         </div>
       </div>
 
-      <div className="recent_grid">
+      <div className="w-100">
         <div className="projects">
           <div className="card">
             <div className="card_header">
@@ -48,7 +48,11 @@ const Tamu = ({ data }) => {
                       081281332312
                     </td>
                     <td>
-                      <button className="btn-second px-4">Bagikan Undangan</button>
+                      <Link href="https://api.whatsapp.com/send?phone=6281294923207&text=Hallo%Affiasca%0AKami%20Yang%20berbahagia%20mengundang%affiasca%20untuk%20menghadiri%20acara%20resepsi%20pernikahakn%20kami%20pada%20%0A%0Ahari%2Ftangga%3A%20sabtu%2C%2023%20Oktober%202024%0Atempat%3A%20auditorium%20Bina%20Nusantara%0Apukul%3A%2016%3A00-%2019%3A00%0A%0Aanda%20dapat%20konfirmasi%20di%20%0Ahttps%3A%2F%2Fwww.datengaja.id%2Fundangan01%2FpernikahanAwan%26Pelangi%3Fkepada%affiasca%0Atak%20ada%20kesan%20tanpa%20kehadiranmu">
+                        <a className="w-100" target="_blank">
+                          <button className="btn-second px-4">Bagikan Undangan</button>
+                        </a>
+                      </Link>
                     </td>
                   </tr>
                   <tr>
@@ -58,7 +62,11 @@ const Tamu = ({ data }) => {
                       081281332312
                     </td>
                     <td>
-                      <button className="btn-second px-4">Bagikan Undangan</button>
+                      <Link href="https://api.whatsapp.com/send?phone=6281294923207&text=Hallo%Helmi%0AKami%20Yang%20berbahagia%20mengundang%Helmi%20untuk%20menghadiri%20acara%20resepsi%20pernikahakn%20kami%20pada%20%0A%0Ahari%2Ftangga%3A%20sabtu%2C%2023%20Oktober%202024%0Atempat%3A%20auditorium%20Bina%20Nusantara%0Apukul%3A%2016%3A00-%2019%3A00%0A%0Aanda%20dapat%20konfirmasi%20di%20%0Ahttps%3A%2F%2Fwww.datengaja.id%2Fundangan01%2FpernikahanAwan%26Pelangi%3Fkepada%Helmi%0Atak%20ada%20kesan%20tanpa%20kehadiranmu">
+                        <a className="w-100" target="_blank">
+                          <button className="btn-second px-4">Bagikan Undangan</button>
+                        </a>
+                      </Link>
                     </td>
                   </tr>
                   <tr>
@@ -68,7 +76,11 @@ const Tamu = ({ data }) => {
                       081281332312
                     </td>
                     <td>
-                      <button className="btn-second px-4">Bagikan Undangan</button>
+                      <Link href="https://api.whatsapp.com/send?phone=6281294923207&text=Hallo%Sulaiman%0AKami%20Yang%20berbahagia%20mengundang%Sulaiman%20untuk%20menghadiri%20acara%20resepsi%20pernikahakn%20kami%20pada%20%0A%0Ahari%2Ftangga%3A%20sabtu%2C%2023%20Oktober%202024%0Atempat%3A%20auditorium%20Bina%20Nusantara%0Apukul%3A%2016%3A00-%2019%3A00%0A%0Aanda%20dapat%20konfirmasi%20di%20%0Ahttps%3A%2F%2Fwww.datengaja.id%2Fundangan01%2FpernikahanAwan%26Pelangi%3Fkepada%Sulaiman%0Atak%20ada%20kesan%20tanpa%20kehadiranmu">
+                        <a className="w-100" target="_blank">
+                          <button className="btn-second px-4">Bagikan Undangan</button>
+                        </a>
+                      </Link>
                     </td>
                   </tr>
 
@@ -79,7 +91,11 @@ const Tamu = ({ data }) => {
                       081281332312
                     </td>
                     <td>
-                      <button className="btn-second px-4">Bagikan Undangan</button>
+                      <Link href="https://api.whatsapp.com/send?phone=6281294923207&text=Hallo%Iqbal%0AKami%20Yang%20berbahagia%20mengundang%Iqbal%20untuk%20menghadiri%20acara%20resepsi%20pernikahakn%20kami%20pada%20%0A%0Ahari%2Ftangga%3A%20sabtu%2C%2023%20Oktober%202024%0Atempat%3A%20auditorium%20Bina%20Nusantara%0Apukul%3A%2016%3A00-%2019%3A00%0A%0Aanda%20dapat%20konfirmasi%20di%20%0Ahttps%3A%2F%2Fwww.datengaja.id%2Fundangan01%2FpernikahanAwan%26Pelangi%3Fkepada%Iqbal%0Atak%20ada%20kesan%20tanpa%20kehadiranmu">
+                        <a className="w-100" target="_blank">
+                          <button className="btn-second px-4">Bagikan Undangan</button>
+                        </a>
+                      </Link>
                     </td>
                   </tr>
                 </tbody>

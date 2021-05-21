@@ -19,7 +19,7 @@ const BukuTamu = () => {
         </div>
       </div>
 
-      <div className="recent_grid">
+      <div className="w-100">
         <div className="projects">
           <div className="card">
             <div className="card_header">
@@ -46,7 +46,7 @@ const BukuTamu = () => {
                         Akan Hadir
                       </span>
                     </td>
-                    <td>11-07-21 16:00</td>
+                    <td>-</td>
                     <td>
                       <div className="d-flex">
                         <button className="btn-main px-8 ml-4">Hadir</button>
@@ -76,7 +76,7 @@ const BukuTamu = () => {
                         Akan Hadir
                       </span>
                     </td>
-                    <td>11-07-21 16:00</td>
+                    <td>-</td>
                     <td>
                       <div className="d-flex">
                         <button className="btn-main px-8 ml-4">Hadir</button>
@@ -92,7 +92,7 @@ const BukuTamu = () => {
                         Akan Hadir
                       </span>
                     </td>
-                    <td>11-07-21 16:00</td>
+                    <td>-</td>
                     <td>
                       <div className="d-flex">
                         <button className="btn-main px-8 ml-4">Hadir</button>

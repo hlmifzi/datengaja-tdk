@@ -1,6 +1,9 @@
+import { useState } from 'react'
 import Layout from '../../../components/Layout/LayoutAdmin'
 import Link from "next/link"
 export default function add() {
+  const [showAddCategory, setShowAddCategory] = useState(false)
+
   return (
     <Layout>
       <div className="createInvitation container-fluid p-section">
@@ -26,7 +29,7 @@ export default function add() {
                     <option value="3">Temen SMK Laki-laki (sesi I (10:00-12:00 WIB))</option>
 
                   </select>
-                  <button type="button" class="btn btn-main">+ Kategori</button>
+                  <button onClick={() => setShowAddCategory(true)} type="button" class="btn btn-main">+ Kategori</button>
                 </div>
               </div>
 
@@ -48,8 +51,34 @@ export default function add() {
             </div>
           </div>
         </section>
-
       </div>
+
+      {showAddCategory &&
+        <div className="popUp">
+          <div className="popUp_background"></div>
+          <div className="popUp_container d-flex flex-column ">
+            <i onClick={() => setShowAddCategory(false)}>Tutup [x]</i>
+            <div class="mb-3">
+              <label htmlFor="exampleFormControlInput1" class="form-label">Kategori</label>
+              <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="ex: Temen Ayah Laki Laki" />
+            </div>
+            <div class="mb-3">
+              <label htmlFor="exampleFormControlInput1" class="form-label">Sesi</label>
+              <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="ex: sesi I " />
+            </div>
+            <div className="w-100 d-flex">
+              <div className=" w-50">
+                <label htmlFor="exampleFormControlInput1" class="form-label">Jam Mulai</label>
+                <input type="time" class="form-control" id="exampleFormControlInput1" placeholder="Nama Ayah  Mempelai Perempuan" />
+              </div>
+              <div className="ml-4 w-50">
+                <label htmlFor="exampleFormControlInput1" class="form-label">Jam Selesai</label>
+                <input type="time" class="form-control" id="exampleFormControlInput1" placeholder="Nama Ibu  Mempelai Perempuan" />
+              </div>
+            </div>
+          </div>
+        </div>
+      }
     </Layout>
   )
 }
