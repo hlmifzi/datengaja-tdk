@@ -25,7 +25,9 @@ const Tamu = ({ data }) => {
           <div className="card">
             <div className="card_header">
               <h3>Tamu</h3>
-              <button> + Tambah</button>
+              <Link href="/admin/tamu/add">
+                <button> + Tambah</button>
+              </Link>
             </div>
 
             <div className="card_body">

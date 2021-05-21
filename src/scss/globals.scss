@@ -298,6 +298,24 @@ a {
     }
   }
   
+  &_addGuestCategory 
+  {
+    select
+    {
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+      padding: 5px 8px !important;
+      cursor: pointer;
+      width: 70%;
+    }  
+    
+    button
+    {
+      width: 30%;
+      margin-left: .5rem;
+    }
+  }
+  
   &_search
   {
     min-height: 40px !important;

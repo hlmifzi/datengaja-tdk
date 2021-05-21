@@ -33,6 +33,7 @@ const BukuTamu = () => {
                     <td>Nama</td>
                     <td>Kategori</td>
                     <td>Status</td>
+                    <td>Waktu</td>
                     <td>Aksi</td>
                   </tr>
                 </thead>
@@ -45,6 +46,7 @@ const BukuTamu = () => {
                         Akan Hadir
                       </span>
                     </td>
+                    <td>11-07-21 16:00</td>
                     <td>
                       <div className="d-flex">
                         <button className="btn-main px-8 ml-4">Hadir</button>
@@ -59,6 +61,7 @@ const BukuTamu = () => {
                         Telah Hadir
                       </span>
                     </td>
+                    <td>11-07-21 16:00</td>
                     <td>
                       <div className="d-flex">
                         <button className="btn-main px-8 ml-4">Hadir</button>
@@ -73,6 +76,7 @@ const BukuTamu = () => {
                         Akan Hadir
                       </span>
                     </td>
+                    <td>11-07-21 16:00</td>
                     <td>
                       <div className="d-flex">
                         <button className="btn-main px-8 ml-4">Hadir</button>
@@ -88,6 +92,7 @@ const BukuTamu = () => {
                         Akan Hadir
                       </span>
                     </td>
+                    <td>11-07-21 16:00</td>
                     <td>
                       <div className="d-flex">
                         <button className="btn-main px-8 ml-4">Hadir</button>
