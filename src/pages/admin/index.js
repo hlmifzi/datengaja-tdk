@@ -9,7 +9,7 @@ const Admin = ({ data }) => {
       <div className="admin_welcomeCards">
         <div className="admin_welcomeContent cards_single">
           <h5>Halo, Helmi Fauzi</h5>
-          <p>Undanganmu kamu sudah jadi loh, kamu bisa mengatur dan melihat undanganmu sekarang!</p>
+          <p>Undanganmu sudah jadi loh, kamu bisa mengatur dan melihat undanganmu sekarang!</p>
           <div className="admin_welcomeFooter">
             <Link href="/undangan01/pernikahanAwan&Pelangi">
               <a target="_blank">
