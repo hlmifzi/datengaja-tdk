@@ -15,7 +15,7 @@ const LayoutAdmin = ({ children, mainClassName }) => {
         <div className="user_wrapper">
           <img src="/img/user.png" width="40px" height="40px" alt="user" />
           <div>
-            <h4>Helmi Fauzi</h4>
+            <h4>Awan</h4>
           </div>
         </div>
       </header>
