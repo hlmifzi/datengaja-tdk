@@ -46,7 +46,7 @@ export default function add() {
           <div className="box-main">
             <div className="createInvitation_submit">
               <Link href="/admin" as={`/admin`}>
-                <button type="button" class="btn btn-main">+ Tambah</button>
+                <button type="button" class="btn btn-main">Simpan</button>
               </Link>
             </div>
           </div>
