@@ -76,6 +76,7 @@ export default function add() {
                 <input type="time" class="form-control" id="exampleFormControlInput1" placeholder="Nama Ibu  Mempelai Perempuan" />
               </div>
             </div>
+            <button onClick={() => setShowAddCategory(false)} type="button" className="mt-4 btn btn-main">Simpan</button>
           </div>
         </div>
       }
