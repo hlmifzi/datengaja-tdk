@@ -24,9 +24,6 @@ const BukuTamu = () => {
           <div className="card">
             <div className="card_header">
               <h3>Buku Tamu</h3>
-              <Link href="/admin/tamu/add">
-                <button className="btn-green ml-2"> Export Excel</button>
-              </Link>
             </div>
 
             <div className="card_body">
