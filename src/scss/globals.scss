@@ -93,8 +93,10 @@ a {
     padding: .75rem .75rem;
     width: 100%;
     border-radius: 4px;
-
+    
     &:hover {
+      background-color: $c_main;
+      color: $c_white;
       opacity: .9;
     }
   }
