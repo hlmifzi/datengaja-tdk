@@ -98,6 +98,19 @@ a {
       opacity: .9;
     }
   }
+
+  &-green
+  {
+    background-color: $c_green !important;
+    border: none !important;
+    color: $c_white;
+    padding: .75rem .75rem;
+    border-radius: 4px;
+
+    &:hover {
+      opacity: .9;
+    }
+  }
 }
 
 //

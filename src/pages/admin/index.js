@@ -23,7 +23,7 @@ const Admin = ({ data }) => {
         </div>
         <div className="cards_single">
           <div>
-            <h1>{data?.customers || 0}</h1>
+            <h1>{data?.customers || 1000}</h1>
             <span>Undangan</span>
             <Link href="/admin/tamu" as={`/admin/tamu`}>
               <button className="btn-main mt-2">Atur Tamu</button>
@@ -37,7 +37,7 @@ const Admin = ({ data }) => {
       <div className="cards">
         <div className="cards_single">
           <div>
-            <h1>{data?.customers || 0}</h1>
+            <h1>{data?.customers || 800}</h1>
             <span>Bisa Hadir</span>
           </div>
           <div>
@@ -46,7 +46,7 @@ const Admin = ({ data }) => {
         </div>
         <div className="cards_single">
           <div>
-            <h1>{data?.income || 0}</h1>
+            <h1>{data?.income || 200}</h1>
             <span>Telah Hadir</span>
           </div>
           <div>
@@ -55,7 +55,7 @@ const Admin = ({ data }) => {
         </div>
         <div className="cards_single">
           <div>
-            <h1>{data?.project || 0}</h1>
+            <h1>{data?.project || 100}</h1>
             <span>Berhalangan</span>
           </div>
           <div>

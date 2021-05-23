@@ -9,7 +9,7 @@ const dashboardTamu = ({ data }) => {
       <div className="cards">
         <div className="cards_single">
           <div>
-            <h1>{data?.customers || 0}</h1>
+            <h1>{data?.customers || 1000}</h1>
             <span>Undangan</span>
           </div>
           <div>
@@ -18,7 +18,7 @@ const dashboardTamu = ({ data }) => {
         </div>
         <div className="cards_single">
           <div>
-            <h1>{data?.project || 0}</h1>
+            <h1>{data?.project || 800}</h1>
             <span>Bisa Hadir</span>
           </div>
           <div>
@@ -28,7 +28,7 @@ const dashboardTamu = ({ data }) => {
 
         <div className="cards_single">
           <div>
-            <h1>{data?.orders || 0}</h1>
+            <h1>{data?.orders || 200}</h1>
             <span>Telah Hadir</span>
           </div>
           <div>
