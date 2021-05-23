@@ -29,9 +29,9 @@ const Tamu = ({ data }) => {
                 <Link href="/admin/tamu/add">
                   <button> + Tambah</button>
                 </Link>
-                <Link href="/admin/tamu/add">
+                <a href="/report_tamu.xlsx" target="_blank" download>
                   <button className="btn-green ml-2"> Export Excel</button>
-                </Link>
+                </a>
               </div>
             </div>
 
