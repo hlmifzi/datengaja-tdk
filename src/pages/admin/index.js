@@ -69,8 +69,10 @@ const Admin = ({ data }) => {
           <div className="card">
             <div className="card_header">
               <h3>Recent Tamu</h3>
-              <button> See All <span className="las la-arrow-right">
-              </span></button>
+              <Link href="/admin/tamu" as={`/admin/tamu`}>
+                <button> See All <span className="las la-arrow-right">
+                </span></button>
+              </Link>
             </div>
 
             <div className="card_body">
@@ -130,8 +132,6 @@ const Admin = ({ data }) => {
           <div className="card">
             <div className="card_header">
               <h3>Kategori Tamu</h3>
-              <button> See All <span className="las la-arrow-right">
-              </span></button>
             </div>
 
             <div className="card_body">

@@ -37,13 +37,15 @@ const dashboardTamu = ({ data }) => {
         </div>
       </div>
 
-      <div className="recent_grid">
+      <div className="w-100 mt-16">
         <div className="projects">
           <div className="card">
             <div className="card_header">
               <h3>Recent Tamu</h3>
-              <button> See All <span className="las la-arrow-right">
-              </span></button>
+              <Link href="/admin/tamu" as={`/admin/tamu`}>
+                <button> See All <span className="las la-arrow-right">
+                </span></button>
+              </Link>
             </div>
 
             <div className="card_body">
