@@ -115,6 +115,36 @@ a {
   }
 }
 
+.notif
+{
+  &_failed
+  {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 100%;
+    background-color: $c_red;
+    color: $c_white;
+    border-radius: 3px;
+    padding: 0 1rem;
+    height: 50px;
+  }
+}
+
+.input
+{
+  &_failed
+  {
+    border-color: $c_red;
+  }
+
+  &_failedText
+  {
+    font-size: 12px;
+    color: $c_red;
+  }
+}
 //
 
 .layout

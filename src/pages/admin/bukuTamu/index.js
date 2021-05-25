@@ -42,11 +42,11 @@ const BukuTamu = () => {
                     <td>Affiasca</td>
                     <td>Teman Kuliah Laki-laki</td>
                     <td>
-                      <span className="sticker sticker_confirm">
-                        Akan Hadir
+                      <span className="sticker sticker_present">
+                        Telah Hadir
                       </span>
                     </td>
-                    <td>-</td>
+                    <td>11-07-21 17:43</td>
                     <td>
                       <div className="d-flex">
                         <button className="btn-main px-8 ml-4">Hadir</button>

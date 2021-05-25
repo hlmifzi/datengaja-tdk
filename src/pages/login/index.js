@@ -5,8 +5,12 @@ export default function Home() {
     <Layout>
       <section className="container-fluid login bg-grey-light">
         <div className="box-main">
-
           <div className="login_content">
+            <div className="notif_failed">
+              <p>
+                Kombinasi Password Salah
+              </p>
+            </div>
             <div class="mb-3">
               <label htmlFor="username" class="form-label">Username</label>
               <input type="text" class="form-control" id="username" placeholder="Masukkan Username Anda" />
