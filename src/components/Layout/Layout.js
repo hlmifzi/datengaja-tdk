@@ -7,10 +7,11 @@ const Layout = ({ children, className }) => {
       <main className={className}>
         {children}
       </main>
-
-      <div className="layout_contactWA">
-        <img src="icon/undangan-nikah-wa.png"></img>
-      </div>
+      <Link href="https://api.whatsapp.com/send?phone=6281294923207&text=Hallo%20saya%20tertarik%20untuk%20membuat%20undangan%20online%20.%20Bolehkah%20saya%20bertanya%20sesuatu%2C%20terdapat%20kendala%20saat%20membuat%20undangannya">
+        <div className="layout_contactWA">
+          <img src="icon/undangan-nikah-wa.png"></img>
+        </div>
+      </Link>
 
       <footer className="container-fluid footer bg-main p-section">
         <div className="container footer_inner">

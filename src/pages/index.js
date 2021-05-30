@@ -3,12 +3,8 @@ import { LazyLoadComponent } from "react-lazy-load-image-component";
 import Link from "next/link"
 export default function Home() {
 
-  const notify = () => toast("Wow so easy!");
-
   return (
     <Layout className="home">
-      <button onClick={notify}>Notify!</button>
-
       <section className="container home_create p-section">
         <div className="home_promotionWord" >
           <h1>Buat Undangan Nikah online <span>mudah</span> dan <span>murah</span> secara <span>GRATIS</span>!</h1>
