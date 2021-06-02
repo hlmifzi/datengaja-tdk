@@ -7,6 +7,32 @@ export default function Home() {
         <section className="createInvitation_container container">
           <div className="box-main">
             <div className="createInvitation_title">
+              <h4>Akun Admin</h4>
+            </div>
+            <div className="createInvitation_content">
+              <div class="mb-3">
+                <label htmlFor="exampleFormControlInput1" class="form-label">Email</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Username Email" />
+                {/* <span className="input_failedText">Format email salah</span> */}
+              </div>
+
+              <div class="mb-3">
+                <label htmlFor="exampleFormControlInput1" class="form-label">Nomor Handphone</label>
+                <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Nomor Handphone" />
+              </div>
+
+              <div class="mb-3">
+                <label htmlFor="exampleFormControlInput1" class="form-label">Password</label>
+                <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="Password" />
+                {/* <span className="input_failedText">Kata sandi harus mengandung huruf (kecil & besar) dan angka. Sedikitnya 6 karakter</span> */}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="createInvitation_container container">
+          <div className="box-main">
+            <div className="createInvitation_title">
               <h4>Mempelai Pria</h4>
             </div>
             <div className="createInvitation_content">
@@ -23,8 +49,8 @@ export default function Home() {
 
               <div class="mb-3">
                 <label htmlFor="exampleFormControlInput1" class="form-label">Ayah</label>
-                <input type="text" class="form-control input_failed" id="exampleFormControlInput1" placeholder="Nama Ayah  Mempelai Laki-Laki" />
-                <span className="input_failedText">Harap mengisi data</span>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nama Ayah  Mempelai Laki-Laki" />
+                {/* <span className="input_failedText">Harap mengisi data</span> */}
               </div>
 
               <div class="mb-3">
@@ -124,31 +150,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="createInvitation_container container">
-          <div className="box-main">
-            <div className="createInvitation_title">
-              <h4>Akun Admin</h4>
-            </div>
-            <div className="createInvitation_content">
-              <div class="mb-3">
-                <label htmlFor="exampleFormControlInput1" class="form-label">Email</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Username Email" />
-                {/* <span className="input_failedText">Format email salah</span> */}
-              </div>
 
-              <div class="mb-3">
-                <label htmlFor="exampleFormControlInput1" class="form-label">Nomor Handphone</label>
-                <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Nomor Handphone" />
-              </div>
-
-              <div class="mb-3">
-                <label htmlFor="exampleFormControlInput1" class="form-label">Password</label>
-                <input type="password" class="form-control input_failed" id="exampleFormControlInput1" placeholder="Password" />
-                <span className="input_failedText">Kata sandi harus mengandung huruf (kecil & besar) dan angka. Sedikitnya 6 karakter</span>
-              </div>
-            </div>
-          </div>
-        </section>
 
         <section className="createInvitation_container container">
           <div className="box-main">

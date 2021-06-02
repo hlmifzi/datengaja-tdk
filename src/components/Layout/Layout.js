@@ -1,3 +1,4 @@
+import Link from "next/link"
 import Header from "../Header/Header"
 
 const Layout = ({ children, className }) => {
