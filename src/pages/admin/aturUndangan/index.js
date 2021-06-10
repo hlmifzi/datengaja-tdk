@@ -217,6 +217,40 @@ const Tamu = ({ data }) => {
         </div>
       </section>
 
+      <section className="createInvitation_container container">
+        <div className="box-main">
+          <div className="createInvitation_title">
+            <h4>Pilih Design</h4>
+          </div>
+          <div className="createInvitation_content createInvitation_chooseDesign">
+            <div class="home_portofolioCard">
+              <h5 class="card-title">Design 01</h5>
+              <img class="card-img-top" src="/img/design01.png" alt="Card image cap" />
+              <div class="card-body  text-center">
+                <h5 class="card-title line-through">Rp 200,000 - 400,000</h5>
+                <h5 class="card-title c_main font-weight-bold">GRATIS</h5>
+                <button href="#" class="btn-second">Pilih Design</button>
+                <Link href="/undangan01" as={`/undangan01`}>
+                  <button href="#" class="btn-green mt-4">Live Preview</button>
+                </Link>
+              </div>
+            </div>
+            <div class="home_portofolioCard">
+              <h5 class="card-title">Design 02</h5>
+              <img class="card-img-top" src="/img/design02.png" alt="Card image cap" />
+              <div class="card-body  text-center">
+                <h5 class="card-title line-through">Rp 200,000 - 400,000</h5>
+                <h5 class="card-title c_main font-weight-bold">GRATIS</h5>
+                <button href="#" class="btn-second">Pilih Design</button>
+                <Link href="/undangan02" as={`/undangan02`}>
+                  <button href="#" class="btn-green mt-4">Live Preview</button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
 
       <section className="createInvitation_container container">
         <div className="box-main">

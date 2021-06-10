@@ -12,8 +12,8 @@ export default function Home() {
               </p>
             </div>
             <div class="mb-3">
-              <label htmlFor="username" class="form-label">Username</label>
-              <input type="text" class="form-control" id="username" placeholder="Masukkan Username Anda" />
+              <label htmlFor="username" class="form-label">Email</label>
+              <input type="text" class="form-control" id="username" placeholder="Masukkan Email Anda" />
             </div>
 
             <div class="mb-3">

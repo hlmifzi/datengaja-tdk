@@ -7,7 +7,7 @@ export default function Home() {
     <Layout className="home">
       <section className="container home_create p-section">
         <div className="home_promotionWord" >
-          <h1>Buat Undangan Nikah online <span>mudah</span> dan <span>murah</span> secara <span>GRATIS</span>!</h1>
+          <h1>Buat Undangan Nikah online <span>mudah</span> dan <span>cepat</span> secara <span>GRATIS</span>!</h1>
           <Link href="/buat-undangan" as={`/buat-undangan`}>
             <button className="btn-main">Buat Sekarang</button>
           </Link>

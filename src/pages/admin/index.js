@@ -21,7 +21,7 @@ const Admin = ({ data }) => {
             </Link>
           </div>
         </div>
-        <div className="cards_single">
+        <div className="cards_single pointer">
           <div>
             <h1>{data?.customers || 1000}</h1>
             <span>Undangan</span>
@@ -34,34 +34,42 @@ const Admin = ({ data }) => {
           </div>
         </div>
       </div>
+
       <div className="cards">
-        <div className="cards_single">
-          <div>
-            <h1>{data?.customers || 800}</h1>
-            <span>Bisa Hadir</span>
+        <Link href="/admin/tamu" as={`/admin/tamu`}>
+          <div className="cards_single pointer">
+            <div>
+              <h1>{data?.customers || 800}</h1>
+              <span>Bisa Hadir</span>
+            </div>
+            <div>
+              <span className="las la-users"></span>
+            </div>
           </div>
-          <div>
-            <span className="las la-users"></span>
+        </Link>
+        <Link href="/admin/tamu" as={`/admin/tamu`}>
+          <div className="cards_single pointer">
+            <div>
+              <h1>{data?.income || 200}</h1>
+              <span>Telah Hadir</span>
+            </div>
+            <div>
+              <span className="lab la-google-wallet"></span>
+            </div>
           </div>
-        </div>
-        <div className="cards_single">
-          <div>
-            <h1>{data?.income || 200}</h1>
-            <span>Telah Hadir</span>
+        </Link>
+
+        <Link href="/admin/tamu" as={`/admin/tamu`}>
+          <div className="cards_single pointer">
+            <div>
+              <h1>{data?.project || 100}</h1>
+              <span>Berhalangan</span>
+            </div>
+            <div>
+              <span className="las la-clipboard"></span>
+            </div>
           </div>
-          <div>
-            <span className="lab la-google-wallet"></span>
-          </div>
-        </div>
-        <div className="cards_single">
-          <div>
-            <h1>{data?.project || 100}</h1>
-            <span>Berhalangan</span>
-          </div>
-          <div>
-            <span className="las la-clipboard"></span>
-          </div>
-        </div>
+        </Link>
       </div>
 
       <div className="recent_grid">
