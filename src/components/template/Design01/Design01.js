@@ -5,6 +5,7 @@ import SEO from '../../SEO'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrophoneSlash, faMusic } from "@fortawesome/free-solid-svg-icons";
 import './Design01.module.scss'
+import Link from 'next/link';
 const Design01 = () => {
     const { query } = useRouter()
     const guest = query.kepada || "Nama Tamu"
@@ -299,7 +300,9 @@ const Design01 = () => {
                                 <b>BCA: 0940894832</b><br />
                                 <b>BSI: 0912013123</b>
                             </p>
-                            <button className="btn gift_sendTransferBtn">Kirim Bukti Transfer</button>
+                            <Link href="https://api.whatsapp.com/send?phone=6281294923207&text=Hallo%20Helmi%2C%20maaf%20helmi%20ga%20bisa%20hadir%20dikarenakan%20sedang%20di%20luar%20kota.%20kirim%20salam%20tempel%20aja%20yaaa.">
+                                <button className="btn gift_sendTransferBtn">Kirim Bukti Transfer</button>
+                            </Link>
                         </div>
                     </div>
                 </div>

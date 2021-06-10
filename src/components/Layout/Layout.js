@@ -30,17 +30,7 @@ const Layout = ({ children, className }) => {
               <li>Menu</li>
               <li>Beranda</li>
               <li>Buat Undangan</li>
-              <li>Harga</li>
               <li>Masuk</li>
-            </ul>
-          </div>
-          <div className="footer_options">
-            <ul>
-              <li>Social Media</li>
-              <li>Instagram</li>
-              <li>Facebook</li>
-              <li>Twitter</li>
-              <li>Tiktok</li>
             </ul>
           </div>
           <div className="footer_options">

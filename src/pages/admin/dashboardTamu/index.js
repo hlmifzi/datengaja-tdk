@@ -7,39 +7,33 @@ const dashboardTamu = ({ data }) => {
   return (
     <LayoutAdmin mainClassName="dashboardTamu">
       <div className="cards">
-        <Link href="/admin/tamu" as={`/admin/tamu`}>
-          <div className="cards_single pointer">
-            <div>
-              <h1>{data?.customers || 1000}</h1>
-              <span>Undangan</span>
-            </div>
-            <div>
-              <span className="las la-users"></span>
-            </div>
+        <div className="cards_single pointer">
+          <div>
+            <h1>{data?.customers || 1000}</h1>
+            <span>Undangan</span>
           </div>
-        </Link>
-        <Link href="/admin/tamu" as={`/admin/tamu`}>
-          <div className="cards_single pointer">
-            <div>
-              <h1>{data?.project || 800}</h1>
-              <span>Bisa Hadir</span>
-            </div>
-            <div>
-              <span className="las la-clipboard"></span>
-            </div>
+          <div>
+            <span className="las la-users"></span>
           </div>
-        </Link>
-        <Link href="/admin/tamu" as={`/admin/tamu`}>
-          <div className="cards_single pointer">
-            <div>
-              <h1>{data?.orders || 200}</h1>
-              <span>Telah Hadir</span>
-            </div>
-            <div>
-              <span className="las la-shopping-bag"></span>
-            </div>
+        </div>
+        <div className="cards_single pointer">
+          <div>
+            <h1>{data?.project || 800}</h1>
+            <span>Bisa Hadir</span>
           </div>
-        </Link>
+          <div>
+            <span className="las la-clipboard"></span>
+          </div>
+        </div>
+        <div className="cards_single pointer">
+          <div>
+            <h1>{data?.orders || 200}</h1>
+            <span>Telah Hadir</span>
+          </div>
+          <div>
+            <span className="las la-shopping-bag"></span>
+          </div>
+        </div>
       </div>
 
       <div className="w-100 mt-16">
