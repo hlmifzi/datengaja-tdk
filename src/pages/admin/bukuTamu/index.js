@@ -1,8 +1,10 @@
+import { useState } from 'react'
+
 import Link from "next/link";
 
 import LayoutAdmin from '../../../components/Layout/LayoutAdmin'
 const BukuTamu = () => {
-
+  const [state, setstate] = useState("Akan Hadir")
   return (
     <LayoutAdmin mainClassName="bukuTamu">
       <div className="admin_welcomeCards aturUndangan">
@@ -49,7 +51,7 @@ const BukuTamu = () => {
                     <td>11-07-21 17:43</td>
                     <td>
                       <div className="d-flex">
-                        <button className="btn-main px-8 ml-4">Hadir</button>
+                        <button className="btn-main px-8 ml-4 disabled">Hadir</button>
                       </div>
                     </td>
                   </tr>
@@ -64,7 +66,7 @@ const BukuTamu = () => {
                     <td>11-07-21 16:00</td>
                     <td>
                       <div className="d-flex">
-                        <button className="btn-main px-8 ml-4">Hadir</button>
+                        <button className="btn-main px-8 ml-4 disabled">Hadir</button>
                       </div>
                     </td>
                   </tr>
@@ -78,8 +80,8 @@ const BukuTamu = () => {
                     </td>
                     <td>-</td>
                     <td>
-                      <div className="d-flex">
-                        <button className="btn-main px-8 ml-4">Hadir</button>
+                      <div className="d-flex" onClick={() => setstate("Telah Hadir")}>
+                        <button className="btn-main px-8 ml-4">{state}</button>
                       </div>
                     </td>
                   </tr>
@@ -88,14 +90,14 @@ const BukuTamu = () => {
                     <td>Iqbal</td>
                     <td>Temen Mama Perempuan</td>
                     <td>
-                      <span className="sticker sticker_confirm">
-                        Akan Hadir
+                      <span className="sticker sticker_present">
+                        Telah Hadir
                       </span>
                     </td>
-                    <td>-</td>
+                    <td>11-07-21 16:00</td>
                     <td>
                       <div className="d-flex">
-                        <button className="btn-main px-8 ml-4">Hadir</button>
+                        <button className="btn-main px-8 ml-4 disabled">Hadir</button>
                       </div>
                     </td>
                   </tr>
@@ -105,6 +107,19 @@ const BukuTamu = () => {
           </div>
         </div>
       </div>
+
+      {state === "Telah Hadir" &&
+        <div className="popUp">
+          <div className="popUp_background"></div>
+          <div className="popUp_container d-flex flex-column">
+            <i onClick={() => setstate(false)}>Tutup [x]</i>
+            <div className="d-flex justify-content-center">
+              <h3 className="text-center">Status Tamu Undangan Berhasil diubah menjadi <b>Hadir</b></h3>
+            </div>
+            <button onClick={() => setstate(false)} type="button" className="mt-4 btn btn-main">Kembali</button>
+          </div>
+        </div>
+      }
     </LayoutAdmin>
   )
 }
