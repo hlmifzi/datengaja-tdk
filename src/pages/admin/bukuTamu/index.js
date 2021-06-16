@@ -79,7 +79,7 @@ const BukuTamu = () => {
                         {hadir}
                       </span>
                     </td>
-                    <td>-</td>
+                    <td>{`${hadir === "Akan Hadir" ? "-" : "11-07-21 16:14"}`}</td>
                     <td>
                       <div className="d-flex" onClick={() => {
                         setstate(true)
