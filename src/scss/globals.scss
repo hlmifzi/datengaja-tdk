@@ -437,6 +437,15 @@ a {
   justify-content: center;
   align-items: center;
 
+  &_checkList
+  {
+    img
+    {
+      width: 200px;
+      height: 100px;
+    }
+  }
+
   i
   {
     position: absolute;

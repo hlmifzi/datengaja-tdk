@@ -118,7 +118,10 @@ const BukuTamu = () => {
           <div className="popUp_background"></div>
           <div className="popUp_container d-flex flex-column">
             <i onClick={() => setstate(false)}>Tutup [x]</i>
-            <div className="d-flex justify-content-center">
+            <div className="d-flex justify-content-center align-items-center flex-direction-column">
+              <div className="popUp_checkList">
+                <img src="/img/checkl.svg" />
+              </div>
               <h3 className="text-center">Status Tamu Undangan Berhasil diubah menjadi <b>Hadir</b></h3>
             </div>
             <button onClick={() => setstate(false)} type="button" className="mt-4 btn btn-main">Kembali</button>
