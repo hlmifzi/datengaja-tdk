@@ -62,6 +62,14 @@ const Sidebar = () => {
                 </a>
               </li>
             </Link>
+            <Link href="/admin/laporan" as={`/admin/laporan`}>
+              <li>
+                <a href="" className={getIsActive("/admin/laporan")}>
+                  <span className="las la-clipboard-list"></span>
+                  <span>Laporan Penjualan</span>
+                </a>
+              </li>
+            </Link>
           </ul>
         </div>
       </div>

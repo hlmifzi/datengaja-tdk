@@ -19,16 +19,16 @@ const Tamu = ({ data }) => {
           </div>
         </div>
       </div>
-
+      <Link href="/admin/tamu/add">
+        <button> + Tambah</button>
+      </Link>
       <div className="w-100">
         <div className="projects">
           <div className="card">
             <div className="card_header">
               <h3>Tamu</h3>
               <div>
-                <Link href="/admin/tamu/add">
-                  <button> + Tambah</button>
-                </Link>
+
                 <a href="/report_tamu.xlsx" target="_blank" download>
                   <button className="btn-green ml-2"> Export Excel</button>
                 </a>

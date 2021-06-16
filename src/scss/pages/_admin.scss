@@ -41,5 +41,23 @@
       padding: .5rem .5rem;
     }
   }
+
+  .card {
+    &_bodyFilter
+    {
+      display: flex;
+      justify-content: space-evenly;
+      padding: 1rem;
+      
+      & input[type="date"] {
+        cursor: pointer;
+        border: solid 1px $c_grey;
+        outline: none;
+        padding: 5px 10px;
+        margin-left: .5rem;
+        border-radius: 4px;
+      }
+    }
+  }
   
 }
