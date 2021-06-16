@@ -4,7 +4,8 @@ import Link from "next/link";
 
 import LayoutAdmin from '../../../components/Layout/LayoutAdmin'
 const BukuTamu = () => {
-  const [state, setstate] = useState("Akan Hadir")
+  const [state, setstate] = useState(false)
+  const [hadir, setHadir] = useState("Akan Hadir")
   return (
     <LayoutAdmin mainClassName="bukuTamu">
       <div className="admin_welcomeCards aturUndangan">
@@ -74,14 +75,18 @@ const BukuTamu = () => {
                     <td>Sulaiman</td>
                     <td>Temen SD laki-laki</td>
                     <td>
-                      <span className="sticker sticker_confirm">
-                        Akan Hadir
+                      <span className={`${hadir === "akan hadir" ? "sticker_confirm" : "sticker_present  "} sticker`} >
+                        {hadir}
                       </span>
                     </td>
                     <td>-</td>
                     <td>
-                      <div className="d-flex" onClick={() => setstate("Telah Hadir")}>
-                        <button className="btn-main px-8 ml-4">{state}</button>
+                      <div className="d-flex" onClick={() => {
+                        setstate(true)
+                        setHadir("Telah Hadir")
+                      }
+                      }>
+                        <button className={`${hadir === "Akan Hadir" ? "" : "disabled"} btn-main px-8 ml-4`}>Hadir</button>
                       </div>
                     </td>
                   </tr>
@@ -108,7 +113,7 @@ const BukuTamu = () => {
         </div>
       </div>
 
-      {state === "Telah Hadir" &&
+      {state &&
         <div className="popUp">
           <div className="popUp_background"></div>
           <div className="popUp_container d-flex flex-column">
