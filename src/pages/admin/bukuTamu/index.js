@@ -75,7 +75,7 @@ const BukuTamu = () => {
                     <td>Sulaiman</td>
                     <td>Temen SD laki-laki</td>
                     <td>
-                      <span className={`${hadir === "akan hadir" ? "sticker_confirm" : "sticker_present  "} sticker`} >
+                      <span className={`${hadir === "Akan Hadir" ? "sticker_confirm" : "sticker_present  "} sticker`} >
                         {hadir}
                       </span>
                     </td>
