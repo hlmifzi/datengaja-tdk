@@ -121,6 +121,21 @@ a {
     }
   }
 
+  &-blue {
+    background-color: $c_blue !important;
+    color: $white;
+    border: 1px solid $c_blue;
+    padding: .75rem .75rem;
+    width: 100%;
+    border-radius: 4px;
+    
+    &:hover {
+      background-color: $c_white !important;
+      color: $c_blue;
+      opacity: .9;
+    }
+  }
+
   &-green
   {
     background-color: $c_green !important;
