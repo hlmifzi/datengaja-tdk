@@ -1,8 +1,29 @@
-import Link from "next/link";
+import { useState } from 'react'
+import Link from "next/link"
+import moment from 'moment'
 import LayoutAdmin from '../../../components/Layout/LayoutAdmin'
-// import { getAnalytic } from '../../client/AdminApiServices'
+import { getAllByBuyerProductId, deleteInvitation } from '../../../client/Invitations'
+import { getBuyerProductsClientName } from '../../../client/BuyerProduct'
+import { parseCookies, attendStatus } from '../../../utils/helper/HelperUtils'
+import router from "next/router"
+import absoluteUrl from 'next-absolute-url'
 
-const Tamu = ({ data }) => {
+const Tamu = ({
+  data,
+  dataBuyerProduct,
+  bridegroom_call_name,
+  bride_call_name,
+  hostname
+}) => {
+  const [modalSuccessDelete, setModalSuccessDelete] = useState(false)
+  const handleDelete = async (id) => {
+    const { data } = await deleteInvitation(id)
+    if (data) {
+      setModalSuccessDelete(true)
+    } else {
+      alert(error.error.errors[0].message)
+    }
+  }
 
   return (
     <LayoutAdmin mainClassName="tamu">
@@ -11,9 +32,9 @@ const Tamu = ({ data }) => {
           <h5>Halo, Selamat datang di halaman <b>ATUR TAMU</b></h5>
           <p>Di halaman ini kamu dapat mengatur tamu yang akan diundang dan membagikannya</p>
           <div className="admin_welcomeFooter">
-            <Link href="/undangan01/pernikahanAwan&Pelangi">
+            <Link href={`/undangan01/pernikahan-${bridegroom_call_name}-dan-${bride_call_name}`}>
               <a target="_blank">
-                <button className="btn-second">Lihat Undangan disini {">"}</button>
+                <button className="btn-second">Lihat disini {">"}</button>
               </a>
             </Link>
           </div>
@@ -42,155 +63,106 @@ const Tamu = ({ data }) => {
                     <td>Kategori</td>
                     <td>Nomor telepon</td>
                     <td>Status</td>
-                    <td>Waktu</td>
+                    <td>Kehadiran</td>
+                    <td>Update Terakhir</td>
                     <td>Aksi</td>
                     <td>Share</td>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Affiasca</td>
-                    <td>Teman Kuliah Laki-laki</td>
-                    <td>
-                      081281332312
-                    </td>
-                    <td>
-                      <span className="sticker sticker_present">
-                        Telah Hadir
-                      </span>
-                    </td>
-                    <td>11-07-21 16:00</td>
-                    <td>
-                      <Link href="/admin/tamu/add" >
-                        <a target="_blank">
-                          <button className="btn-blue px-4">Ubah</button>
-                        </a>
-                      </Link>
-                      <br />
-                      <a className=" ml-2 mt-4" target="_blank">
-                        <button className="btn-main px-4">Delete</button>
-                      </a>
-                    </td>
-                    <td>
-                      <Link href="https://api.whatsapp.com/send?phone=6281294923207&text=Hallo%20Affiasca%0AKami%20Yang%20berbahagia%20mengundang%20bapak%2Fibu%20untuk%20menghadiri%20acara%20resepsi%20pernikahakn%20kami%20pada%20%0A%0Ahari%2Ftanggal%3A%20sabtu%2C%2023%20Oktober%202024%0Atempat%3A%20auditorium%20Bina%20Nusantara%0Apukul%3A%2016%3A00-%2019%3A00%20WIB%0A%0AMohon%20dapat%20konfirmasi%20di%20%0Ahttps%3A%2F%2Fwww.datengaja.id%2Fundangan01%2FpernikahanAwan%26Pelangi%3Fkepada%3DAffiasca%0Atak%20ada%20kesan%20tanpa%20kehadiranmu" >
-                        <a className="w-100" target="_blank">
-                          <button className="btn-second px-4">Bagikan ke WA</button>
-                        </a>
-                      </Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Helmi Fauzi</td>
-                    <td>Teman Kuliah Perempuan</td>
-                    <td>
-                      081281332312
-                    </td>
-                    <td>
-                      <span className="sticker sticker_confirm">
-                        Akan Hadir
-                      </span>
-                    </td>
-                    <td>-</td>
-                    <td>
-                      <Link href="/admin/tamu/add" >
-                        <a target="_blank">
-                          <button className="btn-blue px-4">Ubah</button>
-                        </a>
-                      </Link>
-                      <a className=" ml-2 mt-4" target="_blank">
-                        <button className="btn-main px-4">Delete</button>
-                      </a>
-                    </td>
-                    <td>
-                      <Link href="https://api.whatsapp.com/send?phone=6281294923207&text=Hallo%20Helmi%0AKami%20Yang%20berbahagia%20mengundang%20bapak%2Fibu%20untuk%20menghadiri%20acara%20resepsi%20pernikahakn%20kami%20pada%20%0A%0Ahari%2Ftanggal%3A%20sabtu%2C%2023%20Oktober%202024%0Atempat%3A%20auditorium%20Bina%20Nusantara%0Apukul%3A%2016%3A00-%2019%3A00%20WIB%0A%0AMohon%20dapat%20konfirmasi%20di%20%0Ahttps%3A%2F%2Fwww.datengaja.id%2Fundangan01%2FpernikahanAwan%26Pelangi%3Fkepada%3DHelmi%0Atak%20ada%20kesan%20tanpa%20kehadiranmu" >
-                        <a className="w-100" target="_blank">
-                          <button className="btn-second px-4">Bagikan ke WA</button>
-                        </a>
-                      </Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Sulaiman</td>
-                    <td>Temen SD laki-laki</td>
-                    <td>
-                      081281332312
-                    </td>
-                    <td>
-                      <span className="sticker sticker_confirm">
-                        Akan Hadir
-                      </span>
-                    </td>
-                    <td>-</td>
-                    <td>
-                      <Link href="/admin/tamu/add" >
-                        <a target="_blank">
-                          <button className="btn-blue px-4">Ubah</button>
-                        </a>
-                      </Link>
-                      <a className="ml-2 mt-4" target="_blank">
-                        <button className="btn-main px-4">Delete</button>
-                      </a>
-                    </td>
-                    <td>
-                      <Link href="https://api.whatsapp.com/send?phone=6281294923207&text=Hallo%20Sulaiman%0AKami%20Yang%20berbahagia%20mengundang%20bapak%2Fibu%20untuk%20menghadiri%20acara%20resepsi%20pernikahakn%20kami%20pada%20%0A%0Ahari%2Ftanggal%3A%20sabtu%2C%2023%20Oktober%202024%0Atempat%3A%20auditorium%20Bina%20Nusantara%0Apukul%3A%2016%3A00-%2019%3A00%20WIB%0A%0AMohon%20dapat%20konfirmasi%20di%20%0Ahttps%3A%2F%2Fwww.datengaja.id%2Fundangan01%2FpernikahanAwan%26Pelangi%3Fkepada%3DSulaiman%0Atak%20ada%20kesan%20tanpa%20kehadiranmu" >
-                        <a className="w-100" target="_blank">
-                          <button className="btn-second px-4">Bagikan ke WA</button>
-                        </a>
-                      </Link>
-                    </td>
-                  </tr>
+                  {data.length > 0 ?
+                    data.map((v, i) => {
+                      return (
+                        <tr key={i}>
+                          <td>{v.fullname}</td>
+                          <td>{v.desc}</td>
+                          <td>
+                            {v.phone_wa}
+                          </td>
+                          <td>
+                            <div className={`sticker ${attendStatus[v.attend_status]}`}>
+                              {v.attend_status}
+                            </div>
+                          </td>
+                          <td>{v.present_time}</td>
+                          <td>{moment(v.updated_at).format('LLLL')}</td>
+                          <td>
+                            <button
+                              className="btn-blue px-4"
+                              onClick={() => router.push(`/admin/tamu/add/?id=${v.id}`)}
+                            >
+                              Ubah
+                            </button>
+                            <br />
+                            <button
+                              onClick={() => handleDelete(v.id)}
+                              className="btn-main px-4"
+                            >
+                              Delete
+                            </button>
+                          </td>
+                          <td>
+                            <Link href={`
+                            https://api.whatsapp.com/send?phone=${v.phone_wa}&text=Hallo%20${v.fullname}%0AKami%20Yang%20berbahagia%20mengundang%20bapak%2Fibu%20untuk%20menghadiri%20acara%20resepsi%20pernikahakn%20kami%20pada%20%0A%0Ahari%2Ftanggal%3A%20${moment(dataBuyerProduct?.bride_date).format('LL')}%0Atempat%3A%20${dataBuyerProduct?.reception_location}%0APukul:%20${dataBuyerProduct?.reception_start_time} s.d ${dataBuyerProduct?.reception_end_time || 'selesai'}%0A%0AMohon%20dapat%20konfirmasi%20di%20%0A${hostname}%2Fundangan01%2Fpernikahan-${bridegroom_call_name}-dan-${bride_call_name}%3Fkepada=${v.fullname}%0ATak%20ada%20kesan%20tanpa%20kehadiranmu`} >
+                              <a className="w-100" target="_blank">
+                                <button className="btn-second px-4">Bagikan ke WA</button>
+                              </a>
+                            </Link>
+                          </td>
+                        </tr>
 
-                  <tr>
-                    <td>Iqbal</td>
-                    <td>Temen Mama Perempuan</td>
-                    <td>
-                      081281332312
-                    </td>
-                    <td>
-                      <span className="sticker sticker_present">
-                        Telah Hadir
-                      </span>
-                    </td>
-                    <td>11-07-21 16:00</td>
-                    <td>
-                      <Link href="/admin/tamu/add" >
-                        <a target="_blank">
-                          <button className="btn-blue px-4">Ubah</button>
-                        </a>
-                      </Link>
-                      <a className=" ml-2 mb-4" target="_blank">
-                        <button className="btn-main px-4">Delete</button>
-                      </a>
-                    </td>
-                    <td>
-                      <Link href="https://api.whatsapp.com/send?phone=6281294923207&text=Hallo%20Iqbal%0AKami%20Yang%20berbahagia%20mengundang%20bapak%2Fibu%20untuk%20menghadiri%20acara%20resepsi%20pernikahakn%20kami%20pada%20%0A%0Ahari%2Ftanggal%3A%20sabtu%2C%2023%20Oktober%202024%0Atempat%3A%20auditorium%20Bina%20Nusantara%0Apukul%3A%2016%3A00-%2019%3A00%20WIB%0A%0AMohon%20dapat%20konfirmasi%20di%20%0Ahttps%3A%2F%2Fwww.datengaja.id%2Fundangan01%2FpernikahanAwan%26Pelangi%3Fkepada%3DIqbal%0Atak%20ada%20kesan%20tanpa%20kehadiranmu" >
-                        <a className="w-100" target="_blank">
-                          <button className="btn-second px-4">Bagikan ke WA</button>
-                        </a>
-                      </Link>
-                    </td>
-                  </tr>
+                      )
+                    }) :
+                    <tr>
+                      <td colSpan={8} className="text-center">
+                        <h1>Tidak ada data</h1>
+                      </td>
+                      <td style={{ display: 'none' }}></td>
+                    </tr>
+                  }
                 </tbody>
               </table>
             </div>
           </div>
         </div>
       </div>
-    </LayoutAdmin>
+
+      {modalSuccessDelete &&
+        <div className="popUp">
+          <div className="popUp_background"></div>
+          <div className="popUp_container d-flex flex-column ">
+            <h2>Berhasil Delete Data</h2>
+            <button onClick={() => {
+              router.push("/admin/tamu")
+              setModalSuccessDelete(false)
+            }}
+              type="button" className="mt-4 btn btn-main">Kembali</button>
+          </div>
+        </div>
+      }
+    </LayoutAdmin >
   )
 }
 
+export const getServerSideProps = async ({ req }) => {
 
-// export const getServerSideProps = async () => {
+  const cookie = parseCookies(req.headers.cookie)
 
-//   const { data } = await getAnalytic()
+  const { data } = await getAllByBuyerProductId(cookie['buyerProductId'])
+  const { origin: hostname } = absoluteUrl(req)
 
-//   return {
-//     props: {
-//       data
-//     }
-//   }
-// }
+  const { data: dataBuyerProduct } = await getBuyerProductsClientName(cookie['bridegroom_call_name'].trim() || "helmi", cookie['bride_call_name'].trim() || "jannah")
 
+
+  return {
+    props: {
+      data: data || null,
+      hostname,
+      dataBuyerProduct,
+      bridegroom_call_name: cookie['bridegroom_call_name'],
+      bride_call_name: cookie['bride_call_name'],
+    }
+  }
+}
 
 export default Tamu;

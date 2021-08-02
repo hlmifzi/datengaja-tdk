@@ -1,17 +1,18 @@
 import Link from "next/link";
 import LayoutAdmin from '../../components/Layout/LayoutAdmin'
-// import { getAnalytic } from '../../client/AdminApiServices'
+import { getBuyerProductsClientName } from '../../client/BuyerProduct'
+import { parseCookies } from '../../utils/helper/HelperUtils'
 
 const Admin = ({ data }) => {
 
   return (
-    <LayoutAdmin mainClassName="admin">
+    <LayoutAdmin mainClassName="admin" user={data?.bridegroom_call_name}>
       <div className="admin_welcomeCards">
         <div className="admin_welcomeContent cards_single">
           <h5>Halo, Helmi Fauzi</h5>
           <p>Undanganmu sudah jadi loh, kamu bisa mengatur dan melihat undanganmu sekarang!</p>
           <div className="admin_welcomeFooter">
-            <Link href="/undangan01/pernikahanAwan&Pelangi">
+            <Link href={`/undangan01/pernikahan-${data?.bridegroom_call_name}-dan-${data?.bride_call_name}`}>
               <a target="_blank">
                 <button className="btn-second">Lihat disini {">"}</button>
               </a>
@@ -204,17 +205,18 @@ const Admin = ({ data }) => {
   )
 }
 
+export const getServerSideProps = async ({ req }) => {
 
-// export const getServerSideProps = async () => {
+  const cookie = parseCookies(req.headers.cookie)
 
-//   const { data } = await getAnalytic()
+  const { data } = await getBuyerProductsClientName(cookie['bridegroom_call_name'] || "helmi", cookie['bride_call_name'] || "jannah")
 
-//   return {
-//     props: {
-//       data
-//     }
-//   }
-// }
+  return {
+    props: {
+      data
+    }
+  }
+}
 
 
 export default Admin;

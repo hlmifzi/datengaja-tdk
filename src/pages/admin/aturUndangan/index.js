@@ -1,6 +1,7 @@
 import Link from "next/link";
 import LayoutAdmin from '../../../components/Layout/LayoutAdmin'
-// import { getAnalytic } from '../../client/AdminApiServices'
+import { getBuyerProductsClientName } from '../../../client/BuyerProduct'
+import { parseCookies } from '../../../utils/helper/HelperUtils'
 
 const Tamu = ({ data }) => {
 
@@ -11,9 +12,9 @@ const Tamu = ({ data }) => {
           <h5>Halo, Selamat datang di halaman <b>ATUR UNDANGAN</b></h5>
           <p>Di halaman ini kamu dapat mengatur content undangan kamu</p>
           <div className="admin_welcomeFooter">
-            <Link href="/undangan01/pernikahanAwan&Pelangi">
+            <Link href={`/undangan01/pernikahan-${data?.bridegroom_call_name}-dan-${data?.bride_call_name}`}>
               <a target="_blank">
-                <button className="btn-second">Lihat Undangan disini {">"}</button>
+                <button className="btn-second">Lihat disini {">"}</button>
               </a>
             </Link>
           </div>
@@ -267,16 +268,19 @@ const Tamu = ({ data }) => {
 }
 
 
-// export const getServerSideProps = async () => {
 
-//   const { data } = await getAnalytic()
+export const getServerSideProps = async ({ req }) => {
 
-//   return {
-//     props: {
-//       data
-//     }
-//   }
-// }
+  const cookie = parseCookies(req.headers.cookie)
+
+  const { data } = await getBuyerProductsClientName(cookie['bridegroom_call_name'], cookie['bride_call_name'])
+
+  return {
+    props: {
+      data
+    }
+  }
+}
 
 
 export default Tamu;

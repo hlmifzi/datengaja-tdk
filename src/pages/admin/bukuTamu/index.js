@@ -3,7 +3,10 @@ import { useState } from 'react'
 import Link from "next/link";
 
 import LayoutAdmin from '../../../components/Layout/LayoutAdmin'
-const BukuTamu = () => {
+import { getBuyerProductsClientName } from '../../../client/BuyerProduct'
+import { parseCookies } from '../../../utils/helper/HelperUtils'
+
+const BukuTamu = ({ data }) => {
   const [state, setstate] = useState(false)
   const [hadir, setHadir] = useState("Akan Hadir")
   return (
@@ -13,9 +16,9 @@ const BukuTamu = () => {
           <h5>Halo, Selamat datang di halaman <b>BUKU TAMU</b></h5>
           <p>Aduh udah ga zaman lagi pake buku tamu loh! <br /> Halaman ini penggantinya buku tamu yang akan dipakai <b>Hari-H</b> yang dashboardnya nanti bisa di tampilkan di hari H menggunakan monitor kamu</p>
           <div className="admin_welcomeFooter">
-            <Link href="/undangan01/pernikahanAwan&Pelangi">
+            <Link href={`/undangan01/pernikahan-${data?.bridegroom_call_name}-dan-${data?.bride_call_name}`}>
               <a target="_blank">
-                <button className="btn-second">Lihat Undangan disini {">"}</button>
+                <button className="btn-second">Lihat disini {">"}</button>
               </a>
             </Link>
           </div>
@@ -130,6 +133,20 @@ const BukuTamu = () => {
       }
     </LayoutAdmin>
   )
+}
+
+
+export const getServerSideProps = async ({ req }) => {
+
+  const cookie = parseCookies(req.headers.cookie)
+
+  const { data } = await getBuyerProductsClientName(cookie['bridegroom_call_name'], cookie['bride_call_name'])
+
+  return {
+    props: {
+      data
+    }
+  }
 }
 
 export default BukuTamu;

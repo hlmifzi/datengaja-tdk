@@ -1,7 +1,13 @@
 import Layout from '../components/Layout/Layout'
-import { LazyLoadComponent } from "react-lazy-load-image-component";
+import { LazyLoadComponent } from 'react-lazy-load-image-component'
 import Link from "next/link"
-export default function Home() {
+
+import { getBuyerProducts } from '../client/BuyerProduct'
+
+
+const Home = ({
+  dataBuyerProducts
+}) => {
 
   return (
     <Layout className="home">
@@ -31,61 +37,21 @@ export default function Home() {
           </div>
 
           <div className="home_portofolioContent p-section">
-            <div class="home_portofolioCard">
-              <h5 class="card-title">Helmi & Jannah</h5>
-              <img class="card-img-top" src="/img/design01.png" alt="Card image cap" />
-              <div class="card-body  text-center">
-                <h5 class="card-title line-through">Rp 200,000 - 400,000</h5>
-                <h5 class="card-title c_main font-weight-bold">GRATIS</h5>
-                <Link href="/undangan01" as={`/undangan01`}>
-                  <button href="#" class="btn-main">Lihat Demo</button>
-                </Link>
-              </div>
-            </div>
-            <div class="home_portofolioCard">
-              <h5 class="card-title">Sulaiman dan Aisyah</h5>
-              <img class="card-img-top" src="/img/design02.png" alt="Card image cap" />
-              <div class="card-body text-center">
-                <h5 class="card-title line-through">Rp 200,000 - 400,000</h5>
-                <h5 class="card-title c_main font-weight-bold">GRATIS</h5>
-                <Link href="/undangan01" as={`/undangan01`}>
-                  <button href="#" class="btn-main">Lihat Demo</button>
-                </Link>
-              </div>
-            </div>
-            <div class="home_portofolioCard">
-              <h5 class="card-title">Josua & Martina</h5>
-              <img class="card-img-top" src="/img/design01.png" alt="Card image cap" />
-              <div class="card-body  text-center">
-                <h5 class="card-title line-through">Rp 200,000 - 400,000</h5>
-                <h5 class="card-title c_main font-weight-bold">GRATIS</h5>
-                <Link href="/undangan01" as={`/undangan01`}>
-                  <button href="#" class="btn-main">Lihat Demo</button>
-                </Link>
-              </div>
-            </div>
-            <div class="home_portofolioCard">
-              <h5 class="card-title">Helmi dan Jannah</h5>
-              <img class="card-img-top" src="/img/design02.png" alt="Card image cap" />
-              <div class="card-body text-center">
-                <h5 class="card-title line-through">Rp 200,000 - 400,000</h5>
-                <h5 class="card-title c_main font-weight-bold">GRATIS</h5>
-                <Link href="/undangan02" as={`/undangan02`}>
-                  <button href="#" class="btn-main">Lihat Demo</button>
-                </Link>
-              </div>
-            </div>
-            <div class="home_portofolioCard">
-              <h5 class="card-title">Awan & Pelangi</h5>
-              <img class="card-img-top" src="/img/design01.png" alt="Card image cap" />
-              <div class="card-body  text-center">
-                <h5 class="card-title line-through">Rp 200,000 - 400,000</h5>
-                <h5 class="card-title c_main font-weight-bold">GRATIS</h5>
-                <Link href="/undangan01" as={`/undangan01`}>
-                  <button href="#" class="btn-main">Lihat Demo</button>
-                </Link>
-              </div>
-            </div>
+            {dataBuyerProducts?.map((v, i) => {
+              return (
+                <div class="home_portofolioCard" key={i}>
+                  <h5 class="card-title">{v.bridegroom_call_name} & {v.bride_call_name}</h5>
+                  <img class="card-img-top" src="/img/design01.png" alt="Card image cap" />
+                  <div class="card-body  text-center">
+                    <h5 class="card-title line-through">Rp 200,000 - 400,000</h5>
+                    <h5 class="card-title c_main font-weight-bold">GRATIS</h5>
+                    <Link href={`/undangan01/pernikahan-${v.bridegroom_call_name}-dan-${v.bride_call_name}`}>
+                      <button href="#" class="btn-main">Lihat Demo</button>
+                    </Link>
+                  </div>
+                </div>
+              )
+            })}
           </div>
         </section>
       </LazyLoadComponent>
@@ -94,7 +60,7 @@ export default function Home() {
         <section className="container-fluid home_createInvitation bg-grey-light p-section">
           <h2>
             Buat undangan nikah online Anda hanya dalam 1 menit
-        </h2>
+          </h2>
           <Link href="/buat-undangan" as={`/buat-undangan`}>
             <button className="btn-main">Buat Undangan Sekarang</button>
           </Link>
@@ -104,3 +70,15 @@ export default function Home() {
     </Layout >
   )
 }
+
+export const getServerSideProps = async () => {
+  const { data: dataBuyerProducts } = await getBuyerProducts()
+
+  return {
+    props: {
+      dataBuyerProducts
+    }
+  }
+}
+
+export default Home

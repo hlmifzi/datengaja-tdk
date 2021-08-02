@@ -1,15 +1,25 @@
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
-
+import moment from 'moment'
 import SEO from '../../SEO'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrophoneSlash, faMusic } from "@fortawesome/free-solid-svg-icons";
-import './Design01.module.scss'
 import Link from 'next/link';
-const Design01 = () => {
-    const { query } = useRouter()
-    const guest = query.kepada || "Nama Tamu"
+import { useForm } from 'react-hook-form'
+import { putInvitation } from '../../../client/Invitations'
+import { useRouter } from 'next/router'
+
+
+const Design01 = ({
+    data,
+    invitations,
+    eventId
+}) => {
+
+    const router = useRouter()
+    const guest = invitations[0].fullname || "Nama Tamu"
+    const guestId = invitations[0].id
     const [showGiftModal, setShowGiftModal] = useState(false)
+    const { register, handleSubmit } = useForm()
 
     const countDate = new Date('Maret 11, 2021 00:00:00').getTime();
 
@@ -31,7 +41,19 @@ const Design01 = () => {
     //     document.getElementById('hour').innerText = h;
     //     document.getElementById('minute').innerText = m;
     //     document.getElementById('second').innerText = s;
+
+    const onSubmitConfirmation = async (payload) => {
+        const { data } = await putInvitation(guestId, payload)
+        if (data) setShowGiftModal(payload.attend_status)
+    }
     // }
+
+    const attendStatus = {
+        "Menunggu Konfirmasi": "sticker_waiting",
+        "Akan Hadir": "sticker_confirm",
+        "Berhalangan": "sticker_cancel",
+        "Telah Hadir": "sticker_present",
+    }
 
     useEffect(() => {
         // setInterval(() => {
@@ -57,9 +79,9 @@ const Design01 = () => {
     return (
         <div className="design01__container">
             <SEO
-                title="pernikahanAwan&Pelangi"
-                description="undangan01/pernikahanAwan&Pelangi?kepada=sheila"
-                image="../../../../public/img/1.jpg"
+                title={eventId}
+                description={`undangan01/${eventId}?kepada=${guest}`}
+                image={data.bride_couple_img}
             />
             <audio src="/music/1.mp3" id="audio"></audio>
             <div className="bgsound-container">
@@ -99,13 +121,19 @@ const Design01 = () => {
 
             <div className="container">
                 <section className="guest-section text-center">
-                    <img src="/img/1.jpg" className="circle-img" />
+                    <img src={data.bride_couple_img} className="circle-img" />
                     <p>Kepada Yth. <br /> Bapak/Ibu/Saudara/i</p>
                     <h2 className="font-segoe-ui text-capitalize">{guest}</h2>
                 </section>
             </div>
 
-            <div className="banner" id="home">
+            <div
+                className="banner"
+                style={{
+                    backgroundImage: `linear-gradient(to bottom,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(${data.background1})`,
+                }}
+                id="home"
+            >
                 <div className="shape-top">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.5 27.8" preserveAspectRatio="none">
                         <path className="shape-fill" d="M283.5,9.7c0,0-7.3,4.3-14,4.6c-6.8,0.3-12.6,0-20.9-1.5c-11.3-2-33.1-10.1-44.7-5.7	s-12.1,4.6-18,7.4c-6.6,3.2-20,9.6-36.6,9.3C131.6,23.5,99.5,7.2,86.3,8c-1.4,0.1-6.6,0.8-10.5,2c-3.8,1.2-9.4,3.8-17,4.7	c-3.2,0.4-8.3,1.1-14.2,0.9c-1.5-0.1-6.3-0.4-12-1.6c-5.7-1.2-11-3.1-15.8-3.7C6.5,9.2,0,10.8,0,10.8V0h283.5V9.7z M260.8,11.3	c-0.7-1-2-0.4-4.3-0.4c-2.3,0-6.1-1.2-5.8-1.1c0.3,0.1,3.1,1.5,6,1.9C259.7,12.2,261.4,12.3,260.8,11.3z M242.4,8.6	c0,0-2.4-0.2-5.6-0.9c-3.2-0.8-10.3-2.8-15.1-3.5c-8.2-1.1-15.8,0-15.1,0.1c0.8,0.1,9.6-0.6,17.6,1.1c3.3,0.7,9.3,2.2,12.4,2.7	C239.9,8.7,242.4,8.6,242.4,8.6z M185.2,8.5c1.7-0.7-13.3,4.7-18.5,6.1c-2.1,0.6-6.2,1.6-10,2c-3.9,0.4-8.9,0.4-8.8,0.5	c0,0.2,5.8,0.8,11.2,0c5.4-0.8,5.2-1.1,7.6-1.6C170.5,14.7,183.5,9.2,185.2,8.5z M199.1,6.9c0.2,0-0.8-0.4-4.8,1.1	c-4,1.5-6.7,3.5-6.9,3.7c-0.2,0.1,3.5-1.8,6.6-3C197,7.5,199,6.9,199.1,6.9z M283,6c-0.1,0.1-1.9,1.1-4.8,2.5s-6.9,2.8-6.7,2.7	c0.2,0,3.5-0.6,7.4-2.5C282.8,6.8,283.1,5.9,283,6z M31.3,11.6c0.1-0.2-1.9-0.2-4.5-1.2s-5.4-1.6-7.8-2C15,7.6,7.3,8.5,7.7,8.6	C8,8.7,15.9,8.3,20.2,9.3c2.2,0.5,2.4,0.5,5.7,1.6S31.2,11.9,31.3,11.6z M73,9.2c0.4-0.1,3.5-1.6,8.4-2.6c4.9-1.1,8.9-0.5,8.9-0.8	c0-0.3-1-0.9-6.2-0.3S72.6,9.3,73,9.2z M71.6,6.7C71.8,6.8,75,5.4,77.3,5c2.3-0.3,1.9-0.5,1.9-0.6c0-0.1-1.1-0.2-2.7,0.2	C74.8,5.1,71.4,6.6,71.6,6.7z M93.6,4.4c0.1,0.2,3.5,0.8,5.6,1.8c2.1,1,1.8,0.6,1.9,0.5c0.1-0.1-0.8-0.8-2.4-1.3	C97.1,4.8,93.5,4.2,93.6,4.4z M65.4,11.1c-0.1,0.3,0.3,0.5,1.9-0.2s2.6-1.3,2.2-1.2s-0.9,0.4-2.5,0.8C65.3,10.9,65.5,10.8,65.4,11.1	z M34.5,12.4c-0.2,0,2.1,0.8,3.3,0.9c1.2,0.1,2,0.1,2-0.2c0-0.3-0.1-0.5-1.6-0.4C36.6,12.8,34.7,12.4,34.5,12.4z M152.2,21.1	c-0.1,0.1-2.4-0.3-7.5-0.3c-5,0-13.6-2.4-17.2-3.5c-3.6-1.1,10,3.9,16.5,4.1C150.5,21.6,152.3,21,152.2,21.1z"></path>
@@ -120,8 +148,8 @@ const Design01 = () => {
                     </svg>
                 </div>
                 <img src="/img/gif_ourwedding_wh.gif" />
-                <h1 className="font-dancing-script">Awan & Pelangi</h1>
-                <p>- SABTU, 26 DESEMBER 2020 -</p>
+                <h1 className="font-dancing-script">{data.bridegroom_call_name} & {data.bride_call_name}</h1>
+                <p>- {moment(new Date(data.reception_date)).format('LL')} -</p>
                 <div className="shape-bottom">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.5 27.8" preserveAspectRatio="none">
                         <path className="shape-fill" d="M283.5,9.7c0,0-7.3,4.3-14,4.6c-6.8,0.3-12.6,0-20.9-1.5c-11.3-2-33.1-10.1-44.7-5.7	s-12.1,4.6-18,7.4c-6.6,3.2-20,9.6-36.6,9.3C131.6,23.5,99.5,7.2,86.3,8c-1.4,0.1-6.6,0.8-10.5,2c-3.8,1.2-9.4,3.8-17,4.7	c-3.2,0.4-8.3,1.1-14.2,0.9c-1.5-0.1-6.3-0.4-12-1.6c-5.7-1.2-11-3.1-15.8-3.7C6.5,9.2,0,10.8,0,10.8V0h283.5V9.7z M260.8,11.3	c-0.7-1-2-0.4-4.3-0.4c-2.3,0-6.1-1.2-5.8-1.1c0.3,0.1,3.1,1.5,6,1.9C259.7,12.2,261.4,12.3,260.8,11.3z M242.4,8.6	c0,0-2.4-0.2-5.6-0.9c-3.2-0.8-10.3-2.8-15.1-3.5c-8.2-1.1-15.8,0-15.1,0.1c0.8,0.1,9.6-0.6,17.6,1.1c3.3,0.7,9.3,2.2,12.4,2.7	C239.9,8.7,242.4,8.6,242.4,8.6z M185.2,8.5c1.7-0.7-13.3,4.7-18.5,6.1c-2.1,0.6-6.2,1.6-10,2c-3.9,0.4-8.9,0.4-8.8,0.5	c0,0.2,5.8,0.8,11.2,0c5.4-0.8,5.2-1.1,7.6-1.6C170.5,14.7,183.5,9.2,185.2,8.5z M199.1,6.9c0.2,0-0.8-0.4-4.8,1.1	c-4,1.5-6.7,3.5-6.9,3.7c-0.2,0.1,3.5-1.8,6.6-3C197,7.5,199,6.9,199.1,6.9z M283,6c-0.1,0.1-1.9,1.1-4.8,2.5s-6.9,2.8-6.7,2.7	c0.2,0,3.5-0.6,7.4-2.5C282.8,6.8,283.1,5.9,283,6z M31.3,11.6c0.1-0.2-1.9-0.2-4.5-1.2s-5.4-1.6-7.8-2C15,7.6,7.3,8.5,7.7,8.6	C8,8.7,15.9,8.3,20.2,9.3c2.2,0.5,2.4,0.5,5.7,1.6S31.2,11.9,31.3,11.6z M73,9.2c0.4-0.1,3.5-1.6,8.4-2.6c4.9-1.1,8.9-0.5,8.9-0.8	c0-0.3-1-0.9-6.2-0.3S72.6,9.3,73,9.2z M71.6,6.7C71.8,6.8,75,5.4,77.3,5c2.3-0.3,1.9-0.5,1.9-0.6c0-0.1-1.1-0.2-2.7,0.2	C74.8,5.1,71.4,6.6,71.6,6.7z M93.6,4.4c0.1,0.2,3.5,0.8,5.6,1.8c2.1,1,1.8,0.6,1.9,0.5c0.1-0.1-0.8-0.8-2.4-1.3	C97.1,4.8,93.5,4.2,93.6,4.4z M65.4,11.1c-0.1,0.3,0.3,0.5,1.9-0.2s2.6-1.3,2.2-1.2s-0.9,0.4-2.5,0.8C65.3,10.9,65.5,10.8,65.4,11.1	z M34.5,12.4c-0.2,0,2.1,0.8,3.3,0.9c1.2,0.1,2,0.1,2-0.2c0-0.3-0.1-0.5-1.6-0.4C36.6,12.8,34.7,12.4,34.5,12.4z M152.2,21.1	c-0.1,0.1-2.4-0.3-7.5-0.3c-5,0-13.6-2.4-17.2-3.5c-3.6-1.1,10,3.9,16.5,4.1C150.5,21.6,152.3,21,152.2,21.1z"></path>
@@ -146,21 +174,25 @@ const Design01 = () => {
                         <p>Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. Ya Allah semoga ridho-Mu tercurah mengiringi pernikahan kami:</p>
                     </div>
                     <div className="two">
-                        <img src="/img/3.jpeg" className="circle-img" />
-                        <h2>Awan Cahya Pagi</h2>
-                        <p>Putra dari Bpk. Semesta & Ibu Embun Bening</p>
+                        <img src={data.bridegroom_img} className="circle-img" />
+                        <h2>{data.bridegroom_full_name}</h2>
+                        <p>Putra dari Bpk. {data.bridegroom_fathers} & Ibu {data.bridegroom_mother}</p>
                     </div>
                     <p>dan</p>
                     <div className="three">
-                        <img src="/img/4.jpeg" className="circle-img" />
-                        <h2>Pelangi Dwi Putri</h2>
-                        <p>Putri dari Bpk. Derajat & Ibu Sagriya Putri</p>
+                        <img src={data.bride_img} className="circle-img" />
+                        <h2>{data.bride_full_name}</h2>
+                        <p>Putri dari Bpk. {data.bride_woman_father} & Ibu {data.bride_woman_mother}</p>
                     </div>
                 </section>
             </div>
-
-
-            <div className="banner save-the-date text-center" id="event">
+            <div
+                className="banner save-the-date text-center"
+                id="event"
+                style={{
+                    backgroundImage: `linear-gradient(to bottom,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(${data.background2})`,
+                }}
+            >
                 <div className="shape-top">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.5 27.8" preserveAspectRatio="none">
                         <path className="shape-fill" d="M283.5,9.7c0,0-7.3,4.3-14,4.6c-6.8,0.3-12.6,0-20.9-1.5c-11.3-2-33.1-10.1-44.7-5.7	s-12.1,4.6-18,7.4c-6.6,3.2-20,9.6-36.6,9.3C131.6,23.5,99.5,7.2,86.3,8c-1.4,0.1-6.6,0.8-10.5,2c-3.8,1.2-9.4,3.8-17,4.7	c-3.2,0.4-8.3,1.1-14.2,0.9c-1.5-0.1-6.3-0.4-12-1.6c-5.7-1.2-11-3.1-15.8-3.7C6.5,9.2,0,10.8,0,10.8V0h283.5V9.7z M260.8,11.3	c-0.7-1-2-0.4-4.3-0.4c-2.3,0-6.1-1.2-5.8-1.1c0.3,0.1,3.1,1.5,6,1.9C259.7,12.2,261.4,12.3,260.8,11.3z M242.4,8.6	c0,0-2.4-0.2-5.6-0.9c-3.2-0.8-10.3-2.8-15.1-3.5c-8.2-1.1-15.8,0-15.1,0.1c0.8,0.1,9.6-0.6,17.6,1.1c3.3,0.7,9.3,2.2,12.4,2.7	C239.9,8.7,242.4,8.6,242.4,8.6z M185.2,8.5c1.7-0.7-13.3,4.7-18.5,6.1c-2.1,0.6-6.2,1.6-10,2c-3.9,0.4-8.9,0.4-8.8,0.5	c0,0.2,5.8,0.8,11.2,0c5.4-0.8,5.2-1.1,7.6-1.6C170.5,14.7,183.5,9.2,185.2,8.5z M199.1,6.9c0.2,0-0.8-0.4-4.8,1.1	c-4,1.5-6.7,3.5-6.9,3.7c-0.2,0.1,3.5-1.8,6.6-3C197,7.5,199,6.9,199.1,6.9z M283,6c-0.1,0.1-1.9,1.1-4.8,2.5s-6.9,2.8-6.7,2.7	c0.2,0,3.5-0.6,7.4-2.5C282.8,6.8,283.1,5.9,283,6z M31.3,11.6c0.1-0.2-1.9-0.2-4.5-1.2s-5.4-1.6-7.8-2C15,7.6,7.3,8.5,7.7,8.6	C8,8.7,15.9,8.3,20.2,9.3c2.2,0.5,2.4,0.5,5.7,1.6S31.2,11.9,31.3,11.6z M73,9.2c0.4-0.1,3.5-1.6,8.4-2.6c4.9-1.1,8.9-0.5,8.9-0.8	c0-0.3-1-0.9-6.2-0.3S72.6,9.3,73,9.2z M71.6,6.7C71.8,6.8,75,5.4,77.3,5c2.3-0.3,1.9-0.5,1.9-0.6c0-0.1-1.1-0.2-2.7,0.2	C74.8,5.1,71.4,6.6,71.6,6.7z M93.6,4.4c0.1,0.2,3.5,0.8,5.6,1.8c2.1,1,1.8,0.6,1.9,0.5c0.1-0.1-0.8-0.8-2.4-1.3	C97.1,4.8,93.5,4.2,93.6,4.4z M65.4,11.1c-0.1,0.3,0.3,0.5,1.9-0.2s2.6-1.3,2.2-1.2s-0.9,0.4-2.5,0.8C65.3,10.9,65.5,10.8,65.4,11.1	z M34.5,12.4c-0.2,0,2.1,0.8,3.3,0.9c1.2,0.1,2,0.1,2-0.2c0-0.3-0.1-0.5-1.6-0.4C36.6,12.8,34.7,12.4,34.5,12.4z M152.2,21.1	c-0.1,0.1-2.4-0.3-7.5-0.3c-5,0-13.6-2.4-17.2-3.5c-3.6-1.1,10,3.9,16.5,4.1C150.5,21.6,152.3,21,152.2,21.1z"></path>
@@ -188,15 +220,15 @@ const Design01 = () => {
                                 <ul>
                                     <li>
                                         <i className="far fa-calendar-alt"></i>
-                                        <p>Sabtu, 20 Juni 2020</p>
+                                        <p>{moment(data.bride_date).format('LL')}</p>
                                     </li>
                                     <li>
                                         <i className="far fa-clock"></i>
-                                        <p>Pukul 08.00 s.d Selesai</p>
+                                        <p>Pukul {data.bride_start_time} s.d {data.bride_end_time || 'selesai'}</p>
                                     </li>
                                     <li>
                                         <i className="fas fa-map-marker-alt"></i>
-                                        <p>AUDITORIUM MASJID ASSALAM, Jalan Raya Bojongsari No.5, Gunung Putri, Citeureup, Bogor, Jawa Barat</p>
+                                        <p>{data.bride_location}</p>
                                     </li>
                                 </ul>
                             </div>
@@ -210,15 +242,15 @@ const Design01 = () => {
                                 <ul>
                                     <li>
                                         <i className="far fa-calendar-alt"></i>
-                                        <p>Sabtu, 20 Juni 2020</p>
+                                        <p>{moment(data.reception_date).format('LL')}</p>
                                     </li>
                                     <li>
                                         <i className="far fa-clock"></i>
-                                        <p>Pukul 08.00 s.d Selesai</p>
+                                        <p>Pukul {data.reception_start_time} s.d {data.reception_end_time || 'selesai'}</p>
                                     </li>
                                     <li>
                                         <i className="fas fa-map-marker-alt"></i>
-                                        <p>AUDITORIUM MASJID ASSALAM, Jalan Raya Bojongsari No.5, Gunung Putri, Citeureup, Bogor, Jawa Barat lorem10</p>
+                                        <div dangerouslySetInnerHTML={{ __html: data.reception_location }} />
                                     </li>
                                 </ul>
                             </div>
@@ -234,7 +266,10 @@ const Design01 = () => {
                         </div>
                     </div>
                     <div className="map">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d247.90778136347146!2d106.8865811!3d-6.19431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f49532b5b715%3A0xa4012b68ec698d4e!2sSMK%20Negeri%2026%20Jakarta!5e0!3m2!1sid!2sid!4v1591424770986!5m2!1sid!2sid" frameBorder="0" style={{ border: '0' }} allowFullScreen="" aria-hidden="false" tabIndex="0"></iframe>
+                        <div
+                            className="map_iframe"
+                            dangerouslySetInnerHTML={{ __html: data.reception_location_google_maps }}
+                        />
                     </div>
                     <a href="https://www.google.com/maps/place/SMK+Negeri+26+Jkt,+Jl.+Balai+Pustaka+Baru+I,+RT.2%2FRW.7,+Rawamangun,+Kec.+Pulo+Gadung,+Kota+Jakarta+Timur,+Daerah+Khusus+Ibukota+Jakarta+13220/@-6.194295,106.886581,20z/data=!4m2!3m1!1s0x2e69f49532b5b715:0xa4012b68ec698d4e?hl=id&gl=ID" target="__blank" className="btn">Buka Map</a>
                 </div>
@@ -257,10 +292,13 @@ const Design01 = () => {
                 <div className="container">
                     <h2 className="title">Gallery</h2>
                     <p className="text-center">Momen Bahagia Awan dan Pelangi</p>
-                    <a href="/img/2.jpeg" target="__blank"><img src="/img/2.jpeg" /></a>
-                    <a href="/img/7.jpeg" target="__blank"><img src="/img/7.jpeg" /></a>
-                    <a href="/img/5.jpeg" target="__blank"><img src="/img/5.jpeg" /></a>
-                    <a href="/img/6.jpeg" target="__blank"><img src="/img/6.jpeg" /></a>
+                    {data?.gallery?.split(",")?.map((v, i) => (
+
+                        <a key={i} href={v} target="__blank">
+                            <img src={v} />
+                        </a>
+                    ))
+                    }
                 </div>
             </section>
             <section className="liveStreaming">
@@ -280,35 +318,12 @@ const Design01 = () => {
                                 <button className="btn liveStreaming_buttonInstagram">Live Via Instagram</button>
                             </div>
                         </div><br />
-                        <p>Meeting ID: 123 123 12 312</p>
-                        <p>Password: 12342</p>
-                        <p>instagram: @hlmifzi</p>
+                        <p>Meeting ID: {data.live_streaming_zoom_meeting_id}</p>
+                        <p>Password: {data.live_streaming_zoom_password}</p>
+                        <p>instagram: @{data.live_streaming_ig_account}</p>
                     </div>
                 </div>
             </section>
-
-            {showGiftModal &&
-                <div className="popUp">
-                    <div className="popUp_background"></div>
-                    <div className="popUp_container">
-                        <i onClick={() => setShowGiftModal(false)}>Tutup [x]</i>
-                        <img className="gift_img" src="/img/qrcode.jpeg" alt="image" />
-                        <div className="gift_thankYouText">
-                            <h3>Terima Kasih!</h3>
-                            <p>Telah mengkonfirmasi kehadiran di acara pernikahan kami.</p><br />
-                            <p>Tanpa mengurangi rasa hormat, bagi Anda yang ingin memberikan tanda kasih untuk kami dapat melalui<br />
-                                <b>BCA: 0940894832</b><br />
-                                <b>BSI: 0912013123</b>
-                            </p>
-                            <Link href="https://api.whatsapp.com/send?phone=6281294923207&text=Hallo%20Helmi%2C%20maaf%20helmi%20ga%20bisa%20hadir%20dikarenakan%20sedang%20di%20luar%20kota.%20kirim%20salam%20tempel%20aja%20yaaa.">
-                                <button className="btn gift_sendTransferBtn">Kirim Bukti Transfer</button>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            }
-
-
             <section className="contact">
                 <div className="container">
                     <div className="text-center">
@@ -316,33 +331,52 @@ const Design01 = () => {
                         <p>Awan & Pelangi</p>
                     </div>
 
-                    <form>
+                    <form onSubmit={handleSubmit(onSubmitConfirmation)}>
                         <div className="d-flex">
                             <div className="form-control border-0 user_name">
-                                <input type="text" onChange={() => { }} value={guest} />
+                                <input type="text" value={guest} disabled />
                             </div>
                             <div className="user_statusChoose">
                                 <div className="input-group">
-                                    <select className="custom-select" id="inputGroupSelect04">
+                                    <select
+                                        className="custom-select"
+                                        {...register("attend_status")}
+                                    >
                                         <option selected>Pilih Status</option>
-                                        <option value="1">Akan Hadir</option>
-                                        <option value="2">Behalangan</option>
+                                        <option value="Akan Hadir">Akan Hadir</option>
+                                        <option value="Berhalangan">Behalangan</option>
                                     </select>
                                 </div>
                             </div>
                             <div className="form-control border-0 user_qtyPartner">
-                                <input type="number" placeholder="jumlah yang akan diajak (istri/anak/pasangan)"></input>
+                                <input
+                                    type="number"
+                                    placeholder="jumlah yang akan diajak (istri/anak/pasangan)"
+                                    {...register("attend_qty")}
+                                />
                             </div>
                         </div>
                         <div className="form-control border-0">
-                            <textarea placeholder="Ucapan Do'a & Harapan"></textarea>
+                            <textarea
+                                placeholder="Ucapan Do'a & Harapan"
+                                {...register("greetings")}
+                            />
                         </div>
-                        <button type="button" onClick={() => setShowGiftModal(true)} className="btn">Kirim</button>
+                        <button
+                            type="submit"
+                            className="btn"
+                            disabled={!data.id}
+                        >
+                            Konfirmasi
+                        </button>
                     </form>
 
                     <div className="user_search">
                         <div className="input-group">
-                            <select className="custom-select" id="inputGroupSelect04">
+                            <select
+                                className="custom-select"
+                                id="inputGroupSelect04"
+                            >
                                 <option selected>Cari Kategori</option>
                                 <option value="1">Temen Ayah Laki Laki (sesi II (14:00-16:00 WIB))</option>
                                 <option value="2">Temen SD Perempuan (sesi II (12:00-14:00 WIB))</option>
@@ -353,57 +387,34 @@ const Design01 = () => {
                         <button type="button" class="btn user_btnSearch">Cari</button>
                     </div>
                     <div className="comment">
-
-                        <div className="comment-user">
-                            <div className="comment-body">
-                                <div className="user">
-                                    <div className="user_status">
-                                        <div>
-                                            <div>Cholis</div>
-                                            <span className="user_category">Temen Ayah Laki Laki  <b>(sesi II (14:00-16:00 WIB))</b></span>
+                        {invitations.length > 0 ?
+                            invitations.map((v, i) => {
+                                return (
+                                    <div className="comment-user">
+                                        <div className="comment-body">
+                                            <div className="user">
+                                                <div className="user_status">
+                                                    <div>
+                                                        <div>{v.fullname}</div>
+                                                        <span className="user_category">{v.invitation_category_name}
+                                                            {v.time_start && v.time_end &&
+                                                                <b>(sesi II ({v.time_start || "-"}-{v.time_end || "-"} WIB))</b>
+                                                            }
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div className={`sticker ${attendStatus[v.attend_status]}`}>{v.attend_status}</div>
+                                            </div>
+                                            <p>{v.greetings}</p>
                                         </div>
                                     </div>
-                                    <div className="sticker sticker_waiting">Menunggu Konfirmasi</div>
-                                </div>
-                                <p>Lorem ipsum dolor sit, amet</p>
+                                )
+                            }) :
+                            <div>
+                                <h3>Belum Ada yang diundangan</h3>
+                                <p>Silakan input undangan anda</p>
                             </div>
-                        </div>
-                        <div className="comment-user">
-                            <div className="comment-body">
-                                <div className="user">
-                                    <div className="user_status">
-                                        <div>Affiasca</div>
-                                        <span className="user_category">Temen SD Perempuan  <b>(sesi II (12:00-14:00 WIB))</b></span>
-                                    </div>
-                                    <div className="sticker sticker_confirm">Akan Hadir</div>
-                                </div>
-                                <p>Lorem ipsum dolor sit, amet</p>
-                            </div>
-                        </div>
-                        <div className="comment-user">
-                            <div className="comment-body">
-                                <div className="user">
-                                    <div className="user_status">
-                                        <div>Rian</div>
-                                        <span className="user_category">Temen SMK Laki-laki  <b>(sesi I (10:00-12:00 WIB))</b></span>
-                                    </div>
-                                    <div className="sticker sticker_cancel">Berhalangan</div>
-                                </div>
-                                <p>Lorem ipsum dolor sit, amet</p>
-                            </div>
-                        </div>
-                        <div className="comment-user">
-                            <div className="comment-body">
-                                <div className="user">
-                                    <div className="user_status">
-                                        <div>Sheila</div>
-                                        <span className="user_category">Temen Kuliah Laki-laki <b>(sesi I (10:00-12:00 WIB))</b></span>
-                                    </div>
-                                    <div className="sticker sticker_present">Telah Hadir</div>
-                                </div>
-                                <p>Lorem ipsum dolor sit, amet</p>
-                            </div>
-                        </div>
+                        }
                     </div>
                 </div>
             </section>
@@ -411,7 +422,50 @@ const Design01 = () => {
             <footer className="text-center">
                 Copyright 2020
             </footer>
-        </div>
+
+
+            {showGiftModal === "Berhalangan" &&
+                <div className="popUp">
+                    <div className="popUp_background"></div>
+                    <div className="popUp_container">
+                        <i onClick={() => {
+                            setShowGiftModal(false)
+                            router.reload()
+                        }}>Tutup [x]</i>
+                        <img className="gift_img" src={data.rekening_qr_img} alt="image" />
+                        <div className="gift_thankYouText">
+                            <h3>Terima Kasih!</h3>
+                            <p>Telah mengkonfirmasi kehadiran di acara pernikahan kami.</p><br />
+                            <p>Tanpa mengurangi rasa hormat, bagi Anda yang ingin memberikan tanda kasih untuk kami dapat melalui<br />
+                                <b>{data.rekening}</b><br />
+                            </p>
+                            <Link href={`https://api.whatsapp.com/send?phone=62${data.handphone_wa}&text=Hallo%20Helmi%2C%20maaf%20helmi%20ga%20bisa%20hadir%20dikarenakan%20sedang%20di%20luar%20kota.%20kirim%20salam%20tempel%20aja%20yaaa.`}>
+                                <button className="btn gift_sendTransferBtn">Kirim Bukti Transfer</button>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            }
+            {showGiftModal === "Akan Hadir" &&
+                <div className="popUp">
+                    <div className="popUp_background"></div>
+                    <div className="popUp_container">
+                        <i onClick={() => {
+                            setShowGiftModal(false)
+                            router.reload()
+                        }}
+                        >Tutup [x]</i>
+                        <div className="gift_thankYouTextHadir">
+                            <h3>Terima Kasih!</h3><br />
+                            <p>Telah bersedia hadir di acara pernikahan kami.</p><br />
+                            <p>Tiada Kesan Tanpa Kehadiranmu {guest}<br /></p>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+        </div >
     )
 }
 

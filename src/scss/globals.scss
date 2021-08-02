@@ -1,6 +1,7 @@
 @import './bootstrap.scss';
 @import '../resources/scss/abstract/_color_variables.scss';
 @import '../resources/scss/abstract/_helper.scss';
+@import '../components/template/Design01/Design01.module.scss';
 
 :root {
   --c-primary: #cf2f3e;
@@ -147,6 +148,14 @@ a {
     &:hover {
       opacity: .9;
     }
+  }
+}
+
+.map
+{
+  &_iframe
+  {
+    height: 100%;
   }
 }
 
@@ -319,7 +328,8 @@ a {
   margin-left: .5rem !important;
   padding: 0 10px !important;
   font-size: 10px;
-  height: 20px;
+  height: fit-content;
+  width: fit-content;
   padding-top: 2px !important;
   
   &_waiting
@@ -491,6 +501,7 @@ a {
     position: relative;
     padding: 2rem;
     background-color: $c_white;
+    width: fit-content;
     max-width: 60vw;
     height: fit-content;
     border-radius: 6px;
@@ -512,13 +523,24 @@ a {
   &_thankYouText
   {
     padding: 1rem !important;
-    max-width: 50% !important;
+    width: 50%;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
   }
+
+  &_thankYouTextHadir
+  {
+    padding: 1rem !important;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  } 
 
   &_sendTransferBtn
   {
