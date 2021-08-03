@@ -1,14 +1,16 @@
 import { useState } from 'react'
-
-import Link from "next/link";
-
-import LayoutAdmin from '../../../components/Layout/LayoutAdmin'
 import { getBuyerProductsClientName } from '../../../client/BuyerProduct'
-import { parseCookies } from '../../../utils/helper/HelperUtils'
+import { parseCookies, attendStatus } from '../../../utils/helper/HelperUtils'
+import { getAllByBuyerProductId } from '../../../client/Invitations'
+import Link from "next/link";
+import moment from 'moment'
+import LayoutAdmin from '../../../components/Layout/LayoutAdmin'
+import router from "next/router"
+import absoluteUrl from 'next-absolute-url'
 
-const BukuTamu = ({ data }) => {
-  const [state, setstate] = useState(false)
-  const [hadir, setHadir] = useState("Akan Hadir")
+const BukuTamu = ({
+  data
+}) => {
   return (
     <LayoutAdmin mainClassName="bukuTamu">
       <div className="admin_welcomeCards aturUndangan">
@@ -44,107 +46,67 @@ const BukuTamu = ({ data }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Affiasca</td>
-                    <td>Teman Kuliah Laki-laki</td>
-                    <td>
-                      <span className="sticker sticker_present">
-                        Telah Hadir
-                      </span>
-                    </td>
-                    <td>11-07-21 17:43</td>
-                    <td>
-                      <div className="d-flex">
-                        <button className="btn-main px-8 ml-4 disabled">Hadir</button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Helmi Fauzi</td>
-                    <td>Teman Kuliah Perempuan</td>
-                    <td>
-                      <span className="sticker sticker_present">
-                        Telah Hadir
-                      </span>
-                    </td>
-                    <td>11-07-21 16:00</td>
-                    <td>
-                      <div className="d-flex">
-                        <button className="btn-main px-8 ml-4 disabled">Hadir</button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Sulaiman</td>
-                    <td>Temen SD laki-laki</td>
-                    <td>
-                      <span className={`${hadir === "Akan Hadir" ? "sticker_confirm" : "sticker_present  "} sticker`} >
-                        {hadir}
-                      </span>
-                    </td>
-                    <td>{`${hadir === "Akan Hadir" ? "-" : "11-07-21 16:14"}`}</td>
-                    <td>
-                      <div className="d-flex" onClick={() => {
-                        setstate(true)
-                        setHadir("Telah Hadir")
-                      }
-                      }>
-                        <button className={`${hadir === "Akan Hadir" ? "" : "disabled"} btn-main px-8 ml-4`}>Hadir</button>
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>Iqbal</td>
-                    <td>Temen Mama Perempuan</td>
-                    <td>
-                      <span className="sticker sticker_present">
-                        Telah Hadir
-                      </span>
-                    </td>
-                    <td>11-07-21 16:00</td>
-                    <td>
-                      <div className="d-flex">
-                        <button className="btn-main px-8 ml-4 disabled">Hadir</button>
-                      </div>
-                    </td>
-                  </tr>
+                  {data.length > 0 ?
+                    data.map((v, i) => {
+                      return (
+                        <tr key={i}>
+                          <td>{v.fullname}</td>
+                          <td>{v.desc}</td>
+                          <td>
+                            <div className={`sticker ${attendStatus[v.attend_status]}`}>
+                              {v.attend_status}
+                            </div>
+                          </td>
+                          <td>{v.present_time}</td>
+                          <td>
+                            <button
+                              className="btn-blue px-4"
+                              onClick={() => router.push(`/admin/tamu/add/?id=${v.id}`)}
+                            >
+                              Ubah
+                            </button>
+                            <br />
+                          </td>
+                        </tr>
+                      )
+                    }) :
+                    <tr>
+                      <td colSpan={8} className="text-center">
+                        <h1>Tidak ada data</h1>
+                      </td>
+                      <td style={{ display: 'none' }}></td>
+                    </tr>
+                  }
                 </tbody>
+
               </table>
             </div>
           </div>
         </div>
       </div>
 
-      {state &&
-        <div className="popUp">
-          <div className="popUp_background"></div>
-          <div className="popUp_container d-flex flex-column">
-            <i onClick={() => setstate(false)}>Tutup [x]</i>
-            <div className="d-flex justify-content-center align-items-center flex-direction-column">
-              <div className="popUp_checkList">
-                <img src="/img/checkl.svg" />
-              </div>
-              <h3 className="text-center">Status Tamu Undangan Berhasil diubah menjadi <b>Hadir</b></h3>
-            </div>
-            <button onClick={() => setstate(false)} type="button" className="mt-4 btn btn-main">Kembali</button>
-          </div>
-        </div>
-      }
+
     </LayoutAdmin>
   )
 }
-
 
 export const getServerSideProps = async ({ req }) => {
 
   const cookie = parseCookies(req.headers.cookie)
 
-  const { data } = await getBuyerProductsClientName(cookie['bridegroom_call_name'], cookie['bride_call_name'])
+  const { data } = await getAllByBuyerProductId(cookie['buyerProductId'])
+  const { origin: hostname } = absoluteUrl(req)
+
+  const { data: dataBuyerProduct } = await getBuyerProductsClientName(cookie['bridegroom_call_name'].trim() || "helmi", cookie['bride_call_name'].trim() || "jannah")
+
 
   return {
     props: {
-      data
+      data: data || null,
+      hostname,
+      dataBuyerProduct,
+      bridegroom_call_name: cookie['bridegroom_call_name'],
+      bride_call_name: cookie['bride_call_name'],
     }
   }
 }
