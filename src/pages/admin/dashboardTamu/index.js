@@ -1,15 +1,22 @@
-import Link from "next/link";
 import LayoutAdmin from '../../../components/Layout/LayoutAdmin'
 // import { getAnalytic } from '../../client/AdminApiServices'
+import { parseCookies, attendStatus } from '../../../utils/helper/HelperUtils'
+import { getAllByBuyerProductId } from '../../../client/Invitations'
+import { getAttendStatus } from '../../../client/Dashboard'
 
-const dashboardTamu = ({ data }) => {
+
+const dashboardTamu = ({ data, qtyAttendStatus }) => {
+
+  const totalUndangan = qtyAttendStatus.filter(v => v.attend_status === 'semua')[0].jumlah
+  const confirm = qtyAttendStatus.filter(v => v.attend_status === 'Akan Hadir')[0].jumlah
+  const attend = qtyAttendStatus.filter(v => v.attend_status === 'Telah Hadir')[0].jumlah
 
   return (
     <LayoutAdmin mainClassName="dashboardTamu">
       <div className="cards">
         <div className="cards_single pointer">
           <div>
-            <h1>{data?.customers || 1000}</h1>
+            <h1>{totalUndangan}</h1>
             <span>Undangan</span>
           </div>
           <div>
@@ -18,7 +25,7 @@ const dashboardTamu = ({ data }) => {
         </div>
         <div className="cards_single pointer">
           <div>
-            <h1>{data?.project || 800}</h1>
+            <h1>{confirm}</h1>
             <span>Bisa Hadir</span>
           </div>
           <div>
@@ -27,7 +34,7 @@ const dashboardTamu = ({ data }) => {
         </div>
         <div className="cards_single pointer">
           <div>
-            <h1>{data?.orders || 200}</h1>
+            <h1>{attend}</h1>
             <span>Telah Hadir</span>
           </div>
           <div>
@@ -41,12 +48,7 @@ const dashboardTamu = ({ data }) => {
           <div className="card">
             <div className="card_header">
               <h3>Recent Tamu</h3>
-              <Link href="/admin/tamu" as={`/admin/tamu`}>
-                <button> See All <span className="las la-arrow-right">
-                </span></button>
-              </Link>
             </div>
-
             <div className="card_body">
               <table width="100%">
                 <thead>
@@ -58,50 +60,28 @@ const dashboardTamu = ({ data }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Affiasca</td>
-                    <td>Teman Kuliah Laki-laki</td>
-                    <td>
-                      <span className="sticker sticker_waiting">
-                        Menunggu Konfirmasi
-                      </span>
-                    </td>
-                    <td>11-07-21 16:00</td>
-
-                  </tr>
-                  <tr>
-                    <td>Helmi Fauzi</td>
-                    <td>Teman Kuliah Perempuan</td>
-                    <td>
-                      <span className="sticker sticker_confirm">
-                        Akan Hadir
-                      </span>
-
-                    </td>
-                    <td>11-07-21 16:00</td>
-
-                  </tr>
-                  <tr>
-                    <td>Sulaiman</td>
-                    <td>Temen SD laki-laki</td>
-                    <td>
-                      <span className="sticker sticker_cancel">
-                        Berhalangan
-                      </span>
-                    </td>
-                    <td>11-07-21 13:00</td>
-
-                  </tr>
-                  <tr>
-                    <td>Sulaiman</td>
-                    <td>Temen SD laki-laki</td>
-                    <td>
-                      <span className="sticker sticker_present">
-                        Telah Hadir
-                      </span>
-                    </td>
-                    <td>11-07-21 16:00</td>
-                  </tr>
+                  {data.length > 0 ?
+                    data.map((v, i) => {
+                      return (
+                        <tr key={i}>
+                          <td>{v.fullname}</td>
+                          <td>{v.desc}</td>
+                          <td>
+                            <div className={`sticker ${attendStatus[v.attend_status]}`}>
+                              {v.attend_status}
+                            </div>
+                          </td>
+                          <td>{v.present_time}</td>
+                        </tr>
+                      )
+                    }) :
+                    <tr>
+                      <td colSpan={8} className="text-center">
+                        <h1>Tidak ada data</h1>
+                      </td>
+                      <td style={{ display: 'none' }}></td>
+                    </tr>
+                  }
                 </tbody>
               </table>
             </div>
@@ -112,17 +92,20 @@ const dashboardTamu = ({ data }) => {
   )
 }
 
+export const getServerSideProps = async ({ req }) => {
 
-// export const getServerSideProps = async () => {
+  const cookie = parseCookies(req.headers.cookie)
 
-//   const { data } = await getAnalytic()
+  const { data } = await getAllByBuyerProductId(cookie['buyerProductId'])
+  const { data: qtyAttendStatus } = await getAttendStatus(cookie['buyerProductId'])
 
-//   return {
-//     props: {
-//       data
-//     }
-//   }
-// }
 
+  return {
+    props: {
+      data: data || null,
+      qtyAttendStatus
+    }
+  }
+}
 
 export default dashboardTamu;

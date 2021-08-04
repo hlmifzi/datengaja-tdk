@@ -1,9 +1,23 @@
 import Link from "next/link";
 import LayoutAdmin from '../../components/Layout/LayoutAdmin'
 import { getBuyerProductsClientName } from '../../client/BuyerProduct'
-import { parseCookies } from '../../utils/helper/HelperUtils'
+import { parseCookies, attendStatus } from '../../utils/helper/HelperUtils'
+import { getAttendStatus } from '../../client/Dashboard'
+import { getAllByBuyerProductId } from '../../client/Invitations'
+import { getCategoriesByBuyerProductIdQty } from '../../client/InvitationsCategories'
 
-const Admin = ({ data }) => {
+
+const Admin = ({
+  data,
+  invitations,
+  category,
+  qtyAttendStatus
+}) => {
+
+  const totalUndangan = qtyAttendStatus.filter(v => v.attend_status === 'semua')[0].jumlah || 0
+  const confirm = qtyAttendStatus.filter(v => v.attend_status === 'Akan Hadir')[0].jumlah || 0
+  const attend = qtyAttendStatus.filter(v => v.attend_status === 'Telah Hadir')[0].jumlah || 0
+  const cancel = qtyAttendStatus.filter(v => v.attend_status === 'Berhalangan')[0].jumlah || 0
 
   return (
     <LayoutAdmin mainClassName="admin" user={data?.bridegroom_call_name}>
@@ -24,7 +38,7 @@ const Admin = ({ data }) => {
         </div>
         <div className="cards_single pointer">
           <div>
-            <h1>{data?.customers || 1000}</h1>
+            <h1>{totalUndangan}</h1>
             <span>Undangan</span>
             <Link href="/admin/tamu" as={`/admin/tamu`}>
               <button className="btn-main mt-2">Atur Tamu</button>
@@ -40,7 +54,7 @@ const Admin = ({ data }) => {
         <Link href="/admin/tamu" as={`/admin/tamu`}>
           <div className="cards_single pointer">
             <div>
-              <h1>{data?.customers || 800}</h1>
+              <h1>{confirm}</h1>
               <span>Bisa Hadir</span>
             </div>
             <div>
@@ -51,7 +65,7 @@ const Admin = ({ data }) => {
         <Link href="/admin/tamu" as={`/admin/tamu`}>
           <div className="cards_single pointer">
             <div>
-              <h1>{data?.income || 200}</h1>
+              <h1>{attend}</h1>
               <span>Telah Hadir</span>
             </div>
             <div>
@@ -63,7 +77,7 @@ const Admin = ({ data }) => {
         <Link href="/admin/tamu" as={`/admin/tamu`}>
           <div className="cards_single pointer">
             <div>
-              <h1>{data?.project || 100}</h1>
+              <h1>{cancel}</h1>
               <span>Berhalangan</span>
             </div>
             <div>
@@ -83,7 +97,6 @@ const Admin = ({ data }) => {
                 </span></button>
               </Link>
             </div>
-
             <div className="card_body">
               <table width="100%">
                 <thead>
@@ -91,47 +104,32 @@ const Admin = ({ data }) => {
                     <td>Nama</td>
                     <td>Kategori</td>
                     <td>Status</td>
+                    <td>Waktu</td>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Affiasca</td>
-                    <td>Teman Kuliah Laki-laki</td>
-                    <td>
-                      <span className="sticker sticker_waiting">
-                        Menunggu Konfirmasi
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Helmi Fauzi</td>
-                    <td>Teman Kuliah Perempuan</td>
-                    <td>
-                      <span className="sticker sticker_confirm">
-                        Akan Hadir
-                      </span>
-
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Sulaiman</td>
-                    <td>Temen SD laki-laki</td>
-                    <td>
-                      <span className="sticker sticker_cancel">
-                        Berhalangan
-                      </span>
-
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Sulaiman</td>
-                    <td>Temen SD laki-laki</td>
-                    <td>
-                      <span className="sticker sticker_present">
-                        Telah Hadir
-                      </span>
-                    </td>
-                  </tr>
+                  {invitations.length > 0 ?
+                    invitations.map((v, i) => {
+                      return (
+                        <tr key={i}>
+                          <td>{v.fullname}</td>
+                          <td>{v.desc}</td>
+                          <td>
+                            <div className={`sticker ${attendStatus[v.attend_status]}`}>
+                              {v.attend_status}
+                            </div>
+                          </td>
+                          <td>{v.present_time}</td>
+                        </tr>
+                      )
+                    }) :
+                    <tr>
+                      <td colSpan={8} className="text-center">
+                        <h1>Tidak ada data</h1>
+                      </td>
+                      <td style={{ display: 'none' }}></td>
+                    </tr>
+                  }
                 </tbody>
               </table>
             </div>
@@ -142,65 +140,25 @@ const Admin = ({ data }) => {
             <div className="card_header">
               <h3>Kategori Tamu</h3>
             </div>
-
             <div className="card_body">
-              <div className="customer">
-                <div className="info">
-                  <div>
-                    <h4>Teman Kuliah Laki-laki</h4>
+              {category.map((v, i) => {
+                return (
+                  <div key={i} className="customer">
+                    <div className="info">
+                      <div>
+                        <h4>{v.desc}</h4>
+                      </div>
+                    </div>
+                    <div className="contact">
+                      {v.jumlah}
+                    </div>
                   </div>
-                </div>
-                <div className="contact">
-                  19
-                </div>
-              </div>
-              <div className="customer">
-                <div className="info">
-                  <div>
-                    <h4>Teman Kuliah Perempuan</h4>
-                  </div>
-                </div>
-                <div className="contact">
-                  40
-                </div>
-              </div>
-              <div className="customer">
-                <div className="info">
-                  <div>
-                    <h4>Temen SD laki-laki</h4>
-                  </div>
-                </div>
-                <div className="contact">
-                  5
-                </div>
-              </div>
-              <div className="customer">
-                <div className="info">
-                  <div>
-                    <h4>Teman Nongkrong Laki-laki</h4>
-                  </div>
-                </div>
-                <div className="contact">
-                  2
-                </div>
-              </div>
-              <div className="customer">
-                <div className="info">
-                  <div>
-                    <h4>Teman Mama Perempuan</h4>
-                  </div>
-                </div>
-                <div className="contact">
-                  <div>
-                    50
-                  </div>
-                </div>
-              </div>
+                )
+              })}
             </div>
           </div>
         </div>
       </div>
-
     </LayoutAdmin>
   )
 }
@@ -210,10 +168,16 @@ export const getServerSideProps = async ({ req }) => {
   const cookie = parseCookies(req.headers.cookie)
 
   const { data } = await getBuyerProductsClientName(cookie['bridegroom_call_name'] || "helmi", cookie['bride_call_name'] || "jannah")
+  const { data: invitations } = await getAllByBuyerProductId(cookie['buyerProductId'])
+  const { data: category } = await getCategoriesByBuyerProductIdQty(cookie['buyerProductId'])
+  const { data: qtyAttendStatus } = await getAttendStatus(cookie['buyerProductId'])
 
   return {
     props: {
-      data
+      data,
+      invitations,
+      category,
+      qtyAttendStatus
     }
   }
 }
