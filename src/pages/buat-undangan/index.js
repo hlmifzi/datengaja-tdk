@@ -9,7 +9,7 @@ const Home = () => {
 
   const onSubmit = async payload => {
     const { data, error } = await postBuyerProduct(payload)
-    console.log("🚀 ~ file: index.js ~ line 12 ~ Home ~ data", data)
+
     if (!error) {
       document.cookie = `bridegroom_call_name=${data.bridegroom_call_name}`
       document.cookie = `bride_call_name=${data.bride_call_name}`

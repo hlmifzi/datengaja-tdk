@@ -47,7 +47,6 @@ export const clientPatch = async (endPoint, body) => {
         let res = await ROOT_API.put(endPoint, body)
         return { data: res.data.data }
     } catch (e) {
-        console.log("🚀 ~ file: URLApi.js ~ line 50 ~ clientPatch ~ e", e)
         const { data } = e.response;
         return { error: data }
     }

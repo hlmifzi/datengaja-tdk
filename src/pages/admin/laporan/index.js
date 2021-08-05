@@ -1,13 +1,39 @@
-import { useState } from 'react'
-import Link from "next/link";
-import LayoutAdmin from '../../../components/Layout/LayoutAdmin'
-// import { getAnalytic } from '../../client/AdminApiServices'
 
-const Laporan = ({ data }) => {
-  const [value, onChange] = useState(new Date());
+import LayoutAdmin from '../../../components/Layout/LayoutAdmin'
+import { getBuyerProducts } from '../../../client/BuyerProduct'
+import { useRouter } from 'next/router'
+import { parseCookies } from '../../../utils/helper/HelperUtils'
+import { CSVLink } from "react-csv";
+
+const Laporan = ({
+  dataBuyerProducts,
+  bridegroom_call_name,
+  bride_call_name
+}) => {
+  console.log("🚀 ~ file: index.js ~ line 13 ~ dataBuyerProducts", dataBuyerProducts)
+
+  const router = useRouter()
+
+  const onSubmit = async (
+    buyerProductId,
+    bridegroom_call_name,
+    bride_call_name
+  ) => {
+    document.cookie = `bridegroom_call_name=${bridegroom_call_name}`
+    document.cookie = `bride_call_name=${bride_call_name}`
+    document.cookie = `buyerProductId=${buyerProductId}`
+    router.push('/admin')
+  }
+
+
+  const headers = [
+    { label: "Nama", key: "bridegroom_full_name" },
+    { label: "No Hp", key: "handphone_wa" },
+    { label: "Tanggal Nikah", key: "reception_date" },
+  ]
 
   return (
-    <LayoutAdmin mainClassName="dashboardTamu">
+    <LayoutAdmin mainClassName="dashboardTamu" user={bridegroom_call_name}>
       <div className="w-100 mb-8">
         <div className="projects">
           <div className="card">
@@ -35,9 +61,17 @@ const Laporan = ({ data }) => {
             <div className="card_header">
               <h3>Customer</h3>
               <div>
-                <a href="/report_penjualan.xlsx" target="_blank" download>
-                  <button className="btn-green ml-2"> Export Excel</button>
-                </a>
+                <CSVLink
+                  data={dataBuyerProducts}
+                  filename={`Laporan-pemakaian-datengaja.csv`}
+                  className="btn-green ml-2"
+                  headers={headers}
+                  target="_blank"
+                  separator={";"}
+                >
+                  Export Excel
+                </CSVLink>
+
               </div>
             </div>
 
@@ -46,7 +80,6 @@ const Laporan = ({ data }) => {
                 <thead>
                   <tr>
                     <td>Nama</td>
-                    <td>email</td>
                     <td>Nomor telepon</td>
                     <td>Total Harga</td>
                     <td>Status</td>
@@ -55,91 +88,29 @@ const Laporan = ({ data }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Affiasca</td>
-                    <td>affiasca@gmail.com</td>
-                    <td>
-                      081281332312
-                    </td>
-                    <td>Gratis</td>
-                    <td>
-                      <span className="sticker sticker_present">
-                        lunas
-                      </span>
-                    </td>
-                    <td>11-09-21 16:00</td>
-                    <td>
-                      <Link href="/admin">
-                        <a className="w-100" target="_blank">
-                          <button className="btn-second px-4">Atur</button>
-                        </a>
-                      </Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Helmi Fauzi</td>
-                    <td>helmi@happy5.co</td>
-                    <td>
-                      081281332312
-                    </td>
-                    <td>Gratis</td>
-                    <td>
-                      <span className="sticker sticker_present">
-                        lunas
-                      </span>
-                    </td>
-                    <td>11-15-21 20:00</td>
-                    <td>
-                      <Link href="/admin">
-                        <a className="w-100" target="_blank">
-                          <button className="btn-second px-4">Atur</button>
-                        </a>
-                      </Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Sulaiman</td>
-                    <td>Sulaiman@gmail.com</td>
-                    <td>
-                      081281332312
-                    </td>
-                    <td>Gratis</td>
-                    <td>
-                      <span className="sticker sticker_present">
-                        lunas
-                      </span>
-                    </td>
-                    <td>11-11-21 20:00</td>
-                    <td>
-                      <Link href="/admin">
-                        <a className="w-100" target="_blank">
-                          <button className="btn-second px-4">Atur</button>
-                        </a>
-                      </Link>
-                    </td>
-                  </tr>
+                  {dataBuyerProducts.map((v, i) => {
 
-                  <tr>
-                    <td>Iqbal</td>
-                    <td>Iqbal@gmail.com</td>
-                    <td>
-                      081281332312
-                    </td>
-                    <td>Gratis</td>
-                    <td>
-                      <span className="sticker sticker_present">
-                        lunas
-                      </span>
-                    </td>
-                    <td>11-07-21 16:00</td>
-                    <td>
-                      <Link href="/admin">
-                        <a className="w-100" target="_blank">
-                          <button className="btn-second px-4">Atur</button>
-                        </a>
-                      </Link>
-                    </td>
-                  </tr>
+                    return (
+                      <tr>
+                        <td>{v.bridegroom_full_name}</td>
+                        <td>
+                          {v.handphone_wa}
+                        </td>
+                        <td>Gratis</td>
+                        <td>
+                          <span className="sticker sticker_present">
+                            lunas
+                          </span>
+                        </td>
+                        <td>{v.reception_date}</td>
+                        <td>
+                          <a className="w-100" target="_blank" onClick={() => onSubmit(v.id, v.bridegroom_call_name, v.bride_call_name)}>
+                            <button className="btn-second px-4">Atur</button>
+                          </a>
+                        </td>
+                      </tr>
+                    )
+                  })}
                 </tbody>
               </table>
             </div>
@@ -151,16 +122,21 @@ const Laporan = ({ data }) => {
 }
 
 
-// export const getServerSideProps = async () => {
+export const getServerSideProps = async ({ req }) => {
 
-//   const { data } = await getAnalytic()
+  const cookie = parseCookies(req.headers.cookie)
 
-//   return {
-//     props: {
-//       data
-//     }
-//   }
-// }
+  const { data: dataBuyerProducts } = await getBuyerProducts()
+
+  return {
+    props: {
+      dataBuyerProducts,
+      bridegroom_call_name: cookie['bridegroom_call_name'],
+      bride_call_name: cookie['bride_call_name'],
+    }
+  }
+}
+
 
 
 export default Laporan;

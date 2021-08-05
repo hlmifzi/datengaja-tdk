@@ -6,7 +6,6 @@ import { postInvitation, getInvitationById, putInvitation } from '../../../clien
 import { postInvitationCategory } from '../../../client/InvitationsCategories'
 import { parseCookies } from '../../../utils/helper/HelperUtils'
 import Layout from '../../../components/Layout/LayoutAdmin'
-import moment from 'moment'
 
 const add = ({
   data,
@@ -35,7 +34,6 @@ const add = ({
 
   const handleUpdate = async (payload) => {
     if (prevUrl.includes("admin/bukuTamu")) Object.assign(payload, { present_time: time });
-    console.log("🚀 ~ file: add.js ~ line 35 ~ handleUpdate ~ payload", payload)
     const { data, error } = await putInvitation(dataInvitation.id, {
       ...payload,
       buyerProductId,

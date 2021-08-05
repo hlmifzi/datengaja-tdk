@@ -14,10 +14,10 @@ const Admin = ({
   qtyAttendStatus
 }) => {
 
-  const totalUndangan = qtyAttendStatus.filter(v => v.attend_status === 'semua')[0].jumlah || 0
-  const confirm = qtyAttendStatus.filter(v => v.attend_status === 'Akan Hadir')[0].jumlah || 0
-  const attend = qtyAttendStatus.filter(v => v.attend_status === 'Telah Hadir')[0].jumlah || 0
-  const cancel = qtyAttendStatus.filter(v => v.attend_status === 'Berhalangan')[0].jumlah || 0
+  const totalUndangan = qtyAttendStatus.filter(v => v.attend_status === 'semua')[0]?.jumlah || 0
+  const confirm = qtyAttendStatus.filter(v => v.attend_status === 'Akan Hadir')[0]?.jumlah || 0
+  const attend = qtyAttendStatus.filter(v => v.attend_status === 'Telah Hadir')[0]?.jumlah || 0
+  const cancel = qtyAttendStatus.filter(v => v.attend_status === 'Berhalangan')[0]?.jumlah || 0
 
   return (
     <LayoutAdmin mainClassName="admin" user={data?.bridegroom_call_name}>

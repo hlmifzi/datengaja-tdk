@@ -16,7 +16,7 @@ const Tamu = ({
   bride_call_name,
   hostname
 }) => {
-  console.log("🚀 ~ file: index.js ~ line 19 ~ data", data)
+
   const [modalSuccessDelete, setModalSuccessDelete] = useState(false)
   const handleDelete = async (id) => {
     const { data } = await deleteInvitation(id)

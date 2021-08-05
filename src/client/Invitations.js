@@ -20,7 +20,6 @@ export const postInvitation = async (payload) => {
 }
 
 export const putInvitation = async (id, payload) => {
-  console.log("🚀 ~ file: Invitations.js ~ line 23 ~ putInvitation ~ id", id)
   return await clientPatch(`${URL}/${id}`, payload);
 }
 
