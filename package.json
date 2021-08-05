@@ -7,6 +7,11 @@
     "build": "next build",
     "start": "next start"
   },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-brands-svg-icons": "^5.15.1",
@@ -21,6 +26,7 @@
     "next-react-svg": "^1.1.2",
     "react": "17.0.1",
     "react-bootstrap": "^1.5.2",
+    "react-csv": "^2.0.3",
     "react-date-picker": "^8.2.0",
     "react-dom": "17.0.1",
     "react-dropzone-uploader": "^2.11.0",

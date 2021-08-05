@@ -110,18 +110,19 @@ const Admin = ({
                 <tbody>
                   {invitations.length > 0 ?
                     invitations.map((v, i) => {
-                      return (
-                        <tr key={i}>
-                          <td>{v.fullname}</td>
-                          <td>{v.desc}</td>
-                          <td>
-                            <div className={`sticker ${attendStatus[v.attend_status]}`}>
-                              {v.attend_status}
-                            </div>
-                          </td>
-                          <td>{v.present_time}</td>
-                        </tr>
-                      )
+                      if (i < 6)
+                        return (
+                          <tr key={i}>
+                            <td>{v.fullname}</td>
+                            <td>{v.desc}</td>
+                            <td>
+                              <div className={`sticker ${attendStatus[v.attend_status]}`}>
+                                {v.attend_status}
+                              </div>
+                            </td>
+                            <td>{v.present_time}</td>
+                          </tr>
+                        )
                     }) :
                     <tr>
                       <td colSpan={8} className="text-center">

@@ -5,6 +5,7 @@ import LayoutAdmin from '../../../components/Layout/LayoutAdmin'
 import { getAllByBuyerProductId, deleteInvitation } from '../../../client/Invitations'
 import { getBuyerProductsClientName } from '../../../client/BuyerProduct'
 import { parseCookies, attendStatus } from '../../../utils/helper/HelperUtils'
+import { CSVLink } from "react-csv";
 import router from "next/router"
 import absoluteUrl from 'next-absolute-url'
 
@@ -15,6 +16,7 @@ const Tamu = ({
   bride_call_name,
   hostname
 }) => {
+  console.log("🚀 ~ file: index.js ~ line 19 ~ data", data)
   const [modalSuccessDelete, setModalSuccessDelete] = useState(false)
   const handleDelete = async (id) => {
     const { data } = await deleteInvitation(id)
@@ -24,6 +26,14 @@ const Tamu = ({
       alert(error.error.errors[0].message)
     }
   }
+
+
+  const headers = [
+    { label: "Nama", key: "fullname" },
+    { label: "Kategori", key: "desc" },
+    { label: "No Hp", key: "phone_wa" },
+    { label: "Status", key: "attend_status" },
+  ]
 
   return (
     <LayoutAdmin mainClassName="tamu">
@@ -49,9 +59,16 @@ const Tamu = ({
                 <Link href="/admin/tamu/add">
                   <button className="btn-main"> + Tambah</button>
                 </Link>
-                <a href="/report_tamu.xlsx" target="_blank" download>
-                  <button className="btn-green ml-2 mt-4"> Export Excel</button>
-                </a>
+                <CSVLink
+                  data={data}
+                  filename={`Undangan-${bridegroom_call_name}-dan-${bride_call_name}.csv`}
+                  className="btn-green ml-2 mt-4"
+                  headers={headers}
+                  target="_blank"
+                  separator={";"}
+                >
+                  Export Excel
+                </CSVLink>
               </div>
             </div>
 
