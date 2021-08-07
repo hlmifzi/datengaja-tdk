@@ -81,6 +81,15 @@ const Sidebar = () => {
                 </li>
               </Link>
             }
+
+            <Link href="/" as={`/`}>
+              <li>
+                <a href="" className={getIsActive("/admin/bukuTamu")}>
+                  <span className="las la-logout"></span>
+                  <span>Logout</span>
+                </a>
+              </li>
+            </Link>
           </ul>
         </div>
       </div>

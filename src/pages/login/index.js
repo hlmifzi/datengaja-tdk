@@ -11,8 +11,6 @@ export default function Home() {
   const [error, setError] = useState(false)
 
   const onLogin = async query => {
-    console.log("🚀 ~ file: index.js ~ line 14 ~ Home ~ query", query)
-
     const { data } = await getUser({ params: query })
 
     if (data.length === 1) {
