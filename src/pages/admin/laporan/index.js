@@ -25,6 +25,7 @@ const Laporan = ({
     document.cookie = `bridegroom_call_name=${bridegroom_call_name}`
     document.cookie = `bride_call_name=${bride_call_name}`
     document.cookie = `buyerProductId=${buyerProductId}`
+    document.cookie = `isAdmin=BUYER`
     router.push('/admin')
   }
 

@@ -7,6 +7,8 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form'
 import { putInvitation } from '../../../client/Invitations'
 import { useRouter } from 'next/router'
+import { getInvitations } from '../../../client/BuyerProduct'
+
 
 
 const Design01 = ({
@@ -23,26 +25,27 @@ const Design01 = ({
     const [dataInvitations, setDataInvitations] = useState(invitations)
     const { register, handleSubmit } = useForm()
 
-    const countDate = new Date('Maret 11, 2021 00:00:00').getTime();
+    const countDate = new Date(data.reception_date).getTime();
 
-    // const timeToEvent = () => {
-    //     const now = new Date().getTime();
-    //     const gap = countDate - now;
+    const timeToEvent = () => {
+        const now = new Date().getTime();
+        const gap = countDate - now;
 
-    //     const second = 1000;
-    //     const minute = second * 60;
-    //     const hour = minute * 60;
-    //     const day = hour * 24;
+        const second = 1000;
+        const minute = second * 60;
+        const hour = minute * 60;
+        const day = hour * 24;
 
-    //     const d = Math.floor(gap / day);
-    //     const h = Math.floor((gap % day) / hour);
-    //     const m = Math.floor((gap % hour) / minute);
-    //     const s = Math.floor((gap % minute) / second);
+        const d = Math.floor(gap / day);
+        const h = Math.floor((gap % day) / hour);
+        const m = Math.floor((gap % hour) / minute);
+        const s = Math.floor((gap % minute) / second);
 
-    //     document.getElementById('day').innerText = d;
-    //     document.getElementById('hour').innerText = h;
-    //     document.getElementById('minute').innerText = m;
-    //     document.getElementById('second').innerText = s;
+        document.getElementById('day').innerText = d;
+        document.getElementById('hour').innerText = h;
+        document.getElementById('minute').innerText = m;
+        document.getElementById('second').innerText = s;
+    }
 
     const onSubmitConfirmation = async (payload) => {
         const { data } = await putInvitation(guestId, payload)
@@ -50,8 +53,9 @@ const Design01 = ({
     }
 
     const onSearch = async (query) => {
-        const { data: dataInvitations } = await getInvitations(dataBuyerProducts.id, { params: query })
-        setDataInvitations(dataInvitations)
+        const { data: dataInvitations } = await getInvitations(data.id, { params: query })
+        if (dataInvitations) setDataInvitations(dataInvitations)
+        else setDataInvitations([])
     }
 
     const attendStatus = {
@@ -62,9 +66,9 @@ const Design01 = ({
     }
 
     useEffect(() => {
-        // setInterval(() => {
-        //     timeToEvent();
-        // }, 1000);
+        setInterval(() => {
+            timeToEvent();
+        }, 1000);
 
         const muteSound = document.querySelector('.mute-sound');
         const unMuteSound = document.querySelector('.unmute-sound');
@@ -382,19 +386,29 @@ const Design01 = ({
                                 <select
                                     className="custom-select"
                                     id="inputGroupSelect04"
+                                    {...register("category_id")}
                                 >
-                                    <option selected>Cari Kategori</option>
+                                    <option value="" selected>Cari Kategori</option>
 
                                     {dataInvitationCategory?.map((v, i) => {
                                         return (
-                                            <option value={v.id} key={i}>{v.desc} {v.time_start !== "00:00:00" && v.time_end !== "00:00:00" ? `(${v?.session} : ${v.time_start} - ${v.time_end})` : ""}
+                                            <option
+                                                value={v.id}
+                                                key={i}
+                                            >
+                                                {v.desc} {v.time_start !== "00:00:00" && v.time_end !== "00:00:00" ? `(${v?.session} : ${v.time_start} - ${v.time_end})` : ""}
                                             </option>
                                         )
                                     })}
                                 </select>
                             </div>
-                            <input type="text" class="form-control user_searchName" placeholder="Cari Nama Tamu" aria-describedby="basic-addon2" />
-                            <button type="button" class="btn user_btnSearch">Cari</button>
+                            <input
+                                type="text"
+                                class="form-control user_searchName"
+                                placeholder="Cari Nama Tamu" aria-describedby="basic-addon2"
+                                {...register("invitation_name")}
+                            />
+                            <button type="submit" class="btn user_btnSearch">Cari</button>
                         </div>
                     </form>
                     <div className="comment">
@@ -422,8 +436,7 @@ const Design01 = ({
                                 )
                             }) :
                             <div>
-                                <h3>Belum Ada yang diundangan</h3>
-                                <p>Silakan input undangan anda</p>
+                                <h3>Tidak Ada Data</h3>
                             </div>
                         }
                     </div>
@@ -480,8 +493,5 @@ const Design01 = ({
     )
 }
 
-Design01.propTypes = {
-
-}
 
 export default Design01
