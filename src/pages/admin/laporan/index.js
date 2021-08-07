@@ -1,18 +1,21 @@
 
-import LayoutAdmin from '../../../components/Layout/LayoutAdmin'
+import { useState } from 'react';
 import { getBuyerProducts } from '../../../client/BuyerProduct'
 import { useRouter } from 'next/router'
 import { parseCookies } from '../../../utils/helper/HelperUtils'
 import { CSVLink } from "react-csv";
+import { useForm } from 'react-hook-form'
+import LayoutAdmin from '../../../components/Layout/LayoutAdmin'
+
 
 const Laporan = ({
   dataBuyerProducts,
   bridegroom_call_name,
-  bride_call_name
 }) => {
-  console.log("🚀 ~ file: index.js ~ line 13 ~ dataBuyerProducts", dataBuyerProducts)
 
   const router = useRouter()
+  const { register, handleSubmit } = useForm()
+  const [buyerProducts, setBuyerProducts] = useState(dataBuyerProducts)
 
   const onSubmit = async (
     buyerProductId,
@@ -25,6 +28,10 @@ const Laporan = ({
     router.push('/admin')
   }
 
+  const onSearch = async (query) => {
+    const { data: dataSearcBuyerProducts } = await getBuyerProducts({ params: query })
+    setBuyerProducts(dataSearcBuyerProducts)
+  }
 
   const headers = [
     { label: "Nama", key: "bridegroom_full_name" },
@@ -39,18 +46,28 @@ const Laporan = ({
           <div className="card">
             <div className="card_header">
               <h3>Filter</h3>
-
             </div>
-            <div className="card_bodyFilter">
-              <div>
-                <label>Dari</label>
-                <input type="date" />
+            <form onSubmit={handleSubmit(onSearch)}>
+              <div className="card_bodyFilter">
+                <div>
+                  <label>Dari</label>
+                  <input
+                    type="date"
+                    {...register("start")}
+                  />
+                </div>
+                <div>
+                  <label>Sampai</label>
+                  <input
+                    type="date"
+                    {...register("end")}
+                  />
+                </div>
+                <div>
+                  <button className="btn btn-main px-12">submit</button>
+                </div>
               </div>
-              <div>
-                <label>Sampai</label>
-                <input type="date" />
-              </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>
@@ -62,7 +79,7 @@ const Laporan = ({
               <h3>Customer</h3>
               <div>
                 <CSVLink
-                  data={dataBuyerProducts}
+                  data={buyerProducts}
                   filename={`Laporan-pemakaian-datengaja.csv`}
                   className="btn-green ml-2"
                   headers={headers}
@@ -71,7 +88,6 @@ const Laporan = ({
                 >
                   Export Excel
                 </CSVLink>
-
               </div>
             </div>
 
@@ -88,7 +104,7 @@ const Laporan = ({
                   </tr>
                 </thead>
                 <tbody>
-                  {dataBuyerProducts.map((v, i) => {
+                  {buyerProducts.map((v, i) => {
 
                     return (
                       <tr>

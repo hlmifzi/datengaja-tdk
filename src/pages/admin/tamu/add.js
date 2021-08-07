@@ -56,7 +56,10 @@ const add = ({
       buyerProductId
     })
 
-    if (!error) setShowAddCategory(false)
+    if (!error) {
+      router.push('/admin/tamu/add')
+      setShowAddCategory(false)
+    }
   }
 
   return (
@@ -93,8 +96,9 @@ const add = ({
                         return (
                           <option
                             value={v.id}
+                            key={i}
                             selected={dataInvitation && dataInvitation?.invitation_category_id === v.id}
-                          >{v.desc} ({v?.session} (14:00-16:00 WIB))
+                          >{v.desc} {v.time_start !== "00:00:00" && v.time_end !== "00:00:00" ? `(${v?.session} : ${v.time_start} - ${v.time_end})` : ""}
                           </option>
                         )
                       })}

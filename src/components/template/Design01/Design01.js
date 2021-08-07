@@ -12,13 +12,15 @@ import { useRouter } from 'next/router'
 const Design01 = ({
     data,
     invitations,
+    dataInvitationCategory,
     eventId
 }) => {
 
     const router = useRouter()
-    const guest = invitations[0].fullname || "Nama Tamu"
-    const guestId = invitations[0].id
+    const guest = invitations[0]?.fullname || "Nama Tamu"
+    const guestId = invitations[0]?.id
     const [showGiftModal, setShowGiftModal] = useState(false)
+    const [dataInvitations, setDataInvitations] = useState(invitations)
     const { register, handleSubmit } = useForm()
 
     const countDate = new Date('Maret 11, 2021 00:00:00').getTime();
@@ -46,7 +48,11 @@ const Design01 = ({
         const { data } = await putInvitation(guestId, payload)
         if (data) setShowGiftModal(payload.attend_status)
     }
-    // }
+
+    const onSearch = async (query) => {
+        const { data: dataInvitations } = await getInvitations(dataBuyerProducts.id, { params: query })
+        setDataInvitations(dataInvitations)
+    }
 
     const attendStatus = {
         "Menunggu Konfirmasi": "sticker_waiting",
@@ -370,33 +376,38 @@ const Design01 = ({
                             Konfirmasi
                         </button>
                     </form>
+                    <form onSubmit={handleSubmit(onSearch)}>
+                        <div className="user_search">
+                            <div className="input-group">
+                                <select
+                                    className="custom-select"
+                                    id="inputGroupSelect04"
+                                >
+                                    <option selected>Cari Kategori</option>
 
-                    <div className="user_search">
-                        <div className="input-group">
-                            <select
-                                className="custom-select"
-                                id="inputGroupSelect04"
-                            >
-                                <option selected>Cari Kategori</option>
-                                <option value="1">Temen Ayah Laki Laki (sesi II (14:00-16:00 WIB))</option>
-                                <option value="2">Temen SD Perempuan (sesi II (12:00-14:00 WIB))</option>
-                                <option value="3">Temen SMK Laki-laki (sesi I (10:00-12:00 WIB))</option>
-                            </select>
+                                    {dataInvitationCategory?.map((v, i) => {
+                                        return (
+                                            <option value={v.id} key={i}>{v.desc} {v.time_start !== "00:00:00" && v.time_end !== "00:00:00" ? `(${v?.session} : ${v.time_start} - ${v.time_end})` : ""}
+                                            </option>
+                                        )
+                                    })}
+                                </select>
+                            </div>
+                            <input type="text" class="form-control user_searchName" placeholder="Cari Nama Tamu" aria-describedby="basic-addon2" />
+                            <button type="button" class="btn user_btnSearch">Cari</button>
                         </div>
-                        <input type="text" class="form-control user_searchName" placeholder="Cari Nama Tamu" aria-describedby="basic-addon2" />
-                        <button type="button" class="btn user_btnSearch">Cari</button>
-                    </div>
+                    </form>
                     <div className="comment">
-                        {invitations.length > 0 ?
-                            invitations.map((v, i) => {
+                        {dataInvitations.length > 0 ?
+                            dataInvitations.map((v, i) => {
                                 return (
-                                    <div className="comment-user">
+                                    <div className="comment-user" key={i}>
                                         <div className="comment-body">
                                             <div className="user">
                                                 <div className="user_status">
                                                     <div>
                                                         <div>{v.fullname}</div>
-                                                        <span className="user_category">{v.invitation_category_name}
+                                                        <span className="user_category">{v.desc}
                                                             {v.time_start && v.time_end &&
                                                                 <b>(sesi II ({v.time_start || "-"}-{v.time_end || "-"} WIB))</b>
                                                             }
