@@ -302,7 +302,7 @@ const Design01 = ({
                 <div className="container">
                     <h2 className="title">Gallery</h2>
                     <p className="text-center">Momen Bahagia Awan dan Pelangi</p>
-                    {data?.gallery?.split(",")?.map((v, i) => (
+                    {data?.gallery?.split("|")?.map((v, i) => (
 
                         <a key={i} href={v} target="__blank">
                             <img src={v} />

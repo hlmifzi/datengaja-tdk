@@ -40,7 +40,7 @@ export const getServerSideProps = async ({ params }) => {
     props: {
       dataBuyerProducts,
       dataInvitationCategory,
-      invitations: invitations || null,
+      invitations: invitations || [],
       EVENT_ID
     },
   };

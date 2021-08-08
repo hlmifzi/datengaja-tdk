@@ -231,11 +231,55 @@ a {
     }
   }
 
+  iframe
+  {
+    width: 80% !important;
+  }
+
   &_chooseDesign
   {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  &_brideCoupleImg
+  {
+    border-radius: 100%;
+    margin: 0 auto;
+    width: 100px;
+  }
+
+  &_brideCoupleImgSquare
+  {
+    margin: 0 auto;
+    width: 150px;
+    margin-right: .5rem;;
+  }
+
+  &_chooseDesignWrapper
+  {
+    position: relative;
+    cursor: pointer;
+
+    input
+    {
+      position: absolute;
+      cursor: pointer;
+      visibility: hidden;
+
+      &:checked ~ label 
+      {
+        @extend .btn;
+        @extend .btn-main;
+      }
+    }
+
+    label
+    {
+      cursor: pointer;
+    }
+    
   }
 
   &_title {

@@ -14,16 +14,16 @@ export default function Home() {
     const { data } = await getUser({ params: query })
 
     if (data.length === 1) {
-      document.cookie = `bridegroom_call_name=${data[0].bridegroom_call_name}`
-      document.cookie = `bride_call_name=${data[0].bride_call_name}`
-      document.cookie = `buyerProductId=${data[0].buyerProductId}`
-      document.cookie = `isAdmin=${data[0].type}`
+      document.cookie = `bridegroom_call_name=${data[0]?.bridegroom_call_name}`
+      document.cookie = `bride_call_name=${data[0]?.bride_call_name}`
+      document.cookie = `buyerProductId=${data[0]?.buyerProductId}`
+      document.cookie = `isAdmin=${data[0]?.type}`
     } else {
       setError(true)
     }
 
-    if (data[0].type === 'ADMIN') router.push('/admin/laporan')
-    else router.push('/admin')
+    if (data[0]?.type === 'ADMIN') router.push('/admin/laporan')
+    if (data[0]?.type === 'BUYER') router.push('/admin')
   }
 
   return (

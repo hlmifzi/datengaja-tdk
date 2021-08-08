@@ -20,3 +20,11 @@ export const getInvitations = async (buyerProductId, query) => {
 export const postBuyerProduct = async (payload) => {
   return await clientPost(`buyerProducts`, payload);
 }
+
+export const putBuyerProduct = async (buyerProductId, payload) => {
+  return await clientPatch(`buyerProducts/${buyerProductId}`, payload);
+}
+
+export const getByID = async (buyerProductId) => {
+  return await clientGet(`buyerProducts/${buyerProductId}`);
+}
