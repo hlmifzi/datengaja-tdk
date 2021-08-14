@@ -280,7 +280,6 @@ const Design01 = ({
                             dangerouslySetInnerHTML={{ __html: data.reception_location_google_maps }}
                         />
                     </div>
-                    <a href="https://www.google.com/maps/place/SMK+Negeri+26+Jkt,+Jl.+Balai+Pustaka+Baru+I,+RT.2%2FRW.7,+Rawamangun,+Kec.+Pulo+Gadung,+Kota+Jakarta+Timur,+Daerah+Khusus+Ibukota+Jakarta+13220/@-6.194295,106.886581,20z/data=!4m2!3m1!1s0x2e69f49532b5b715:0xa4012b68ec698d4e?hl=id&gl=ID" target="__blank" className="btn">Buka Map</a>
                 </div>
                 <div className="shape-bottom">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.5 27.8" preserveAspectRatio="none">
@@ -300,18 +299,17 @@ const Design01 = ({
             <section className="gallery" id="gallery">
                 <div className="container">
                     <h2 className="title">Gallery</h2>
-                    <p className="text-center">Momen Bahagia Awan dan Pelangi</p>
+                    <p className="text-center">Momen Bahagia {data.bridegroom_call_name} dan {data.bride_call_name}</p>
                     {data?.gallery?.split("|")?.map((v, i) => (
 
                         <a key={i} href={v} target="__blank">
                             <img src={v} />
                         </a>
-                    ))
-                    }
+                    ))}
                 </div>
             </section>
 
-            {data.live_streaming_ig || data.live_streaming_zoom &&
+            {(data.live_streaming_ig || data.live_streaming_zoom) &&
                 <section className="liveStreaming">
                     <div className="container">
                         <div className="text-center">
@@ -345,13 +343,12 @@ const Design01 = ({
                         </div>
                     </div>
                 </section>
-
             }
             <section className="contact">
                 <div className="container">
                     <div className="text-center">
                         <h2 className="title">Konfirmasi Kehadiran beserta Ucapan Selamat & Do'a untuk</h2>
-                        <p>Awan & Pelangi</p>
+                        <p>{data.bridegroom_call_name} & {data.bride_call_name}</p>
                     </div>
 
                     <form onSubmit={handleSubmit(onSubmitConfirmation)}>

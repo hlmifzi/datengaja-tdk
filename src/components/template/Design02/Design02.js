@@ -145,15 +145,21 @@ const Design02 = ({
             </div>
 
 
-            <div className="official-invitation container bg-container text-center" id="home">
+            <div
+                className="official-invitation container bg-container text-center"
+                id="home"
+                style={{
+                    backgroundImage: `linear-gradient(to bottom,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(${data.background1})`,
+                }}
+            >
                 <div className="one">
                     <p>The Wedding</p>
                     <span>Official invitation</span>
                 </div>
                 <div className="two">
-                    <h1 className="font-dancing-script">Awan & Pelangi</h1>
-                    <p>- SABTU, 26 DESEMBER 2020 -</p>
-                    <span>Gunung Putri, Bogor.</span>
+                    <h1 className="font-dancing-script">{data.bridegroom_call_name} & {data.bride_call_name}</h1>
+                    <p>- {moment(new Date(data.reception_date)).format('LL')} -</p>
+                    <span>{data.reception_location}</span>
                 </div>
             </div>
 
@@ -184,15 +190,15 @@ const Design02 = ({
                         <p>Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. Ya Allah semoga ridho-Mu tercurah mengiringi pernikahan kami:</p>
                     </div>
                     <div className="two">
-                        <img src="/img/3.jpeg" className="circle-img" />
-                        <h2>Awan Cahya Pagi</h2>
-                        <p>Putra dari Bpk. Semesta & Ibu Embun Bening</p>
+                        <img src={data.bridegroom_img} className="circle-img" />
+                        <h2>{data.bridegroom_full_name}</h2>
+                        <p>Putra dari Bpk. {data.bridegroom_fathers} & Ibu {data.bridegroom_mother}</p>
                     </div>
                     <p>dan</p>
                     <div className="three">
-                        <img src="/img/4.jpeg" className="circle-img" />
-                        <h2>Pelangi Dwi Putri</h2>
-                        <p>Putri dari Bpk. Derajat & Ibu Sagriya Putri</p>
+                        <img src={data.bride_img} className="circle-img" />
+                        <h2>{data.bride_full_name}</h2>
+                        <p>Putri dari Bpk. {data.bride_woman_father} & Ibu {data.bride_woman_mother}</p>
                     </div>
                 </section>
                 <div className="shape-bottom">
@@ -242,15 +248,15 @@ const Design02 = ({
                             <ul>
                                 <li>
                                     <i className="far fa-calendar-alt"></i>
-                                    <p>Sabtu, 20 Juni 2020</p>
+                                    <p>{moment(data.bride_date).format('LL')}</p>
                                 </li>
                                 <li>
                                     <i className="far fa-clock"></i>
-                                    <p>Pukul 08.00 s.d Selesai</p>
+                                    <p>Pukul {data.bride_start_time} s.d {data.bride_end_time || 'selesai'}</p>
                                 </li>
                                 <li>
                                     <i className="fas fa-map-marker-alt"></i>
-                                    <p>AUDITORIUM MASJID ASSALAM, Jalan Raya Bojongsari No.5, Gunung Putri, Citeureup, Bogor, Jawa Barat</p>
+                                    <p>{data.bride_location}</p>
                                 </li>
                             </ul>
                         </div>
@@ -264,15 +270,15 @@ const Design02 = ({
                             <ul>
                                 <li>
                                     <i className="far fa-calendar-alt"></i>
-                                    <p>Sabtu, 20 Juni 2020</p>
+                                    <p>{moment(data.reception_date).format('LL')}</p>
                                 </li>
                                 <li>
                                     <i className="far fa-clock"></i>
-                                    <p>Pukul 08.00 s.d Selesai</p>
+                                    <p>Pukul {data.reception_start_time} s.d {data.reception_end_time || 'selesai'}</p>
                                 </li>
                                 <li>
                                     <i className="fas fa-map-marker-alt"></i>
-                                    <p>AUDITORIUM MASJID ASSALAM, Jalan Raya Bojongsari No.5, Gunung Putri, Citeureup, Bogor, Jawa Barat lorem10</p>
+                                    <div dangerouslySetInnerHTML={{ __html: data.reception_location }} />
                                 </li>
                             </ul>
                         </div>
@@ -287,11 +293,11 @@ const Design02 = ({
                         <div id="second">NA</div>
                     </div>
                 </div>
-                <div className="map">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d247.90778136347146!2d106.8865811!3d-6.19431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f49532b5b715%3A0xa4012b68ec698d4e!2sSMK%20Negeri%2026%20Jakarta!5e0!3m2!1sid!2sid!4v1591424770986!5m2!1sid!2sid" frameBorder="0" style={{ border: '0' }} allowFullScreen="" aria-hidden="false" tabIndex="0"></iframe>
-                </div>
+                <div
+                    className="map_iframe"
+                    dangerouslySetInnerHTML={{ __html: data.reception_location_google_maps }}
+                />
                 <div className="text-center">
-                    <a href="https://www.google.com/maps/place/SMK+Negeri+26+Jkt,+Jl.+Balai+Pustaka+Baru+I,+RT.2%2FRW.7,+Rawamangun,+Kec.+Pulo+Gadung,+Kota+Jakarta+Timur,+Daerah+Khusus+Ibukota+Jakarta+13220/@-6.194295,106.886581,20z/data=!4m2!3m1!1s0x2e69f49532b5b715:0xa4012b68ec698d4e?hl=id&gl=ID" target="__blank" className="btn">Buka Map</a>
                 </div>
                 <div className="shape-bottom">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.5 27.8" preserveAspectRatio="none">
@@ -330,12 +336,13 @@ const Design02 = ({
                         </svg>
                     </div>
                     <h2 className="title">Gallery</h2>
-                    <p className="text-center">Momen Bahagia Awan dan Pelangi</p>
+                    <p className="text-center">Momen Bahagia {data.bridegroom_call_name} dan {data.bride_call_name}</p>
 
-                    <img src="/img/2.jpeg" onClick="openModal(this)" />
-                    <img src="/img/7.jpeg" onClick="openModal(this)" />
-                    <img src="/img/5.jpeg" onClick="openModal(this)" />
-                    <img src="/img/6.jpeg" onClick="openModal(this)" />
+                    {data?.gallery?.split("|")?.map((v, i) => (
+                        <a key={i} href={v} target="__blank" >
+                            <img src={v} />
+                        </a>
+                    ))}
 
                     <div className="shape-bottom">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.5 27.8" preserveAspectRatio="none">
@@ -374,113 +381,152 @@ const Design02 = ({
                     </svg>
                 </div>
 
-                <section className="story" id="story">
-                    <div className="text-center">
-                        <h2 className="title">Story</h2>
-                        <span>~ Kisah Bahagia Awan & Pelangi ~</span>
-                        <p>“Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu istri-istri dari jenismu sendiri, supaya kamu cenderung <br /> dan merasa tentram kepadanya, dan dijadikan-Nya diantaramu rasa kasih dan sayang. Sesungguhnya pada yahng demikian itu <br /> benar-benar terdapat tanda-tanda bagi kaum yang berpikir.”</p>
-                        <span>QS. Ar-Rum : 21</span>
-                    </div>
 
-                    <ul className="timeline">
-                        <li>
-                            <div className="card">
-                                <div className="dot"></div>
-                                <div className="card-body">
-                                    <h3>2015</h3>
-                                    <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut, eligendi vitae. Vero sint optio reprehenderit at reiciendis consequuntur quidem, excepturi quibusdam odit voluptatibus earum sed accusantium. Molestias vero atque debitis!</span>
-                                </div>
+                {(data.live_streaming_ig || data.live_streaming_zoom) &&
+                    <section className="liveStreaming bg-white">
+                        <div className="container">
+                            <div className="text-center">
+                                <h2 className="title">Live Streaming pernikahan kami</h2>
                             </div>
-                        </li>
-                        <li>
-                            <div className="card">
-                                <div className="dot"></div>
-                                <div className="card-body">
-                                    <h3>2015</h3>
-                                    <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut, eligendi vitae. Vero sint optio reprehenderit at reiciendis consequuntur quidem, excepturi quibusdam odit voluptatibus earum sed accusantium. Molestias vero atque debitis!</span>
-                                </div>
+
+                            <div className="liveStreaming_body">
+                                <div className="d-flex">
+                                    {data.live_streaming_zoom &&
+                                        <div className="liveStreaming_instagramContainer">
+                                            <img src="/img/zoomIcon.png" className="liveStreaming_zoomIcon" alt="zoomIcon" />
+                                            <button className="btn liveStreaming_buttonZoom">Live Via Zoom</button>
+                                        </div>
+                                    }
+                                    {data.live_streaming_ig &&
+                                        <div className="liveStreaming_instagramContainer">
+                                            <img src="/img/instgramIcon.jpg" className="liveStreaming_instagramIcon" alt="zoomIcon" />
+                                            <button className="btn liveStreaming_buttonInstagram">Live Via Instagram</button>
+                                        </div>
+                                    }
+                                </div><br />
+                                {data.live_streaming_zoom &&
+                                    <>
+                                        <p>Meeting ID: {data.live_streaming_zoom_meeting_id}</p>
+                                        <p>Password: {data.live_streaming_zoom_password}</p>
+                                    </>
+                                }
+                                {data.live_streaming_ig_account &&
+                                    <p>instagram: @{data.live_streaming_ig_account}</p>
+                                }
                             </div>
-                        </li>
-                        <li>
-                            <div className="card">
-                                <div className="dot"></div>
-                                <div className="card-body">
-                                    <h3>2015</h3>
-                                    <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut, eligendi vitae. Vero sint optio reprehenderit at reiciendis consequuntur quidem, excepturi quibusdam odit voluptatibus earum sed accusantium. Molestias vero atque debitis!</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div className="card">
-                                <div className="dot"></div>
-                                <div className="card-body">
-                                    <h3>2015</h3>
-                                    <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut, eligendi vitae. Vero sint optio reprehenderit at reiciendis consequuntur quidem, excepturi quibusdam odit voluptatibus earum sed accusantium. Molestias vero atque debitis!</span>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </section>
+                        </div>
+                    </section>
+                }
 
 
                 <section className="contact">
                     <div className="text-center">
                         <h2 className="title">Ucapan Selamat & Do'a untuk</h2>
-                        <p>Awan & Pelangi</p>
+                        <p>{data.bridegroom_call_name} & {data.bride_call_name}</p>
                     </div>
 
-                    <form>
-                        <div className="form-control">
-                            <input type="text" placeholder="Nama" />
+                    <form onSubmit={handleSubmit(onSubmitConfirmation)}>
+                        <div className="d-flex">
+                            <div className="form-control border-0 user_name">
+                                <input type="text" value={guest} disabled />
+                            </div>
+                            <div className="user_statusChoose">
+                                <div className="input-group">
+                                    <select
+                                        className="custom-select"
+                                        {...register("attend_status")}
+                                    >
+                                        <option selected>Pilih Status</option>
+                                        <option value="Akan Hadir">Akan Hadir</option>
+                                        <option value="Berhalangan">Behalangan</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="form-control border-0 user_qtyPartner">
+                                <input
+                                    type="number"
+                                    placeholder="jumlah yang akan diajak (istri/anak/pasangan)"
+                                    {...register("attend_qty")}
+                                />
+                            </div>
                         </div>
-                        <div className="form-control">
-                            <textarea placeholder="Ucapan Do'a & Harapan"></textarea>
+                        <div className="form-control border-0">
+                            <textarea
+                                placeholder="Ucapan Do'a & Harapan"
+                                {...register("greetings")}
+                            />
                         </div>
-                        <button type="button" className="btn">Kirim</button>
+                        <button
+                            type="submit"
+                            className="btn"
+                            disabled={!data.id}
+                        >
+                            Konfirmasi
+                        </button>
+                    </form>
+                    <form onSubmit={handleSubmit(onSearch)}>
+                        <div className="user_search">
+                            <div className="input-group">
+                                <select
+                                    className="custom-select"
+                                    id="inputGroupSelect04"
+                                    {...register("category_id")}
+                                >
+                                    <option value="" selected>Cari Kategori</option>
+
+                                    {dataInvitationCategory?.map((v, i) => {
+                                        return (
+                                            <option
+                                                value={v.id}
+                                                key={i}
+                                            >
+                                                {v.desc} {v.time_start !== "00:00:00" && v.time_end !== "00:00:00" ? `(${v?.session} : ${v.time_start} - ${v.time_end})` : ""}
+                                            </option>
+                                        )
+                                    })}
+                                </select>
+                            </div>
+                            <input
+                                type="text"
+                                class="form-control user_searchName"
+                                placeholder="Cari Nama Tamu" aria-describedby="basic-addon2"
+                                {...register("invitation_name")}
+                            />
+                            <button type="submit" class="btn user_btnSearch">Cari</button>
+                        </div>
                     </form>
 
                     <div className="comment">
-                        <div className="comment-user">
-                            <img src="/icon/iconalbassam.png" />
-                            <div className="comment-body">
-                                <div className="user">
-                                    <span>Nama ku adalah</span>
-                                    <span>Jumat, 20 April 2020</span>
-                                </div>
-                                <p>Lorem ipsum dolor sit, amet</p>
+                        {dataInvitations.length > 0 ?
+                            dataInvitations.map((v, i) => {
+                                return (
+                                    <div className="comment-user" key={i}>
+                                        <div className="comment-body">
+                                            <div className="user">
+                                                <div className="user_status">
+                                                    <div>
+                                                        <div>{v.fullname}</div>
+                                                        <span className="user_category">{v.desc}
+                                                            {v.time_start && v.time_end &&
+                                                                <b>(sesi II ({v.time_start || "-"}-{v.time_end || "-"} WIB))</b>
+                                                            }
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div className={`sticker ${attendStatus[v.attend_status]}`}>{v.attend_status}</div>
+                                            </div>
+                                            <p>{v.greetings}</p>
+                                        </div>
+                                    </div>
+                                )
+                            }) :
+                            <div>
+                                <h3>Tidak Ada Data</h3>
                             </div>
-                        </div>
-                        <div className="comment-user">
-                            <img src="/icon/iconalbassam.png" />
-                            <div className="comment-body">
-                                <div className="user">
-                                    <span>Nama ku adalah</span>
-                                    <span>Jumat, 20 April 2020</span>
-                                </div>
-                                <p>Lorem ipsum dolor sit, amet</p>
-                            </div>
-                        </div>
-                        <div className="comment-user">
-                            <img src="/icon/iconalbassam.png" />
-                            <div className="comment-body">
-                                <div className="user">
-                                    <span>Nama ku adalah</span>
-                                    <span>Jumat, 20 April 2020</span>
-                                </div>
-                                <p>Lorem ipsum dolor sit, amet</p>
-                            </div>
-                        </div>
-                        <div className="comment-user">
-                            <img src="/icon/iconalbassam.png" />
-                            <div className="comment-body">
-                                <div className="user">
-                                    <span>Nama ku adalah</span>
-                                    <span>Jumat, 20 April 2020</span>
-                                </div>
-                                <p>Lorem ipsum dolor sit, amet</p>
-                            </div>
-                        </div>
+                        }
                     </div>
+
+
                 </section>
                 <div className="shape-bottom">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.5 27.8" preserveAspectRatio="none">
