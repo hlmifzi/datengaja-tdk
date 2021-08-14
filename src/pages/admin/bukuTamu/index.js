@@ -55,7 +55,7 @@ const BukuTamu = ({
                               {v.attend_status}
                             </div>
                           </td>
-                          <td>{v.present_time}</td>
+                          <td>{v.present_time || 'Belum Hadir'}</td>
                           <td>
                             <button
                               className="btn-blue px-4"

@@ -33,6 +33,7 @@ const Tamu = ({
     { label: "Kategori", key: "desc" },
     { label: "No Hp", key: "phone_wa" },
     { label: "Status", key: "attend_status" },
+    { label: "Ucapan dan Doa", key: "greetings" },
   ]
 
   return (
@@ -79,6 +80,7 @@ const Tamu = ({
                     <td>Nama</td>
                     <td>Kategori</td>
                     <td>Nomor telepon</td>
+                    <td>Ucapan & Doa</td>
                     <td>Status</td>
                     <td>Kehadiran</td>
                     <td>Update Terakhir</td>
@@ -97,11 +99,14 @@ const Tamu = ({
                             {v.phone_wa}
                           </td>
                           <td>
+                            {v.greetings}
+                          </td>
+                          <td>
                             <div className={`sticker ${attendStatus[v.attend_status]}`}>
                               {v.attend_status}
                             </div>
                           </td>
-                          <td>{v.present_time}</td>
+                          <td>{v.present_time || 'Belum Hadir'}</td>
                           <td>{moment(v.updated_at).format('LLLL')}</td>
                           <td>
                             <button
@@ -120,14 +125,13 @@ const Tamu = ({
                           </td>
                           <td>
                             <Link href={`
-                            https://api.whatsapp.com/send?phone=${v.phone_wa}&text=Hallo%20${v.fullname}%0AKami%20Yang%20berbahagia%20mengundang%20bapak%2Fibu%20untuk%20menghadiri%20acara%20resepsi%20pernikahakn%20kami%20pada%20%0A%0Ahari%2Ftanggal%3A%20${moment(dataBuyerProduct?.bride_date).format('LL')}%0Atempat%3A%20${dataBuyerProduct?.reception_location}%0APukul:%20${dataBuyerProduct?.reception_start_time} s.d ${dataBuyerProduct?.reception_end_time || 'selesai'}%0A%0AMohon%20dapat%20konfirmasi%20di%20%0A${hostname}%2Fundangan01%2Fpernikahan-${bridegroom_call_name}-dan-${bride_call_name}%3Fkepada=${v.fullname}%0ATak%20ada%20kesan%20tanpa%20kehadiranmu`} >
+                            https://api.whatsapp.com/send?phone=${v.phone_wa}&text=Hallo%20${v.fullname}%0AKami%20Yang%20berbahagia%20mengundang%20bapak%2Fibu%20untuk%20menghadiri%20acara%20resepsi%20pernikahan%20kami%20pada%20%0A%0Ahari%2Ftanggal%3A%20${moment(dataBuyerProduct?.bride_date).format('LL')}%0Atempat%3A%20${dataBuyerProduct?.reception_location}%0APukul:%20${dataBuyerProduct?.reception_start_time} s.d ${dataBuyerProduct?.reception_end_time || 'selesai'}%0A%0AMohon%20dapat%20konfirmasi%20di%20%0A${hostname}%2Fundangan01%2Fpernikahan-${bridegroom_call_name}-dan-${bride_call_name}%3Fkepada=${v.fullname}%0ATak%20ada%20kesan%20tanpa%20kehadiranmu`} >
                               <a className="w-100" target="_blank">
                                 <button className="btn-second px-4">Bagikan ke WA</button>
                               </a>
                             </Link>
                           </td>
                         </tr>
-
                       )
                     }) :
                     <tr>

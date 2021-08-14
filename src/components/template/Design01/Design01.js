@@ -10,7 +10,6 @@ import { useRouter } from 'next/router'
 import { getInvitations } from '../../../client/BuyerProduct'
 
 
-
 const Design01 = ({
     data,
     invitations,
@@ -131,7 +130,7 @@ const Design01 = ({
 
             <div className="container">
                 <section className="guest-section text-center">
-                    <img src={data.bride_couple_img} className="circle-img" />
+                    <img src={data.bride_couple_img.replace("'", "")} className="circle-img" />
                     <p>Kepada Yth. <br /> Bapak/Ibu/Saudara/i</p>
                     <h2 className="font-segoe-ui text-capitalize">{guest}</h2>
                 </section>
@@ -311,29 +310,43 @@ const Design01 = ({
                     }
                 </div>
             </section>
-            <section className="liveStreaming">
-                <div className="container">
-                    <div className="text-center">
-                        <h2 className="title">Live Streaming pernikahan kami</h2>
-                    </div>
 
-                    <div className="liveStreaming_body">
-                        <div className="d-flex">
-                            <div className="liveStreaming_instagramContainer">
-                                <img src="/img/zoomIcon.png" className="liveStreaming_zoomIcon" alt="zoomIcon" />
-                                <button className="btn liveStreaming_buttonZoom">Live Via Zoom</button>
-                            </div>
-                            <div className="liveStreaming_instagramContainer">
-                                <img src="/img/instgramIcon.jpg" className="liveStreaming_instagramIcon" alt="zoomIcon" />
-                                <button className="btn liveStreaming_buttonInstagram">Live Via Instagram</button>
-                            </div>
-                        </div><br />
-                        <p>Meeting ID: {data.live_streaming_zoom_meeting_id}</p>
-                        <p>Password: {data.live_streaming_zoom_password}</p>
-                        <p>instagram: @{data.live_streaming_ig_account}</p>
+            {data.live_streaming_ig || data.live_streaming_zoom &&
+                <section className="liveStreaming">
+                    <div className="container">
+                        <div className="text-center">
+                            <h2 className="title">Live Streaming pernikahan kami</h2>
+                        </div>
+
+                        <div className="liveStreaming_body">
+                            <div className="d-flex">
+                                {data.live_streaming_zoom &&
+                                    <div className="liveStreaming_instagramContainer">
+                                        <img src="/img/zoomIcon.png" className="liveStreaming_zoomIcon" alt="zoomIcon" />
+                                        <button className="btn liveStreaming_buttonZoom">Live Via Zoom</button>
+                                    </div>
+                                }
+                                {data.live_streaming_ig &&
+                                    <div className="liveStreaming_instagramContainer">
+                                        <img src="/img/instgramIcon.jpg" className="liveStreaming_instagramIcon" alt="zoomIcon" />
+                                        <button className="btn liveStreaming_buttonInstagram">Live Via Instagram</button>
+                                    </div>
+                                }
+                            </div><br />
+                            {data.live_streaming_zoom &&
+                                <>
+                                    <p>Meeting ID: {data.live_streaming_zoom_meeting_id}</p>
+                                    <p>Password: {data.live_streaming_zoom_password}</p>
+                                </>
+                            }
+                            {data.live_streaming_ig_account &&
+                                <p>instagram: @{data.live_streaming_ig_account}</p>
+                            }
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+
+            }
             <section className="contact">
                 <div className="container">
                     <div className="text-center">

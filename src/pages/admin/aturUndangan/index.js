@@ -15,12 +15,12 @@ const AturUndangan = ({ data }) => {
 
   const [notifUpdate, setNotifUpdate] = useState(false)
   const [bride_couple_img, setBride_couple_img] = useState(data.bride_couple_img || "")
-  const [background_1, setBackground_1] = useState(data.background1 || "")
-  const [background_2, setBackground_2] = useState(data.background2 || "")
+  const [background1, setBackground1] = useState(data.background1 || "")
+  const [background2, setBackground2] = useState(data.background2 || "")
+  const [product_id, setProduct_id] = useState(data.product_id || "")
   const [bridegroom_img, setBridegroom_img] = useState(data.bridegroom_img || "")
   const [bride_img, setBride_img] = useState(data.bride_img || "")
   const [gallery, setGallery] = useState(data.gallery || "")
-  const [productId, setProductId] = useState(data.product_id || "")
   const [reception_location_google_maps, setReception_location_google_maps] = useState(data.reception_location_google_maps || "")
 
   const onChangeFile = async (e) => {
@@ -40,8 +40,8 @@ const AturUndangan = ({ data }) => {
       const imageBase64 = await toBase64(document.querySelector(`#${e.target.id}`).files[0])
 
       if (e.target.id === "bride_couple_img") setBride_couple_img(imageBase64)
-      if (e.target.id === "background_1") setBackground_1(imageBase64)
-      if (e.target.id === "background_2") setBackground_2(imageBase64)
+      if (e.target.id === "background1") setBackground1(imageBase64)
+      if (e.target.id === "background2") setBackground2(imageBase64)
       if (e.target.id === "bridegroom_img") setBridegroom_img(imageBase64)
       if (e.target.id === "bride_img") setBride_img(imageBase64)
     }
@@ -54,13 +54,13 @@ const AturUndangan = ({ data }) => {
     const updatePayload = {
       ...payload,
       bride_couple_img: bride_couple_img,
-      background1: background_1,
-      background2: background_2,
+      background1: background1,
+      background2: background2,
       bridegroom_img: bridegroom_img,
       bride_img: bride_img,
       gallery: gallery,
       reception_location_google_maps: reception_location_google_maps,
-      product_id: productId
+      product_id: product_id
     }
 
     const { data } = await putBuyerProduct(buyerProductId, updatePayload)
@@ -94,8 +94,8 @@ const AturUndangan = ({ data }) => {
             </div>
             <div className="createInvitation_content">
               <div className="mb-3 d-flex justify-content-center flex-direction-column">
-                {bride_couple_img &&
-                  <img className="createInvitation_brideCoupleImg" src={`${bride_couple_img}`} />
+                {(data.bride_couple_img || bride_couple_img) &&
+                  <img className="createInvitation_brideCoupleImg" src={`${bride_couple_img ? bride_couple_img : data.bride_couple_img}`} />
                 }
                 <div>
                   <label className="form-label">Foto Cover</label>
@@ -104,7 +104,6 @@ const AturUndangan = ({ data }) => {
                     className="form-control"
                     id="bride_couple_img"
                     placeholder="Nama Mempelai Laki-Laki"
-                    defaultValue={bride_couple_img}
                     onChange={(e) => onChangeFile(e)}
                   />
                 </div>
@@ -124,32 +123,30 @@ const AturUndangan = ({ data }) => {
             </div>
             <div className="createInvitation_content">
               <div className="mb-3">
-                {background_1 &&
-                  <img className="createInvitation_brideCoupleImgSquare" src={background_1} />
+                {(data.background1 || background1) &&
+                  <img className="createInvitation_brideCoupleImgSquare" src={background1 ? background1 : data.background1} />
                 }
                 <div>
                   <label htmlFor="exampleFormControlInput1" className="form-label">Background section cover</label>
                   <input
                     type="file"
                     className="form-control"
-                    id="background_1"
+                    id="background1"
                     onChange={(e) => onChangeFile(e)}
-                    defaultValue={background_1}
                   />
                 </div>
               </div>
               <div className="mb-3">
-                {background_2 &&
-                  <img className="createInvitation_brideCoupleImgSquare" src={background_2} />
+                {(data.background2 || background2) &&
+                  <img className="createInvitation_brideCoupleImgSquare" src={background2 ? background2 : data.background2} />
                 }
                 <div>
                   <label htmlFor="exampleFormControlInput1" className="form-label">Background Save the Date</label>
                   <input
                     type="file"
                     className="form-control"
-                    id="background_2"
+                    id="background2"
                     onChange={(e) => onChangeFile(e)}
-                    defaultValue={background_2}
                   />
                 </div>
               </div>
@@ -165,9 +162,9 @@ const AturUndangan = ({ data }) => {
             </div>
             <div className="createInvitation_content">
 
-              <div className="mb-3">
-                {background_1 &&
-                  <img className="createInvitation_brideCoupleImg mb-12" src={`${bridegroom_img}`} />
+              <div className="mb-3 d-flex justify-content-center flex-direction-column">
+                {(data.bridegroom_img || bridegroom_img) &&
+                  <img className="createInvitation_brideCoupleImg mb-12" src={`${bridegroom_img ? bridegroom_img : data.bridegroom_img}`} />
                 }
                 <div className="d-flex justify-content-center flex-direction-column">
                   <label htmlFor="exampleFormControlInput1" className="form-label">Foto</label>
@@ -177,7 +174,6 @@ const AturUndangan = ({ data }) => {
                     id="bridegroom_img"
                     placeholder="Foto Mempelai Pria"
                     onChange={(e) => onChangeFile(e)}
-                    defaultValue={bridegroom_img}
                   />
                 </div>
               </div>
@@ -234,8 +230,8 @@ const AturUndangan = ({ data }) => {
             </div>
             <div className="createInvitation_content">
               <div className="mb-3 d-flex justify-content-center flex-direction-column">
-                {background_1 &&
-                  <img className="createInvitation_brideCoupleImg" src={`${bride_img}`} />
+                {(data.bride_img || bride_img) &&
+                  <img className="createInvitation_brideCoupleImg" src={`${bride_img ? bride_img : data.bride_img}`} />
                 }
                 <div>
                   <label htmlFor="exampleFormControlInput1" className="form-label">Foto</label>
@@ -245,7 +241,6 @@ const AturUndangan = ({ data }) => {
                     id="bride_img"
                     placeholder="Foto Mempelai Pria"
                     onChange={(e) => onChangeFile(e)}
-                    defaultValue={bride_img}
                   />
                 </div>
               </div>
@@ -403,14 +398,14 @@ const AturUndangan = ({ data }) => {
                 <textarea
                   className="form-control"
                   placeholder="Alamat Resepsi"
-                  defaultValue={reception_location_google_maps}
+                  defaultValue={data.reception_location_google_maps}
                   onChange={(e) => setReception_location_google_maps(e.target.value)}
                 />
               </div>
-              {reception_location_google_maps &&
+              {data.reception_location_google_maps &&
                 <div
                   className="w-50 mt-12"
-                  dangerouslySetInnerHTML={{ __html: reception_location_google_maps }}
+                  dangerouslySetInnerHTML={{ __html: data.reception_location_google_maps }}
                 />
               }
 
@@ -425,7 +420,6 @@ const AturUndangan = ({ data }) => {
             </div>
             <div className="createInvitation_content">
               <div className="mb-3 d-flex justify-content-center flex-direction-column">
-
                 {gallery.split("|").length > 0 &&
                   <div className="mb-12">
                     {gallery.split("|").map((v, i) => {
@@ -443,7 +437,6 @@ const AturUndangan = ({ data }) => {
                     id="gallery"
                     placeholder="Foto Mempelai Pria"
                     onChange={(e) => onChangeFile(e)}
-                    defaultValue={gallery}
                     multiple
                   />
                 </div>
@@ -534,13 +527,13 @@ const AturUndangan = ({ data }) => {
                 <div className="card-body  text-center">
                   <h5 className="card-title line-through">Rp 200,000 - 400,000</h5>
                   <h5 className="card-title c_main font-weight-bold">GRATIS</h5>
-                  <div className="createInvitation_chooseDesignWrapper" onClick={(e) => setProductId(1)}>
+                  <div className="createInvitation_chooseDesignWrapper" onClick={(e) => setProduct_id(1)}>
                     <input
                       type="radio"
                       id="age1"
                       name="productId"
                       value="1"
-                      checked={productId == 1}
+                      checked={product_id == 1}
                     />
                     <label className="btn-second">Pilih Design</label>
                   </div>
@@ -555,13 +548,13 @@ const AturUndangan = ({ data }) => {
                 <div className="card-body  text-center">
                   <h5 className="card-title line-through">Rp 200,000 - 400,000</h5>
                   <h5 className="card-title c_main font-weight-bold">GRATIS</h5>
-                  <div className="createInvitation_chooseDesignWrapper" onClick={(e) => setProductId(2)}>
+                  <div className="createInvitation_chooseDesignWrapper" onClick={(e) => setProduct_id(2)}>
                     <input
                       type="radio"
                       id="age1"
                       name="product_id"
                       value="2"
-                      checked={productId == 2}
+                      checked={product_id == 2}
                     />
                     <label className="btn-second">Pilih Design</label>
                   </div>

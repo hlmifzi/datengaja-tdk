@@ -31,7 +31,7 @@ const Sidebar = () => {
               <>
                 <Link href="/admin" as={`/admin`}>
                   <li>
-                    <a href="" className={getIsActive("/admin")}>
+                    <a className={getIsActive("/admin")}>
                       <span className="las la-igloo"></span>
                       <span>DashBoard Utama</span>
                     </a>
@@ -39,15 +39,15 @@ const Sidebar = () => {
                 </Link>
                 <Link href="/admin/dashboardTamu" as={`/admin/dashboardTamu`}>
                   <li>
-                    <a href="" className={getIsActive("/admin/dashboardTamu")}>
+                    <a className={getIsActive("/admin/dashboardTamu")}>
                       <span className="las la-igloo"></span>
                       <span>DashBoard Tamu</span>
                     </a>
                   </li>
                 </Link>
-                <Link href="/admin/aturUndangan" as={`/admin/aturUndangan`}>
+                <Link href="/admin/aturUndangan" as={`/admin/aturUndangan`} passHref>
                   <li>
-                    <a href="" className={getIsActive("/admin/aturUndangan")}>
+                    <a className={getIsActive("/admin/aturUndangan")}>
                       <span className="las la-clipboard-list"></span>
                       <span>Atur Undangan</span>
                     </a>
@@ -55,7 +55,7 @@ const Sidebar = () => {
                 </Link>
                 <Link href="/admin/tamu" as={`/admin/tamu`}>
                   <li>
-                    <a href="" className={getIsActive("/admin/tamu")}>
+                    <a className={getIsActive("/admin/tamu")}>
                       <span className="las la-users"></span>
                       <span>Atur Tamu</span>
                     </a>
@@ -63,7 +63,7 @@ const Sidebar = () => {
                 </Link>
                 <Link href="/admin/bukuTamu" as={`/admin/bukuTamu`}>
                   <li>
-                    <a href="" className={getIsActive("/admin/bukuTamu")}>
+                    <a className={getIsActive("/admin/bukuTamu")}>
                       <span className="las la-clipboard-list"></span>
                       <span>Buku Tamu</span>
                     </a>
@@ -74,7 +74,7 @@ const Sidebar = () => {
             {isAdmin &&
               <Link href="/admin/laporan" as={`/admin/laporan`}>
                 <li>
-                  <a href="" className={getIsActive("/admin/laporan")}>
+                  <a className={getIsActive("/admin/laporan")}>
                     <span className="las la-clipboard-list"></span>
                     <span>Laporan Penjualan</span>
                   </a>
@@ -84,7 +84,7 @@ const Sidebar = () => {
 
             <Link href="/" as={`/`}>
               <li>
-                <a href="" className={getIsActive("/admin/bukuTamu")}>
+                <a >
                   <span className="las la-logout"></span>
                   <span>Logout</span>
                 </a>

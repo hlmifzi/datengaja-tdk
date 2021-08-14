@@ -1,37 +1,51 @@
-
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
-
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrophoneSlash, faMusic } from "@fortawesome/free-solid-svg-icons";
 
+import moment from 'moment'
+import SEO from '../../SEO'
+import { useForm } from 'react-hook-form'
+import { putInvitation } from '../../../client/Invitations'
+import { useRouter } from 'next/router'
+import { getInvitations } from '../../../client/BuyerProduct'
+
+
 import './Design02.scss'
 
-const Design02 = props => {
-    const { query } = useRouter()
-    const guest = query.kepada || "Nama Tamu"
+const Design02 = ({
+    data,
+    invitations,
+    dataInvitationCategory,
+    eventId
+}) => {
+    const router = useRouter()
+    const guest = invitations[0]?.fullname || "Nama Tamu"
+    const guestId = invitations[0]?.id
+    const [showGiftModal, setShowGiftModal] = useState(false)
+    const [dataInvitations, setDataInvitations] = useState(invitations)
+    const { register, handleSubmit } = useForm()
 
-    const countDate = new Date('Maret 11, 2021 00:00:00').getTime();
+    const countDate = new Date(data.reception_date).getTime();
 
-    const timeToEvent = () => {
-        const now = new Date().getTime();
-        const gap = countDate - now;
 
-        const second = 1000;
-        const minute = second * 60;
-        const hour = minute * 60;
-        const day = hour * 24;
+    const onSubmitConfirmation = async (payload) => {
+        const { data } = await putInvitation(guestId, payload)
+        if (data) setShowGiftModal(payload.attend_status)
+    }
 
-        const d = Math.floor(gap / day);
-        const h = Math.floor((gap % day) / hour);
-        const m = Math.floor((gap % hour) / minute);
-        const s = Math.floor((gap % minute) / second);
+    const onSearch = async (query) => {
+        const { data: dataInvitations } = await getInvitations(data.id, { params: query })
+        if (dataInvitations) setDataInvitations(dataInvitations)
+        else setDataInvitations([])
+    }
 
-        document.getElementById('day').innerText = d;
-        document.getElementById('hour').innerText = h;
-        document.getElementById('minute').innerText = m;
-        document.getElementById('second').innerText = s;
+    const attendStatus = {
+        "Menunggu Konfirmasi": "sticker_waiting",
+        "Akan Hadir": "sticker_confirm",
+        "Berhalangan": "sticker_cancel",
+        "Telah Hadir": "sticker_present",
     }
 
     useEffect(() => {
@@ -54,8 +68,15 @@ const Design02 = props => {
             document.getElementById('audio').play();
         });
     }, [])
+
+
     return (
         <div className="design02__container">
+            <SEO
+                title={eventId}
+                description={`undangan01/${eventId}?kepada=${guest}`}
+                image={data.bride_couple_img}
+            />
             <audio src="/music/1.mp3" id="audio"></audio>
             <div className="bgsound-container">
                 <div className="unmute-sound d-block">
@@ -93,9 +114,9 @@ const Design02 = props => {
 
             <div className="container">
                 <section className="guest-section text-center">
-                    <img src="/img/1.jpg" className="circle-img" />
+                    <img src={data.bride_couple_img.replace("'", "")} className="circle-img" />
                     <p>Kepada Yth. <br /> Bapak/Ibu/Saudara/i</p>
-                    <h3 className="font-segoe-ui">Nama Tamu</h3>
+                    <h3 className="font-segoe-ui">{guest}</h3>
                     <a href="#home" className="btn">Buka Undangan</a>
                 </section>
             </div>
@@ -461,8 +482,8 @@ const Design02 = props => {
 
             <footer className="text-center crown">
                 <img src="/img/mahkotabawah.png" /> <br />
-        Copyright 2020
-    </footer>
+                Copyright 2020
+            </footer>
 
             <div className="modal" id="modal">
                 <div className="modal-close">
