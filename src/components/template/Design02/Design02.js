@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrophoneSlash, faMusic } from "@fortawesome/free-solid-svg-icons";
-
 import moment from 'moment'
 import SEO from '../../SEO'
+import Link from 'next/link';
 import { useForm } from 'react-hook-form'
 import { putInvitation } from '../../../client/Invitations'
 import { getInvitations } from '../../../client/BuyerProduct'
@@ -561,6 +560,48 @@ const Design02 = ({
                 </div>
             </div>
 
+
+            {showGiftModal === "Berhalangan" &&
+                <div className="popUp">
+                    <div className="popUp_background"></div>
+                    <div className="popUp_container">
+                        <i onClick={() => {
+                            setShowGiftModal(false)
+                            router.reload()
+                        }}>Tutup [x]</i>
+                        <img className="gift_img" src={data.rekening_qr_img} alt="image" />
+                        <div className="gift_thankYouText">
+                            <h3>Terima Kasih!</h3>
+                            <p>Telah mengkonfirmasi kehadiran di acara pernikahan kami.</p><br />
+                            <p>Tanpa mengurangi rasa hormat, bagi Anda yang ingin memberikan tanda kasih untuk kami dapat melalui<br />
+                                <b>
+                                    <div dangerouslySetInnerHTML={{ __html: data.rekening }} />
+                                </b>
+                            </p>
+                            <Link href={`https://api.whatsapp.com/send?phone=62${data.handphone_wa}&text=Hallo%20Helmi%2C%20maaf%20helmi%20ga%20bisa%20hadir%20dikarenakan%20sedang%20di%20luar%20kota.%20kirim%20salam%20tempel%20aja%20yaaa.`}>
+                                <button className="btn gift_sendTransferBtn">Kirim Bukti Transfer</button>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            }
+            {showGiftModal === "Akan Hadir" &&
+                <div className="popUp">
+                    <div className="popUp_background"></div>
+                    <div className="popUp_container">
+                        <i onClick={() => {
+                            setShowGiftModal(false)
+                            router.reload()
+                        }}
+                        >Tutup [x]</i>
+                        <div className="gift_thankYouTextHadir">
+                            <h3>Terima Kasih!</h3><br />
+                            <p>Telah bersedia hadir di acara pernikahan kami.</p><br />
+                            <p>Tiada Kesan Tanpa Kehadiranmu {guest}<br /></p>
+                        </div>
+                    </div>
+                </div>
+            }
 
 
 
