@@ -21,6 +21,7 @@ const AturUndangan = ({ data }) => {
   const [bridegroom_img, setBridegroom_img] = useState(data.bridegroom_img || "")
   const [bride_img, setBride_img] = useState(data.bride_img || "")
   const [gallery, setGallery] = useState(data.gallery || "")
+  const [rekening_qr_img, setRekening_qr_img] = useState(data.rekening_qr_img || "")
   const [reception_location_google_maps, setReception_location_google_maps] = useState(data.reception_location_google_maps || "")
 
   const onChangeFile = async (e) => {
@@ -44,6 +45,7 @@ const AturUndangan = ({ data }) => {
       if (e.target.id === "background2") setBackground2(imageBase64)
       if (e.target.id === "bridegroom_img") setBridegroom_img(imageBase64)
       if (e.target.id === "bride_img") setBride_img(imageBase64)
+      if (e.target.id === "rekening_qr_img") setRekening_qr_img(imageBase64)
     }
 
   }
@@ -59,6 +61,7 @@ const AturUndangan = ({ data }) => {
       bridegroom_img: bridegroom_img,
       bride_img: bride_img,
       gallery: gallery,
+      rekening_qr_img: rekening_qr_img,
       reception_location_google_maps: reception_location_google_maps,
       product_id: product_id
     }
@@ -72,13 +75,13 @@ const AturUndangan = ({ data }) => {
 
   return (
 
-    <LayoutAdmin mainClassName="tamu">
+    <LayoutAdmin mainClassName="tamu" user={data?.bridegroom_call_name}>
       <div className="admin_welcomeCards aturUndangan">
         <div className="admin_welcomeContent cards_single">
           <h5>Halo, Selamat datang di halaman <b>ATUR UNDANGAN</b></h5>
           <p>Di halaman ini kamu dapat mengatur content undangan kamu</p>
           <div className="admin_welcomeFooter">
-            <Link href={`/undangan01/pernikahan-${data?.bridegroom_call_name}-dan-${data?.bride_call_name}`}>
+            <Link href={`/undangan0${product_id}/pernikahan-${data?.bridegroom_call_name}-dan-${data?.bride_call_name}`}>
               <a target="_blank">
                 <button className="btn-second">Lihat disini {">"}</button>
               </a>
@@ -566,6 +569,44 @@ const AturUndangan = ({ data }) => {
             </div>
           </div>
         </section>
+
+        <section className="createInvitation_container container">
+          <div className="box-main">
+            <div className="createInvitation_title">
+              <h4>Rekening</h4>
+              <smal>* rekening akan muncul saat tamu mengkonfirmasi berhalangan untuk hadir</smal>
+            </div>
+            <div className="createInvitation_content">
+              <div className="mb-12 d-flex flex-direction-column">
+                <label htmlFor="exampleFormControlInput1" className="form-label">Rekening</label>
+                <small>* boleh menaru lebih dari 1 rekening</small>
+                <textarea
+                  className="form-control"
+                  placeholder="ex: BCA-09123123 a.n Helmi Fauzi"
+                  defaultValue={data.rekening}
+                  {...register("rekening")}
+                />
+              </div>
+              <div className="mb-3 d-flex justify-content-center flex-direction-column">
+                {rekening_qr_img &&
+                  <img className="createInvitation_brideCoupleImgSquare ml-0 mr-0 mx-auto" src={`${rekening_qr_img}`} />
+                }
+                <div>
+                  <label className="form-label">Foto Rekening / QR Code </label>
+                  <input
+                    type="file"
+                    className="form-control"
+                    id="rekening_qr_img"
+                    placeholder="Nama Mempelai Laki-Laki"
+                    onChange={(e) => onChangeFile(e)}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
         <section className="createInvitation_container container">
           <div className="box-main">
             <div className="createInvitation_submit">
@@ -574,6 +615,7 @@ const AturUndangan = ({ data }) => {
           </div>
         </section>
       </form>
+
 
       {notifUpdate &&
         <div className="popUp">

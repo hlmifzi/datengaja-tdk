@@ -8,7 +8,6 @@ import moment from 'moment'
 import SEO from '../../SEO'
 import { useForm } from 'react-hook-form'
 import { putInvitation } from '../../../client/Invitations'
-import { useRouter } from 'next/router'
 import { getInvitations } from '../../../client/BuyerProduct'
 
 
@@ -28,6 +27,26 @@ const Design02 = ({
     const { register, handleSubmit } = useForm()
 
     const countDate = new Date(data.reception_date).getTime();
+
+    const timeToEvent = () => {
+        const now = new Date().getTime();
+        const gap = countDate - now;
+
+        const second = 1000;
+        const minute = second * 60;
+        const hour = minute * 60;
+        const day = hour * 24;
+
+        const d = Math.floor(gap / day);
+        const h = Math.floor((gap % day) / hour);
+        const m = Math.floor((gap % hour) / minute);
+        const s = Math.floor((gap % minute) / second);
+
+        document.getElementById('day').innerText = d;
+        document.getElementById('hour').innerText = h;
+        document.getElementById('minute').innerText = m;
+        document.getElementById('second').innerText = s;
+    }
 
 
     const onSubmitConfirmation = async (payload) => {
@@ -74,7 +93,7 @@ const Design02 = ({
         <div className="design02__container">
             <SEO
                 title={eventId}
-                description={`undangan01/${eventId}?kepada=${guest}`}
+                description={`undangan02/${eventId}?kepada=${guest}`}
                 image={data.bride_couple_img}
             />
             <audio src="/music/1.mp3" id="audio"></audio>

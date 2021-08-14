@@ -41,7 +41,7 @@ const Laporan = ({
   ]
 
   return (
-    <LayoutAdmin mainClassName="dashboardTamu" user={bridegroom_call_name}>
+    <LayoutAdmin mainClassName="dashboardTamu" user={data?.bridegroom_call_name}>
       <div className="w-100 mb-8">
         <div className="projects">
           <div className="card">

@@ -12,7 +12,7 @@ const dashboardTamu = ({ data, qtyAttendStatus }) => {
   const attend = qtyAttendStatus.filter(v => v.attend_status === 'Telah Hadir')[0]?.jumlah || 0
 
   return (
-    <LayoutAdmin mainClassName="dashboardTamu">
+    <LayoutAdmin mainClassName="dashboardTamu" user={data?.bridegroom_call_name}>
       <div className="cards">
         <div className="cards_single pointer">
           <div>

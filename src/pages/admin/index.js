@@ -26,7 +26,7 @@ const Admin = ({
           <h5>Halo, Helmi Fauzi</h5>
           <p>Undanganmu sudah jadi loh, kamu bisa mengatur dan melihat undanganmu sekarang!</p>
           <div className="admin_welcomeFooter">
-            <Link href={`/undangan01/pernikahan-${data?.bridegroom_call_name}-dan-${data?.bride_call_name}`}>
+            <Link href={`/undangan0${data.product_id}/pernikahan-${data?.bridegroom_call_name}-dan-${data?.bride_call_name}`}>
               <a target="_blank">
                 <button className="btn-second">Lihat disini {">"}</button>
               </a>

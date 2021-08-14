@@ -3,7 +3,7 @@ import Design01 from '../../components/template/Design01/Design01'
 import { getBuyerProductsClientName, getInvitations } from '../../client/BuyerProduct'
 import { getCategoriesByBuyerProductId } from '../../client/InvitationsCategories'
 
-const Home = ({
+const Undangan01 = ({
   dataBuyerProducts,
   dataInvitationCategory,
   invitations,
@@ -46,4 +46,4 @@ export const getServerSideProps = async ({ params }) => {
   };
 }
 
-export default Home
+export default Undangan01

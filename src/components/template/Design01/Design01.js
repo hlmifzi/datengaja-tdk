@@ -474,7 +474,9 @@ const Design01 = ({
                             <h3>Terima Kasih!</h3>
                             <p>Telah mengkonfirmasi kehadiran di acara pernikahan kami.</p><br />
                             <p>Tanpa mengurangi rasa hormat, bagi Anda yang ingin memberikan tanda kasih untuk kami dapat melalui<br />
-                                <b>{data.rekening}</b><br />
+                                <b>
+                                    <div dangerouslySetInnerHTML={{ __html: data.rekening }} />
+                                </b>
                             </p>
                             <Link href={`https://api.whatsapp.com/send?phone=62${data.handphone_wa}&text=Hallo%20Helmi%2C%20maaf%20helmi%20ga%20bisa%20hadir%20dikarenakan%20sedang%20di%20luar%20kota.%20kirim%20salam%20tempel%20aja%20yaaa.`}>
                                 <button className="btn gift_sendTransferBtn">Kirim Bukti Transfer</button>
