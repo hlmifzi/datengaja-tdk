@@ -28,7 +28,7 @@ const BukuTamu = ({
   }
 
   return (
-    <LayoutAdmin mainClassName="bukuTamu" user={data?.bridegroom_call_name}>
+    <LayoutAdmin mainClassName="bukuTamu" user={dataBuyerProduct?.bridegroom_call_name}>
       <div className="admin_welcomeCards aturUndangan">
         <div className="admin_welcomeContent cards_single">
           <h5>Halo, Selamat datang di halaman <b>BUKU TAMU</b></h5>
