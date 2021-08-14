@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from "next/link"
 import moment from 'moment'
 import LayoutAdmin from '../../../components/Layout/LayoutAdmin'
@@ -6,18 +6,27 @@ import { getAllByBuyerProductId, deleteInvitation } from '../../../client/Invita
 import { getBuyerProductsClientName } from '../../../client/BuyerProduct'
 import { parseCookies, attendStatus } from '../../../utils/helper/HelperUtils'
 import { CSVLink } from "react-csv";
-import router from "next/router"
+import { useRouter } from "next/router"
+import { getInvitations } from '../../../client/BuyerProduct'
 import absoluteUrl from 'next-absolute-url'
+import { useForm } from 'react-hook-form'
+import { getCategoriesByBuyerProductId } from '../../../client/InvitationsCategories'
+
 
 const Tamu = ({
   data,
   dataBuyerProduct,
+  dataInvitationCategory,
   bridegroom_call_name,
   bride_call_name,
   hostname
 }) => {
 
+  const router = useRouter()
   const [modalSuccessDelete, setModalSuccessDelete] = useState(false)
+  const [dataInvitations, setDataInvitations] = useState(data)
+  const { register, handleSubmit } = useForm()
+
   const handleDelete = async (id) => {
     const { data } = await deleteInvitation(id)
     if (data) {
@@ -36,8 +45,22 @@ const Tamu = ({
     { label: "Ucapan dan Doa", key: "greetings" },
   ]
 
+  const handleGetInvitationByQuery = async (query) => {
+    const { data: dataInvitations } = await getInvitations(dataBuyerProduct.id, { params: query })
+    if (dataInvitations) setDataInvitations(dataInvitations)
+    else setDataInvitations([])
+  }
+
+
+  useEffect(() => {
+    const totalQuery = Object.keys(router?.query)
+    console.log("🚀 ~ file: index.js ~ line 52 ~ useEffect ~ totalQuery", totalQuery)
+    if (totalQuery.length > 0) handleGetInvitationByQuery(router?.query)
+
+  }, [router?.query])
+
   return (
-    <LayoutAdmin mainClassName="tamu" user={data?.bridegroom_call_name}>
+    <LayoutAdmin mainClassName="tamu" user={dataBuyerProduct?.bridegroom_call_name}>
       <div className="admin_welcomeCards aturUndangan">
         <div className="admin_welcomeContent cards_single">
           <h5>Halo, Selamat datang di halaman <b>ATUR TAMU</b></h5>
@@ -51,6 +74,51 @@ const Tamu = ({
           </div>
         </div>
       </div>
+
+      <div className="w-100 mb-8">
+        <div className="projects">
+          <div className="card">
+            <div className="card_header">
+              <h3>Filter</h3>
+            </div>
+            <form onSubmit={handleSubmit(handleGetInvitationByQuery)}>
+              <div className="card_bodyFilter">
+                <div className="user_search">
+                  <div className="input-group">
+                    <select
+                      className="custom-select"
+                      id="inputGroupSelect04"
+                      {...register("category_id")}
+                    >
+                      <option value="" selected>Cari Kategori</option>
+
+                      {dataInvitationCategory?.map((v, i) => {
+                        return (
+                          <option
+                            value={v.id}
+                            key={i}
+                          >
+                            {v.desc} {v.time_start !== "00:00:00" && v.time_end !== "00:00:00" ? `(${v?.session} : ${v.time_start} - ${v.time_end})` : ""}
+                          </option>
+                        )
+                      })}
+                    </select>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control user_searchName"
+                    placeholder="Cari Nama Tamu" aria-describedby="basic-addon2"
+                    {...register("invitation_name")}
+                  />
+                  <button type="submit" className="btn-green ml-4">Cari</button>
+                </div>
+
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
       <div className="w-100">
         <div className="projects">
           <div className="card">
@@ -89,8 +157,8 @@ const Tamu = ({
                   </tr>
                 </thead>
                 <tbody>
-                  {data.length > 0 ?
-                    data.map((v, i) => {
+                  {dataInvitations.length > 0 ?
+                    dataInvitations.map((v, i) => {
                       return (
                         <tr key={i}>
                           <td>{v.fullname}</td>
@@ -171,7 +239,7 @@ export const getServerSideProps = async ({ req }) => {
 
   const { data } = await getAllByBuyerProductId(cookie['buyerProductId'])
   const { origin: hostname } = absoluteUrl(req)
-
+  const { data: dataInvitationCategory } = await getCategoriesByBuyerProductId(cookie['buyerProductId'])
   const { data: dataBuyerProduct } = await getBuyerProductsClientName(cookie['bridegroom_call_name'].trim() || "helmi", cookie['bride_call_name'].trim() || "jannah")
 
 
@@ -180,6 +248,7 @@ export const getServerSideProps = async ({ req }) => {
       data: data || null,
       hostname,
       dataBuyerProduct,
+      dataInvitationCategory,
       bridegroom_call_name: cookie['bridegroom_call_name'],
       bride_call_name: cookie['bride_call_name'],
     }

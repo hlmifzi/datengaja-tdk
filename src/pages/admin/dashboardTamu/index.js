@@ -3,7 +3,7 @@ import LayoutAdmin from '../../../components/Layout/LayoutAdmin'
 import { parseCookies, attendStatus } from '../../../utils/helper/HelperUtils'
 import { getAllByBuyerProductId } from '../../../client/Invitations'
 import { getAttendStatus } from '../../../client/Dashboard'
-
+import Link from 'next/link'
 
 const dashboardTamu = ({ data, qtyAttendStatus }) => {
 
@@ -14,33 +14,39 @@ const dashboardTamu = ({ data, qtyAttendStatus }) => {
   return (
     <LayoutAdmin mainClassName="dashboardTamu" user={data?.bridegroom_call_name}>
       <div className="cards">
-        <div className="cards_single pointer">
-          <div>
-            <h1>{totalUndangan}</h1>
-            <span>Undangan</span>
+        <Link href="/admin/tamu" as={`/admin/tamu`}>
+          <div className="cards_single pointer">
+            <div>
+              <h1>{totalUndangan}</h1>
+              <span>Undangan</span>
+            </div>
+            <div>
+              <span className="las la-users"></span>
+            </div>
           </div>
-          <div>
-            <span className="las la-users"></span>
+        </Link>
+        <Link href="/admin/tamu?attend_status=Akan Hadir" as={`/admin/tamu`}>
+          <div className="cards_single pointer">
+            <div>
+              <h1>{confirm}</h1>
+              <span>Bisa Hadir</span>
+            </div>
+            <div>
+              <span className="las la-clipboard"></span>
+            </div>
           </div>
-        </div>
-        <div className="cards_single pointer">
-          <div>
-            <h1>{confirm}</h1>
-            <span>Bisa Hadir</span>
+        </Link>
+        <Link href="/admin/tamu?attend_status=Telah Hadir" as={`/admin/tamu?attend_status=Telah Hadir`}>
+          <div className="cards_single pointer">
+            <div>
+              <h1>{attend}</h1>
+              <span>Telah Hadir</span>
+            </div>
+            <div>
+              <span className="las la-shopping-bag"></span>
+            </div>
           </div>
-          <div>
-            <span className="las la-clipboard"></span>
-          </div>
-        </div>
-        <div className="cards_single pointer">
-          <div>
-            <h1>{attend}</h1>
-            <span>Telah Hadir</span>
-          </div>
-          <div>
-            <span className="las la-shopping-bag"></span>
-          </div>
-        </div>
+        </Link>
       </div>
 
       <div className="w-100 mt-16">

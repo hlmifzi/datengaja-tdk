@@ -51,7 +51,7 @@ const Admin = ({
       </div>
 
       <div className="cards">
-        <Link href="/admin/tamu" as={`/admin/tamu`}>
+        <Link href="/admin/tamu?attend_status=Akan Hadir" as={`/admin/tamu`}>
           <div className="cards_single pointer">
             <div>
               <h1>{confirm}</h1>
@@ -62,7 +62,7 @@ const Admin = ({
             </div>
           </div>
         </Link>
-        <Link href="/admin/tamu" as={`/admin/tamu`}>
+        <Link href="/admin/tamu?attend_status=Telah Hadir" as={`/admin/tamu?attend_status=Telah Hadir`}>
           <div className="cards_single pointer">
             <div>
               <h1>{attend}</h1>
@@ -74,7 +74,7 @@ const Admin = ({
           </div>
         </Link>
 
-        <Link href="/admin/tamu" as={`/admin/tamu`}>
+        <Link href="/admin/tamu?attend_status=Berhalangan" as={`/admin/tamu?attend_status=Berhalangan`}>
           <div className="cards_single pointer">
             <div>
               <h1>{cancel}</h1>
