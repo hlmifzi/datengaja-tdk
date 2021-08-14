@@ -54,7 +54,6 @@ const Tamu = ({
 
   useEffect(() => {
     const totalQuery = Object.keys(router?.query)
-    console.log("🚀 ~ file: index.js ~ line 52 ~ useEffect ~ totalQuery", totalQuery)
     if (totalQuery.length > 0) handleGetInvitationByQuery(router?.query)
 
   }, [router?.query])
