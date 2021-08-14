@@ -1,14 +1,32 @@
+import { useState } from 'react'
 import { getBuyerProductsClientName } from '../../../client/BuyerProduct'
 import { parseCookies, attendStatus } from '../../../utils/helper/HelperUtils'
 import { getAllByBuyerProductId } from '../../../client/Invitations'
 import Link from "next/link";
 import LayoutAdmin from '../../../components/Layout/LayoutAdmin'
-import router from "next/router"
+import { useRouter } from "next/router"
 import absoluteUrl from 'next-absolute-url'
+import { getCategoriesByBuyerProductId } from '../../../client/InvitationsCategories'
+import { useForm } from 'react-hook-form'
+import { getInvitations } from '../../../client/BuyerProduct'
+
 
 const BukuTamu = ({
-  data
+  data,
+  dataBuyerProduct,
+  dataInvitationCategory,
 }) => {
+
+  const router = useRouter()
+  const [dataInvitations, setDataInvitations] = useState(data)
+  const { register, handleSubmit } = useForm()
+
+  const onSearch = async (query) => {
+    const { data: dataInvitations } = await getInvitations(dataBuyerProduct.id, { params: query })
+    if (dataInvitations) setDataInvitations(dataInvitations)
+    else setDataInvitations([])
+  }
+
   return (
     <LayoutAdmin mainClassName="bukuTamu" user={data?.bridegroom_call_name}>
       <div className="admin_welcomeCards aturUndangan">
@@ -24,6 +42,52 @@ const BukuTamu = ({
           </div>
         </div>
       </div>
+
+      <div className="w-100 mb-8">
+        <div className="projects">
+          <div className="card">
+            <div className="card_header">
+              <h3>Filter</h3>
+            </div>
+            <form onSubmit={handleSubmit(onSearch)}>
+              <div className="card_bodyFilter">
+                <div className="user_search w-100">
+
+                  <div className="input-group">
+                    <select
+                      className="custom-select"
+                      id="inputGroupSelect04"
+                      {...register("category_id")}
+                    >
+                      <option value="" selected>Cari Kategori</option>
+
+                      {dataInvitationCategory?.map((v, i) => {
+                        return (
+                          <option
+                            value={v.id}
+                            key={i}
+                          >
+                            {v.desc} {v.time_start !== "00:00:00" && v.time_end !== "00:00:00" ? `(${v?.session} : ${v.time_start} - ${v.time_end})` : ""}
+                          </option>
+                        )
+                      })}
+                    </select>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control user_searchName"
+                    placeholder="Cari Nama Tamu" aria-describedby="basic-addon2"
+                    {...register("invitation_name")}
+                  />
+                  <button type="submit" className="btn-green ml-4">Cari</button>
+                </div>
+
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
 
       <div className="w-100">
         <div className="projects">
@@ -44,8 +108,8 @@ const BukuTamu = ({
                   </tr>
                 </thead>
                 <tbody>
-                  {data.length > 0 ?
-                    data.map((v, i) => {
+                  {dataInvitations.length > 0 ?
+                    dataInvitations.map((v, i) => {
                       return (
                         <tr key={i}>
                           <td>{v.fullname}</td>
@@ -94,7 +158,7 @@ export const getServerSideProps = async ({ req }) => {
 
   const { data } = await getAllByBuyerProductId(cookie['buyerProductId'])
   const { origin: hostname } = absoluteUrl(req)
-
+  const { data: dataInvitationCategory } = await getCategoriesByBuyerProductId(cookie['buyerProductId'])
   const { data: dataBuyerProduct } = await getBuyerProductsClientName(cookie['bridegroom_call_name'].trim() || "helmi", cookie['bride_call_name'].trim() || "jannah")
 
 
@@ -103,6 +167,7 @@ export const getServerSideProps = async ({ req }) => {
       data: data || null,
       hostname,
       dataBuyerProduct,
+      dataInvitationCategory,
       bridegroom_call_name: cookie['bridegroom_call_name'],
       bride_call_name: cookie['bride_call_name'],
     }

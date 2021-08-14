@@ -83,6 +83,33 @@ const Tamu = ({
             <form onSubmit={handleSubmit(handleGetInvitationByQuery)}>
               <div className="card_bodyFilter">
                 <div className="user_search w-100">
+                  <div className="input-group mr-6">
+                    <select
+                      className="custom-select"
+                      id="inputGroupSelect04"
+                      {...register("attend_status")}
+                    >
+                      <option value="" selected={!router.query.attend_status}>Cari Status</option>
+
+                      {[
+                        "Menunggu Konfirmasi",
+                        "Akan Hadir",
+                        "Berhalangan",
+                        "Telah Hadir"
+                      ]?.map((v, i) => {
+                        return (
+                          <option
+                            value={v}
+                            key={i}
+                            selected={router.query.attend_status === v}
+                          >
+                            {v}
+                          </option>
+                        )
+                      })}
+                    </select>
+                  </div>
+
                   <div className="input-group">
                     <select
                       className="custom-select"
