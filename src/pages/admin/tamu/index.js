@@ -82,7 +82,7 @@ const Tamu = ({
             </div>
             <form onSubmit={handleSubmit(handleGetInvitationByQuery)}>
               <div className="card_bodyFilter">
-                <div className="user_search">
+                <div className="user_search w-100">
                   <div className="input-group">
                     <select
                       className="custom-select"
