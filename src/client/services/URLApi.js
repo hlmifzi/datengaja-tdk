@@ -7,7 +7,7 @@ const ROOT_API = axios.create({
     baseURL: `${process.env.NODE_ENV === "development" ? developmentHost : productionHost}`,
     headers: {
         'Content-Type': 'application/json',
-
+        'Access-Control-Allow-Origin': '*'
     }
 })
 
