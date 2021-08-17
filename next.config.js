@@ -24,6 +24,9 @@ module.exports = withPWA(
 
     return {
       env,
+      headers: {
+        "X-Frame-Options": "sameorigin",
+      },
       cssModules: true,
       target: "server",
       pwa: {
