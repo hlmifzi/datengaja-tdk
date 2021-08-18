@@ -6,9 +6,12 @@ export const productionHost = 'http://localhost:3010/';
 const ROOT_API = axios.create({
     baseURL: `${process.env.NODE_ENV === "development" ? developmentHost : productionHost}`,
     headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+        post: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+        }
     }
 })
 
