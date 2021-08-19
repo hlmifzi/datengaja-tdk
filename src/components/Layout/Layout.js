@@ -1,9 +1,14 @@
 import Link from "next/link"
 import Header from "../Header/Header"
+import Head from "next/head";
+
 
 const Layout = ({ children, className }) => {
   return (
     <>
+      <Head>
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+      </Head>
       <Header />
       <main className={className}>
         {children}
