@@ -142,7 +142,7 @@ const Admin = ({
               <h3>Kategori Tamu</h3>
             </div>
             <div className="card_body">
-              {category?.map((v, i) => {
+              {category.length > 0 ? category?.map((v, i) => {
                 return (
                   <div key={i} className="customer">
                     <div className="info">
@@ -155,7 +155,8 @@ const Admin = ({
                     </div>
                   </div>
                 )
-              })}
+              }) :
+                <div>Tidak Ada Kategory</div>}
             </div>
           </div>
         </div>
@@ -169,9 +170,7 @@ export const getServerSideProps = async ({ req }) => {
   const cookie = parseCookies(req.headers.cookie)
 
   const { data } = await getBuyerProductsClientName(cookie['bridegroom_call_name'] || "helmi", cookie['bride_call_name'] || "jannah")
-  console.log("🚀 ~ file: index.js ~ line 172 ~ getServerSideProps ~ data", data)
   const { data: invitations } = await getAllByBuyerProductId(cookie['buyerProductId'])
-  console.log("🚀 ~ file: index.js ~ line 174 ~ getServerSideProps ~ data", data)
   const { data: category } = await getCategoriesByBuyerProductIdQty(cookie['buyerProductId'])
   const { data: qtyAttendStatus } = await getAttendStatus(cookie['buyerProductId'])
 
