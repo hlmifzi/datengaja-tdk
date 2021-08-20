@@ -7,7 +7,7 @@ const Layout = ({ children, className }) => {
   return (
     <>
       <Head>
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+        {/* <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" /> */}
       </Head>
       <Header />
       <main className={className}>
