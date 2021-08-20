@@ -105,7 +105,7 @@ const Laporan = ({
                   </tr>
                 </thead>
                 <tbody>
-                  {buyerProducts.map((v, i) => {
+                  {buyerProducts?.map((v, i) => {
 
                     return (
                       <tr>

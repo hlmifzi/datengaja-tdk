@@ -423,7 +423,7 @@ const Design01 = ({
                     </form>
                     <div className="comment">
                         {dataInvitations.length > 0 ?
-                            dataInvitations.map((v, i) => {
+                            dataInvitations?.map((v, i) => {
                                 return (
                                     <div className="comment-user" key={i}>
                                         <div className="comment-body">

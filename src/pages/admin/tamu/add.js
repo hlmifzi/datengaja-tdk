@@ -92,7 +92,7 @@ const add = ({
                       {...register("invitation_category_id")}
                     >
                       <option selected>Cari Kategori</option>
-                      {data.map((v, i) => {
+                      {data?.map((v, i) => {
                         return (
                           <option
                             value={v.id}
