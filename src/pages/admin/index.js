@@ -142,7 +142,7 @@ const Admin = ({
               <h3>Kategori Tamu</h3>
             </div>
             <div className="card_body">
-              {category.map((v, i) => {
+              {category?.map((v, i) => {
                 return (
                   <div key={i} className="customer">
                     <div className="info">
