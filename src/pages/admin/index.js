@@ -169,16 +169,18 @@ export const getServerSideProps = async ({ req }) => {
   const cookie = parseCookies(req.headers.cookie)
 
   const { data } = await getBuyerProductsClientName(cookie['bridegroom_call_name'] || "helmi", cookie['bride_call_name'] || "jannah")
+  console.log("🚀 ~ file: index.js ~ line 172 ~ getServerSideProps ~ data", data)
   const { data: invitations } = await getAllByBuyerProductId(cookie['buyerProductId'])
+  console.log("🚀 ~ file: index.js ~ line 174 ~ getServerSideProps ~ data", data)
   const { data: category } = await getCategoriesByBuyerProductIdQty(cookie['buyerProductId'])
   const { data: qtyAttendStatus } = await getAttendStatus(cookie['buyerProductId'])
 
   return {
     props: {
-      data,
-      invitations,
-      category,
-      qtyAttendStatus
+      data: data || null,
+      invitations: invitations || null,
+      category: category || [],
+      qtyAttendStatus: qtyAttendStatus || null
     }
   }
 }
