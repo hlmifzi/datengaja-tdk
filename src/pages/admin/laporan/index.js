@@ -147,9 +147,9 @@ export const getServerSideProps = async ({ req }) => {
 
   return {
     props: {
-      dataBuyerProducts,
-      bridegroom_call_name: cookie['bridegroom_call_name'],
-      bride_call_name: cookie['bride_call_name'],
+      dataBuyerProducts: dataBuyerProducts || [],
+      bridegroom_call_name: cookie['bridegroom_call_name'] || null,
+      bride_call_name: cookie['bride_call_name'] || null,
     }
   }
 }

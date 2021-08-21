@@ -231,13 +231,13 @@ export const getServerSideProps = async ({ req, query }) => {
 
   return {
     props: {
-      data,
-      dataInvitation,
+      data: data || [],
+      dataInvitation: dataInvitation || [],
       id: query.id || null,
-      bridegroom_call_name: cookie['bridegroom_call_name'],
-      bride_call_name: cookie['bride_call_name'],
-      buyerProductId: cookie['buyerProductId'],
-      prevUrl: req.headers.referer
+      bridegroom_call_name: cookie['bridegroom_call_name'] || null,
+      bride_call_name: cookie['bride_call_name'] || null,
+      buyerProductId: cookie['buyerProductId'] || null,
+      prevUrl: req.headers.referer || null
     }
   }
 }

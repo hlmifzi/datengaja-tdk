@@ -38,10 +38,10 @@ export const getServerSideProps = async ({ params }) => {
 
   return {
     props: {
-      dataBuyerProducts,
-      dataInvitationCategory,
+      dataBuyerProducts: dataBuyerProducts || [],
+      dataInvitationCategory: dataInvitationCategory || [],
       invitations: invitations || [],
-      EVENT_ID
+      EVENT_ID: EVENT_ID || null
     },
   };
 }

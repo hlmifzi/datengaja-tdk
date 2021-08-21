@@ -646,7 +646,7 @@ export const getServerSideProps = async ({ req }) => {
 
   return {
     props: {
-      data
+      data: data || []
     }
   }
 }

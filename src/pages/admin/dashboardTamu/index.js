@@ -109,7 +109,7 @@ export const getServerSideProps = async ({ req }) => {
   return {
     props: {
       data: data || null,
-      qtyAttendStatus
+      qtyAttendStatus: qtyAttendStatus || []
     }
   }
 }

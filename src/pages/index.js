@@ -76,7 +76,7 @@ export const getServerSideProps = async () => {
 
   return {
     props: {
-      dataBuyerProducts
+      dataBuyerProducts: dataBuyerProducts || []
     }
   }
 }

@@ -271,12 +271,12 @@ export const getServerSideProps = async ({ req }) => {
 
   return {
     props: {
-      data: data || null,
-      hostname,
-      dataBuyerProduct,
-      dataInvitationCategory,
-      bridegroom_call_name: cookie['bridegroom_call_name'],
-      bride_call_name: cookie['bride_call_name'],
+      data: data || [],
+      hostname: hostname || [],
+      dataBuyerProduct: dataBuyerProduct || [],
+      dataInvitationCategory: dataInvitationCategory || [],
+      bridegroom_call_name: cookie['bridegroom_call_name'] || null,
+      bride_call_name: cookie['bride_call_name'] || null,
     }
   }
 }
