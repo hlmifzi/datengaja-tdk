@@ -15,8 +15,8 @@ export const getInvitationById = async (id) => {
   return await clientGet(`${URL}/${id}`);
 }
 
-export const postInvitation = async (buyerProductId, payload) => {
-  return await clientPost(`${URL}/${buyerProductId}`, payload);
+export const postInvitation = async (payload) => {
+  return await clientPost(URL, payload);
 }
 
 export const putInvitation = async (id, payload) => {

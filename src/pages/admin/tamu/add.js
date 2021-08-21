@@ -22,7 +22,7 @@ const add = ({
   let time = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
 
   const handleAdd = async (payload) => {
-    const { data, error } = await postInvitation(buyerProductId, {
+    const { data, error } = await postInvitation({
       ...payload,
       buyerProductId,
       phone_wa: `62${payload.phone_wa}`,
@@ -44,7 +44,7 @@ const add = ({
   }
 
   const onSubmit = async (payload) => {
-    if (!dataInvitation)
+    if (dataInvitation.length < 1)
       handleAdd(payload)
     else
       handleUpdate(payload)
