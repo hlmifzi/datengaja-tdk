@@ -38,15 +38,6 @@ const Layout = ({ children, className }) => {
               <li>Masuk</li>
             </ul>
           </div>
-          <div className="footer_options">
-            <ul>
-              <li>Social Media</li>
-              <li>Instagram</li>
-              <li>Facebook</li>
-              <li>Twitter</li>
-              <li>Tiktok</li>
-            </ul>
-          </div>
         </div>
 
         <div className="footer_copyright">
