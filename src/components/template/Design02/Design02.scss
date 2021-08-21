@@ -89,9 +89,15 @@
   }
 
   .circle-img {
-    width: 100%;
-    max-width: 18%!important;
-    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 100%;
+
+    @media screen and (max-width: 765px) {
+      max-width: 30vw;
+      max-height: 30vw;
+    } 
   }
 
   .title {

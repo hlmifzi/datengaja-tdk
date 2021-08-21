@@ -610,7 +610,7 @@ const AturUndangan = ({ data }) => {
         <section className="createInvitation_container container">
           <div className="box-main">
             <div className="createInvitation_submit">
-              <button type="submit" className="btn btn-main">Buat Undangan</button>
+              <button type="submit" className="btn btn-main">Simpan Perubahan</button>
             </div>
           </div>
         </section>

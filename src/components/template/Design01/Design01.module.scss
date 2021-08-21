@@ -71,8 +71,12 @@
     width: 200px;
     height: 200px;
     object-fit: cover;
-    max-width: 18%!important;
-    border-radius: 50%;
+    border-radius: 100%;
+
+    @media screen and (max-width: 765px) {
+      max-width: 30vw;
+      max-height: 30vw;
+    } 
   }
 
   section {
@@ -215,8 +219,6 @@
   }
 
   .just-married img {
-    width: 100%;
-    max-width: 35%;
     margin-bottom: 20px;
   }
 

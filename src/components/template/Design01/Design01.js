@@ -72,6 +72,10 @@ const Design01 = ({
         const muteSound = document.querySelector('.mute-sound');
         const unMuteSound = document.querySelector('.unmute-sound');
 
+        document.getElementById('audio').play();
+        unMuteSound.classList.replace('d-block', 'd-none');
+        muteSound.classList.replace('d-none', 'd-block');
+
         muteSound.addEventListener('click', () => {
             muteSound.classList.replace('d-block', 'd-none');
             unMuteSound.classList.replace('d-none', 'd-block');
@@ -94,10 +98,10 @@ const Design01 = ({
             />
             <audio src="/music/1.mp3" id="audio"></audio>
             <div className="bgsound-container">
-                <div className="unmute-sound d-block">
+                <div className="unmute-sound d-none">
                     <FontAwesomeIcon icon={faMicrophoneSlash} size='1x' color='#000' />
                 </div>
-                <div className="mute-sound d-none">
+                <div className="mute-sound d-block">
                     <FontAwesomeIcon icon={faMusic} size='1x' color='#000' />
                 </div>
             </div>
@@ -120,10 +124,6 @@ const Design01 = ({
                     <a href="#gallery">
                         <img src="/icon/wedding-video.png" />
                         <span>Gallery</span>
-                    </a>
-                    <a href="#story">
-                        <img src="/icon/conversation.png" />
-                        <span>Gift</span>
                     </a>
                 </div>
             </nav>
