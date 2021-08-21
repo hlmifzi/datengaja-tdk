@@ -106,7 +106,7 @@ const Laporan = ({
                 </thead>
                 <tbody>
                   {buyerProducts?.map((v, i) => {
-
+                    console.log(v, '<<<< ini id')
                     return (
                       <tr>
                         <td>{v.bridegroom_full_name}</td>

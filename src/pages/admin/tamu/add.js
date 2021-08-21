@@ -22,7 +22,7 @@ const add = ({
   let time = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
 
   const handleAdd = async (payload) => {
-    const { data, error } = await postInvitation({
+    const { data, error } = await postInvitation(buyerProductId, {
       ...payload,
       buyerProductId,
       phone_wa: `62${payload.phone_wa}`,
