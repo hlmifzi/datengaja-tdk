@@ -16,7 +16,7 @@ const ROOT_API = axios.create({
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': "GET, POST, PUT, PATCH, DELETE, OPTIONS",
         'Access-Control-Allow-Credentials': true,
-        "Access-Control-Allow-Headers": "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,X-Forwarded-For",
+        "Access-Control-Allow-Headers": "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,X-Forwarded-For"
     }
 })
 
