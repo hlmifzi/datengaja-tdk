@@ -8,7 +8,7 @@ import Layout from '../../components/Layout/Layout'
 export default function Home() {
   const router = useRouter()
   const { register, handleSubmit } = useForm()
-  const [error, setError] = useState("Kombinasi Password Salah")
+  const [error, setError] = useState("")
   const [page, setPage] = useState("login")
 
   const onLogin = async query => {
