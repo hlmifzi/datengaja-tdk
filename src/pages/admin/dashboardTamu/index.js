@@ -66,8 +66,8 @@ const dashboardTamu = ({ data, qtyAttendStatus }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {data.length > 0 ?
-                    data.map((v, i) => {
+                  {data?.length > 0 ?
+                    data?.map((v, i) => {
                       return (
                         <tr key={i}>
                           <td>{v.fullname}</td>
@@ -83,7 +83,10 @@ const dashboardTamu = ({ data, qtyAttendStatus }) => {
                     }) :
                     <tr>
                       <td colSpan={8} className="text-center">
-                        <h1>Tidak ada data</h1>
+                        <h1>Tidak ada Tamu</h1>
+                        <Link href="/admin/tamu/add" as={`/admin/tamu/add`}>
+                          <button className="btn-main mt-2">Tambahkan Tamu</button>
+                        </Link>
                       </td>
                       <td style={{ display: 'none' }}></td>
                     </tr>
@@ -108,7 +111,7 @@ export const getServerSideProps = async ({ req }) => {
 
   return {
     props: {
-      data: data || null,
+      data: data || [],
       qtyAttendStatus: qtyAttendStatus || []
     }
   }
