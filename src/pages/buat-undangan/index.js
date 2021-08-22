@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Layout from '../../components/Layout/Layout'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
@@ -5,16 +6,20 @@ import { postBuyerProduct } from '../../client/BuyerProduct'
 
 const Home = () => {
   const router = useRouter()
-  const { register, handleSubmit, watch, formState: { errors } } = useForm()
+  const [error, setError] = useState("")
+
+  const { register, handleSubmit } = useForm()
 
   const onSubmit = async payload => {
     const { data, error } = await postBuyerProduct(payload)
 
-    if (!error) {
+    if (data) {
       document.cookie = `bridegroom_call_name=${data.bridegroom_call_name}`
       document.cookie = `bride_call_name=${data.bride_call_name}`
       document.cookie = `buyerProductId=${data.id}`
       router.push('/admin')
+    } else {
+      setError(error?.meta.message)
     }
   }
 
@@ -23,6 +28,13 @@ const Home = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="createInvitation container-fluid bg-grey-light p-section">
           <section className="createInvitation_container container">
+            {error &&
+              <div className="notif_failed mb-8">
+                <p>
+                  {error}
+                </p>
+              </div>
+            }
             <div className="box-main">
               <div className="createInvitation_title">
                 <h4>Akun Admin</h4>

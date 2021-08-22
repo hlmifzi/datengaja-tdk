@@ -126,7 +126,10 @@ const Admin = ({
                     }) :
                     <tr>
                       <td colSpan={8} className="text-center">
-                        <h1>Tidak ada data</h1>
+                        <h1>Tidak ada Tamu</h1>
+                        <Link href="/admin/tamu/add" as={`/admin/tamu/add`}>
+                          <button className="btn-main mt-2">Tambahkan Tamu</button>
+                        </Link>
                       </td>
                       <td style={{ display: 'none' }}></td>
                     </tr>
@@ -156,7 +159,14 @@ const Admin = ({
                   </div>
                 )
               }) :
-                <div>Tidak Ada Kategory</div>}
+                <>
+                  <div className="text-center mb-4 mt-4">Tidak Ada Kategory</div>
+                  <Link href="/admin/tamu/add" as={`/admin/tamu/add`}>
+                    <button className="btn-main mt-2">Buat Kategori</button>
+                  </Link>
+                </>
+
+              }
             </div>
           </div>
         </div>
