@@ -21,7 +21,6 @@ const Tamu = ({
   bride_call_name,
   hostname
 }) => {
-  console.log("🚀 ~ file: index.js ~ line 24 ~ dataBuyerProduct", dataBuyerProduct)
 
   const router = useRouter()
   const [modalSuccessDelete, setModalSuccessDelete] = useState(false)

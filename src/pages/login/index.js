@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
-import { getUser } from '../../client/User'
+import { getUser, updateUser } from '../../client/User'
 import Layout from '../../components/Layout/Layout'
 
 
@@ -9,6 +9,7 @@ export default function Home() {
   const router = useRouter()
   const { register, handleSubmit } = useForm()
   const [error, setError] = useState("")
+  const [success, setSuccess] = useState(false)
   const [page, setPage] = useState("login")
 
   const onLogin = async query => {
@@ -22,19 +23,33 @@ export default function Home() {
       if (data[0]?.type === 'ADMIN') router.push('/admin/laporan')
       if (data[0]?.type === 'BUYER') router.push('/admin')
     } else {
+      setSuccess(false)
       setError(error?.meta.message || "Kombinasi Password Salah")
+    }
+  }
+
+  const onLUpdatePassword = async (payload) => {
+    const { data, error } = await updateUser(payload)
+
+    if (data) {
+      setPage("login")
+      setError(`Password dengan email ${payload.email} Berhasil di ubah`)
+      setSuccess(true)
+    } else {
+      setSuccess(false)
+      setError(error?.meta.message)
     }
 
   }
 
   return (
     <Layout>
-      <form onSubmit={page === 'login' ? handleSubmit(onLogin) : handleSubmit(onLogin)}>
+      <form onSubmit={page === 'login' ? handleSubmit(onLogin) : handleSubmit(onLUpdatePassword)}>
         <section className="container-fluid login bg-grey-light">
           <div className="box-main">
             <div className="login_content">
               {error &&
-                <div className="notif_failed">
+                <div className={success ? "notif_success" : "notif_failed"}>
                   <p>
                     {error}
                   </p>
@@ -58,19 +73,19 @@ export default function Home() {
                   type="password"
                   class="form-control"
                   id="password"
-                  placeholder="Masukkan Password Anda"
+                  placeholder={page === "login" ? "Masukkan Password Anda" : "Masukkan Password Baru Anda"}
                   required
                   {...register("password")}
                 />
               </div>
-              <div onClick={() => setPage("forgotPassword")}>
+              <div onClick={() => setPage(page === "login" ? "forgotPassword" : "login")}>
                 <label htmlFor="password" class="form-label cursor-pointer"> {page === "login" ? "Lupa Password" : "Sudah Punya Akun"} ?</label>
               </div>
             </div>
           </div>
           <div className="box-main">
             <div className="login_content">
-              <button type="submit" class="btn btn-main">Masuk</button>
+              <button type="submit" class="btn btn-main">{page === "login" ? "Masuk" : "Ubah Password"}</button>
             </div>
           </div>
         </section>

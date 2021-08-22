@@ -11,8 +11,10 @@ const add = ({
   data,
   buyerProductId,
   dataInvitation,
+  bridegroom_call_name,
   prevUrl
 }) => {
+
   const [showAddCategory, setShowAddCategory] = useState(false)
   const [notifUpdate, setNotifUpdate] = useState(false)
   const { register, handleSubmit } = useForm()
@@ -63,7 +65,7 @@ const add = ({
   }
 
   return (
-    <Layout>
+    <Layout user={bridegroom_call_name}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="createInvitation container-fluid p-section">
           <section className="createInvitation_container container">
@@ -84,7 +86,7 @@ const add = ({
                   />
                 </div>
                 <div class="user_addGuestCategory mb-3">
-                  <label htmlFor="exampleFormControlInput1" class="form-label">Kategori</label>
+                  <label htmlFor="exampleFormControlInput1" class="form-label">+ Kategori</label>
                   <div className="input-group">
                     <select
                       className="custom-select"
