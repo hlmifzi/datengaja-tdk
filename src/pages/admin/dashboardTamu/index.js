@@ -5,14 +5,14 @@ import { getAllByBuyerProductId } from '../../../client/Invitations'
 import { getAttendStatus } from '../../../client/Dashboard'
 import Link from 'next/link'
 
-const dashboardTamu = ({ data, qtyAttendStatus }) => {
+const dashboardTamu = ({ data, qtyAttendStatus, bridegroom_call_name }) => {
 
   const totalUndangan = qtyAttendStatus.filter(v => v.attend_status === 'semua')[0]?.jumlah || 0
   const confirm = qtyAttendStatus.filter(v => v.attend_status === 'Akan Hadir')[0]?.jumlah || 0
   const attend = qtyAttendStatus.filter(v => v.attend_status === 'Telah Hadir')[0]?.jumlah || 0
 
   return (
-    <LayoutAdmin mainClassName="dashboardTamu" user={data?.bridegroom_call_name}>
+    <LayoutAdmin mainClassName="dashboardTamu" user={bridegroom_call_name}>
       <div className="cards">
         <Link href="/admin/tamu" as={`/admin/tamu`}>
           <div className="cards_single pointer">
@@ -77,7 +77,7 @@ const dashboardTamu = ({ data, qtyAttendStatus }) => {
                               {v.attend_status}
                             </div>
                           </td>
-                          <td>{v.present_time}</td>
+                          <td>{v.present_time || "Belum Hadir"}</td>
                         </tr>
                       )
                     }) :
@@ -112,7 +112,8 @@ export const getServerSideProps = async ({ req }) => {
   return {
     props: {
       data: data || [],
-      qtyAttendStatus: qtyAttendStatus || []
+      qtyAttendStatus: qtyAttendStatus || [],
+      bridegroom_call_name: cookie['bridegroom_call_name']
     }
   }
 }

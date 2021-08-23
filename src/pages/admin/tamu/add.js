@@ -86,14 +86,14 @@ const add = ({
                   />
                 </div>
                 <div class="user_addGuestCategory mb-3">
-                  <label htmlFor="exampleFormControlInput1" class="form-label">+ Kategori</label>
+                  <label htmlFor="exampleFormControlInput1" class="form-label">Kategori</label>
                   <div className="input-group">
                     <select
                       className="custom-select"
                       id="kategori_invitation"
                       {...register("invitation_category_id")}
                     >
-                      <option selected>Cari Kategori</option>
+                      <option>Cari Kategori</option>
                       {data?.map((v, i) => {
                         return (
                           <option
@@ -105,7 +105,7 @@ const add = ({
                         )
                       })}
                     </select>
-                    <button onClick={() => setShowAddCategory(true)} type="button" class="btn btn-main">Kategori</button>
+                    <button onClick={() => setShowAddCategory(true)} type="button" class="btn btn-main"> + Kategori</button>
                   </div>
                 </div>
                 <div class="mb-3">

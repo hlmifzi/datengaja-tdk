@@ -23,7 +23,7 @@ const Admin = ({
     <LayoutAdmin mainClassName="admin" user={data?.bridegroom_call_name}>
       <div className="admin_welcomeCards">
         <div className="admin_welcomeContent cards_single">
-          <h5>Halo, Helmi Fauzi</h5>
+          <h5>Halo, {data?.bridegroom_call_name.trim().replace(/^\w/, (c) => c.toUpperCase())}</h5>
           <p>Undanganmu sudah jadi loh, kamu bisa mengatur dan melihat undanganmu sekarang!</p>
           <div className="admin_welcomeFooter">
             <Link href={`/undangan0${data?.product_id}/pernikahan-${data?.bridegroom_call_name}-dan-${data?.bride_call_name}`}>
@@ -120,7 +120,7 @@ const Admin = ({
                                 {v.attend_status}
                               </div>
                             </td>
-                            <td>{v.present_time}</td>
+                            <td>{v.present_time || "Belum Hadir"}</td>
                           </tr>
                         )
                     }) :

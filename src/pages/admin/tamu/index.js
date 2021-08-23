@@ -36,7 +36,6 @@ const Tamu = ({
     }
   }
 
-
   const headers = [
     { label: "Nama", key: "fullname" },
     { label: "Kategori", key: "desc" },
@@ -266,7 +265,7 @@ export const getServerSideProps = async ({ req }) => {
   const { data } = await getAllByBuyerProductId(cookie['buyerProductId'])
   const { origin: hostname } = absoluteUrl(req)
   const { data: dataInvitationCategory } = await getCategoriesByBuyerProductId(cookie['buyerProductId'])
-  const { data: dataBuyerProduct } = await getBuyerProductsClientName(cookie['bridegroom_call_name'].trim() || "helmi", cookie['bride_call_name'].trim() || "jannah")
+  const { data: dataBuyerProduct } = await getBuyerProductsClientName(cookie['bridegroom_call_name'], cookie['bride_call_name'])
 
 
   return {

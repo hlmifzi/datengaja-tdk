@@ -37,7 +37,7 @@ const Home = () => {
             }
             <div className="box-main">
               <div className="createInvitation_title">
-                <h4>Akun Admin</h4>
+                <h4>Akun Anda</h4>
               </div>
               <div className="createInvitation_content">
                 <div class="mb-3">
