@@ -63,7 +63,6 @@ const add = ({
       buyerProductId
     })
 
-    console.log("🚀 ~ file: add.js ~ line 61 ~ onSubmitCategory ~ error", error)
     if (!error) {
       router.push('/admin/tamu/add')
       setShowAddCategory(false)

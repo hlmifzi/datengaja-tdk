@@ -4,7 +4,6 @@ import Design01 from '../../components/template/Design01/Design01'
 import Design02 from '../../components/template/Design02/Design02'
 import { getBuyerProductsClientName, getInvitations } from '../../client/BuyerProduct'
 import { getCategoriesByBuyerProductId } from '../../client/InvitationsCategories'
-import { parseCookies } from '../../utils/helper/HelperUtils'
 import { useRouter } from 'next/router'
 
 const Undangan = ({

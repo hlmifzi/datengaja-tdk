@@ -18,8 +18,8 @@ const Design01 = ({
 }) => {
 
     const router = useRouter()
-    const guest = router.query.kepada || "Nama Tamu"
-    const guestId = invitations[0]?.id
+    const guest = router?.query?.kepada || "Nama Tamu"
+    const guestId = invitations.filter((v) => v.fullname === router?.query?.kepada)[0]?.id
     const [showGiftModal, setShowGiftModal] = useState(false)
     const [dataInvitations, setDataInvitations] = useState(invitations)
     const { register, handleSubmit } = useForm()

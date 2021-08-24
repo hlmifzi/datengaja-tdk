@@ -218,7 +218,7 @@ const Tamu = ({
                           </td>
                           <td>
                             <Link href={`
-                            https://api.whatsapp.com/send?phone=${v.phone_wa}&text=Hallo%20${v.fullname}%0AKami%20Yang%20berbahagia%20mengundang%20bapak%2Fibu%20untuk%20menghadiri%20acara%20resepsi%20pernikahan%20kami%20pada%20%0A%0Ahari%2Ftanggal%3A%20${moment(dataBuyerProduct?.bride_date).format('LL')}%0Atempat%3A%20${dataBuyerProduct?.reception_location}%0APukul:%20${dataBuyerProduct?.reception_start_time} s.d ${dataBuyerProduct?.reception_end_time || 'selesai'}%0A%0AMohon%20dapat%20konfirmasi%20di%20%0A${hostname}%2Fundangan%2Fpernikahan-${bridegroom_call_name}-dan-${bride_call_name}%3Fkepada=${v.fullname}%0ATak%20ada%20kesan%20tanpa%20kehadiranmu`} >
+                            https://api.whatsapp.com/send?phone=${v.phone_wa}&text=Hallo%20${v.fullname}%0AKami%20Yang%20berbahagia%20mengundang%20bapak%2Fibu%20untuk%20menghadiri%20acara%20resepsi%20pernikahan%20kami%20pada%20%0A%0Ahari%2Ftanggal%3A%20${moment(dataBuyerProduct?.bride_date).format('LL')}%0Atempat%3A%20${dataBuyerProduct?.reception_location}%0APukul:%20${dataBuyerProduct?.reception_start_time} s.d ${dataBuyerProduct?.reception_end_time || 'selesai'}%0A%0AMohon%20dapat%20konfirmasi%20di%20%0Ahttp://${hostname}%2Fundangan%2Fpernikahan-${bridegroom_call_name}-dan-${bride_call_name}%3Fkepada=${v.fullname}%0ATak%20ada%20kesan%20tanpa%20kehadiranmu`} >
                               <a className="w-100" target="_blank">
                                 <button className="btn-second px-4">Bagikan ke WA</button>
                               </a>
@@ -263,19 +263,17 @@ export const getServerSideProps = async ({ req }) => {
   const cookie = parseCookies(req.headers.cookie)
 
   const { data } = await getAllByBuyerProductId(cookie['buyerProductId'])
-  const { origin: hostname } = absoluteUrl(req)
   const { data: dataInvitationCategory } = await getCategoriesByBuyerProductId(cookie['buyerProductId'])
   const { data: dataBuyerProduct } = await getBuyerProductsClientName(cookie['bridegroom_call_name'], cookie['bride_call_name'])
-
 
   return {
     props: {
       data: data || [],
-      hostname: hostname || [],
       dataBuyerProduct: dataBuyerProduct || [],
       dataInvitationCategory: dataInvitationCategory || [],
       bridegroom_call_name: cookie['bridegroom_call_name'] || null,
       bride_call_name: cookie['bride_call_name'] || null,
+      hostname: req.headers.host || null
     }
   }
 }

@@ -59,7 +59,7 @@ const Home = () => {
                   <input
                     type="number"
                     class={`form-control ${errors.phone && "input_failed"}`}
-                    placeholder="Nomor Handphone"
+                    placeholder="Nomor Handphone ex: 81294923207"
                     {...register("phone", { required: true })}
                   />
                   {errors.phone && <div className="input_failedText"> Wajib Diisi</div>}
