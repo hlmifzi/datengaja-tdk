@@ -432,8 +432,8 @@ const Design01 = ({
                                                     <div>
                                                         <div>{v.fullname}</div>
                                                         <span className="user_category">{v.desc}
-                                                            {v.time_start && v.time_end &&
-                                                                <b>(sesi II ({v.time_start || "-"}-{v.time_end || "-"} WIB))</b>
+                                                            {(v.time_start && v.time_end) &&
+                                                                <b>({v.desc} ({v.time_start || "-"}-{v.time_end || "-"} WIB))</b>
                                                             }
                                                         </span>
                                                     </div>

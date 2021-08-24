@@ -4,9 +4,9 @@
 
 import axios from 'axios';
 
-// export const developmentHost = 'http://34.126.149.188:3010/';
-export const developmentHost = 'http://localhost:3010/';
+// export const developmentHost = 'http://localhost:3010/';
 export const productionHost = 'http://34.126.149.188:3010/';
+export const developmentHost = 'http://34.126.149.188:3010/';
 
 const ROOT_API = axios.create({
     baseURL: `${process.env.NODE_ENV === "development" ? developmentHost : productionHost}`,
