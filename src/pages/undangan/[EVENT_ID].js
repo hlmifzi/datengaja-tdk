@@ -15,15 +15,13 @@ const Undangan = ({
   EVENT_ID
 }) => {
   const router = useRouter()
-  const { design } = router.query
-  const productId = design ? design : product_id
-  console.log("🚀 ~ file: [EVENT_ID].js ~ line 20 ~ productId", productId)
+  const productId = Number(router.query.design) ? Number(router.query.design) : product_id;
 
   return (
     <div>
       <Head>
         <title>Datengaja.id</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="../../resources/logo.png" />
       </Head>
 
       <main>
