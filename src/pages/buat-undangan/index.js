@@ -8,12 +8,14 @@ const Home = () => {
   const router = useRouter()
   const [error, setError] = useState("")
 
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit, formState: { errors } } = useForm()
 
   const onSubmit = async payload => {
+
+    const totalErrorForm = Object.keys(errors).length
     const { data, error } = await postBuyerProduct(payload)
 
-    if (data) {
+    if ((data && !error) && totalErrorForm === 0) {
       document.cookie = `bridegroom_call_name=${data.bridegroom_call_name}`
       document.cookie = `bride_call_name=${data.bride_call_name}`
       document.cookie = `buyerProductId=${data.id}`
@@ -41,35 +43,38 @@ const Home = () => {
               </div>
               <div className="createInvitation_content">
                 <div class="mb-3">
-                  <label htmlFor="exampleFormControlInput1" class="form-label">Email</label>
+                  <label htmlFor="exampleFormControlInput1 input_failedText" class="form-label">Email</label>
                   <input
                     type="email"
-                    class="form-control"
+                    class={`form-control ${errors.email && "input_failed"}`}
                     placeholder="Username Email"
-                    {...register("email")}
+                    {...register("email", { required: true })}
                   />
-                  {/* <span className="input_failedText">Format email salah</span> */}
+                  {errors.email && <div className="input_failedText"> Wajib Diisi</div>}
+
                 </div>
 
                 <div class="mb-3">
                   <label htmlFor="exampleFormControlInput1" class="form-label">Nomor Handphone</label>
                   <input
                     type="number"
-                    class="form-control"
+                    class={`form-control ${errors.phone && "input_failed"}`}
                     placeholder="Nomor Handphone"
-                    {...register("phone")}
+                    {...register("phone", { required: true })}
                   />
+                  {errors.phone && <div className="input_failedText"> Wajib Diisi</div>}
                 </div>
 
                 <div class="mb-3">
                   <label htmlFor="exampleFormControlInput1" class="form-label">Password</label>
                   <input
                     type="password"
-                    class="form-control"
+                    class={`form-control ${errors.password && "input_failed"}`}
                     placeholder="Password"
-                    {...register("password")}
+                    {...register("password", { required: true })}
                   />
-                  {/* <span className="input_failedText">Kata sandi harus mengandung huruf (kecil & besar) dan angka. Sedikitnya 6 karakter</span> */}
+                  {errors.password && <div className="input_failedText">Wajib Diisi</div>}
+
                 </div>
               </div>
             </div>
@@ -85,42 +90,44 @@ const Home = () => {
                   <label htmlFor="exampleFormControlInput1" class="form-label">Nama Lengkap</label>
                   <input
                     type="text"
-                    class="form-control"
+                    class={`form-control ${errors.bridegroom_full_name && "input_failed"}`}
                     placeholder="Nama Mempelai Laki-Laki"
-                    {...register("bridegroom_full_name")}
+                    {...register("bridegroom_full_name", { required: true })}
                   />
+                  {errors.bridegroom_full_name && <div className="input_failedText">Wajib Diisi</div>}
                 </div>
                 <div class="mb-3">
                   <label htmlFor="exampleFormControlInput1" class="form-label">Nama Panggilan</label>
                   <input
                     type="text"
-                    class="form-control"
+                    class={`form-control ${errors.bridegroom_call_name && "input_failed"}`}
                     placeholder="Nama Panggilan Mempelai Laki-laki"
-                    {...register("bridegroom_call_name")}
+                    {...register("bridegroom_call_name", { required: true })}
                   />
+                  {errors.bridegroom_call_name && <div className="input_failedText">Wajib Diisi</div>}
                 </div>
 
                 <div class="mb-3">
                   <label htmlFor="exampleFormControlInput1" class="form-label">Ayah</label>
                   <input
                     type="text"
-                    class="form-control"
-
+                    class={`form-control ${errors.bridegroom_fathers && "input_failed"}`}
                     placeholder="Nama Ayah  Mempelai Laki-Laki"
-                    {...register("bridegroom_fathers")}
+                    {...register("bridegroom_fathers", { required: true })}
                   />
-                  {/* <span className="input_failedText">Harap mengisi data</span> */}
+                  {errors.bridegroom_fathers && <div className="input_failedText">Wajib Diisi</div>}
+                  {/* <div className="input_failedText">Harap mengisi data</div> */}
                 </div>
 
                 <div class="mb-3">
                   <label htmlFor="exampleFormControlInput1" class="form-label">Ibu</label>
                   <input
                     type="text"
-                    class="form-control"
-
+                    class={`form-control ${errors.bridegroom_mother && "input_failed"}`}
                     placeholder="Nama Ibu  Mempelai Laki-Laki"
-                    {...register("bridegroom_mother")}
+                    {...register("bridegroom_mother", { required: true })}
                   />
+                  {errors.bridegroom_mother && <div className="input_failedText">Wajib Diisi</div>}
                 </div>
               </div>
             </div>
@@ -136,44 +143,44 @@ const Home = () => {
                   <label htmlFor="exampleFormControlInput1" class="form-label">Nama Lengkap</label>
                   <input
                     type="text"
-                    class="form-control"
-
+                    class={`form-control ${errors.bride_full_name && "input_failed"}`}
                     placeholder="Nama Mempelai Perempuan"
-                    {...register("bride_full_name")}
+                    {...register("bride_full_name", { required: true })}
                   />
+                  {errors.bride_full_name && <div className="input_failedText">Wajib Diisi</div>}
                 </div>
 
                 <div class="mb-3">
                   <label htmlFor="exampleFormControlInput1" class="form-label">Nama Panggilan</label>
                   <input
                     type="text"
-                    class="form-control"
-
+                    class={`form-control ${errors.bride_call_name && "input_failed"}`}
                     placeholder="Nama Panggilan Mempelai Perempuan"
-                    {...register("bride_call_name")}
+                    {...register("bride_call_name", { required: true })}
                   />
+                  {errors.bride_call_name && <div className="input_failedText">Wajib Diisi</div>}
                 </div>
 
                 <div class="mb-3">
                   <label htmlFor="exampleFormControlInput1" class="form-label">Ayah</label>
                   <input
                     type="text"
-                    class="form-control"
-
+                    class={`form-control ${errors.bride_woman_father && "input_failed"}`}
                     placeholder="Nama Ayah  Mempelai Perempuan"
-                    {...register("bride_woman_father")}
+                    {...register("bride_woman_father", { required: true })}
                   />
+                  {errors.bride_woman_father && <div className="input_failedText">Wajib Diisi</div>}
                 </div>
 
                 <div class="mb-3">
                   <label htmlFor="exampleFormControlInput1" class="form-label">Ibu</label>
                   <input
                     type="text"
-                    class="form-control"
-
+                    class={`form-control ${errors.bride_woman_mother && "input_failed"}`}
                     placeholder="Nama Ibu  Mempelai Perempuan"
-                    {...register("bride_woman_mother")}
+                    {...register("bride_woman_mother", { required: true })}
                   />
+                  {errors.bride_woman_mother && <div className="input_failedText">Wajib Diisi</div>}
                 </div>
               </div>
             </div>
@@ -189,11 +196,11 @@ const Home = () => {
                   <label htmlFor="exampleFormControlInput1" class="form-label">Tanggal</label>
                   <input
                     type="date"
-                    class="form-control"
-
+                    class={`form-control ${errors.bride_date && "input_failed"}`}
                     placeholder="Nama Mempelai Perempuan"
-                    {...register("bride_date")}
+                    {...register("bride_date", { required: true })}
                   />
+                  {errors.bride_date && <div className="input_failedText">Wajib Diisi</div>}
                 </div>
 
                 <div class="d-flex-space-between mb-3">
@@ -201,32 +208,32 @@ const Home = () => {
                     <label htmlFor="exampleFormControlInput1" class="form-label">Jam Mulai</label>
                     <input
                       type="time"
-                      class="form-control"
-
+                      class={`form-control ${errors.bride_start_time && "input_failed"}`}
                       placeholder="Nama Ayah  Mempelai Perempuan"
-                      {...register("bride_start_time")}
+                      {...register("bride_start_time", { required: true })}
                     />
+                    {errors.bride_start_time && <div className="input_failedText">Wajib Diisi</div>}
                   </div>
                   <div className="ml-4 w-50">
                     <label htmlFor="exampleFormControlInput1" class="form-label">Jam Selesai</label>
                     <input
                       type="time"
-                      class="form-control"
-
+                      class={`form-control ${errors.bride_end_time && "input_failed"}`}
                       placeholder="Nama Ibu  Mempelai Perempuan"
-                      {...register("bride_end_time")}
+                      {...register("bride_end_time", { required: true })}
                     />
+                    {errors.bride_end_time && <div className="input_failedText">Wajib Diisi</div>}
                   </div>
                 </div>
 
                 <div class="mb-3">
                   <label htmlFor="exampleFormControlInput1" class="form-label">Tempat Akad Berlangsung</label>
                   <textarea
-                    class="form-control"
-
+                    class={`form-control ${errors.bride_location && "input_failed"}`}
                     placeholder="Alamat Pernikahan"
-                    {...register("bride_location")}
+                    {...register("bride_location", { required: true })}
                   />
+                  {errors.bride_location && <div className="input_failedText">Wajib Diisi</div>}
                 </div>
               </div>
             </div>
@@ -242,11 +249,11 @@ const Home = () => {
                   <label htmlFor="exampleFormControlInput1" class="form-label">Tanggal</label>
                   <input
                     type="date"
-                    class="form-control"
-
+                    class={`form-control ${errors.reception_date && "input_failed"}`}
                     placeholder="Nama Mempelai Perempuan"
-                    {...register("reception_date")}
+                    {...register("reception_date", { required: true })}
                   />
+                  {errors.reception_date && <div className="input_failedText">Wajib Diisi</div>}
                 </div>
 
                 <div class="d-flex mb-3">
@@ -254,32 +261,32 @@ const Home = () => {
                     <label htmlFor="exampleFormControlInput1" class="form-label">Jam Mulai</label>
                     <input
                       type="time"
-                      class="form-control"
-
+                      class={`form-control ${errors.reception_start_time && "input_failed"}`}
                       placeholder="Nama Ayah  Mempelai Perempuan"
-                      {...register("reception_start_time")}
+                      {...register("reception_start_time", { required: true })}
                     />
+                    {errors.reception_start_time && <div className="input_failedText">Wajib Diisi</div>}
                   </div>
                   <div className="ml-4 w-50">
                     <label htmlFor="exampleFormControlInput1" class="form-label">Jam Selesai</label>
                     <input
                       type="time"
-                      class="form-control"
-
+                      class={`form-control ${errors.reception_end_time && "input_failed"}`}
                       placeholder="Nama Ibu  Mempelai Perempuan"
-                      {...register("reception_end_time")}
+                      {...register("reception_end_time", { required: true })}
                     />
+                    {errors.reception_end_time && <div className="input_failedText">Wajib Diisi</div>}
                   </div>
                 </div>
 
                 <div class="mb-3">
                   <label htmlFor="exampleFormControlInput1" class="form-label">Tempat Resepsi Berlangsung</label>
                   <textarea
-                    class="form-control"
-
+                    class={`form-control ${errors.reception_location && "input_failed"}`}
                     placeholder="Alamat Resepsi"
-                    {...register("reception_location")}
+                    {...register("reception_location", { required: true })}
                   />
+                  {errors.reception_location && <div className="input_failedText">Wajib Diisi</div>}
                 </div>
               </div>
             </div>
@@ -287,9 +294,7 @@ const Home = () => {
           <section className="createInvitation_container container">
             <div className="box-main">
               <div className="createInvitation_submit">
-                {/* <Link href="/admin" as={`/admin`}> */}
                 <button type="submit" class="btn btn-main">Buat Undangan</button>
-                {/* </Link> */}
               </div>
             </div>
           </section>

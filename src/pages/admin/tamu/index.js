@@ -192,7 +192,7 @@ const Tamu = ({
                             {v.phone_wa}
                           </td>
                           <td>
-                            {v.greetings}
+                            {v.greetings || " - "}
                           </td>
                           <td>
                             <div className={`sticker ${attendStatus[v.attend_status]}`}>

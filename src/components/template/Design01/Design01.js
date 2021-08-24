@@ -18,7 +18,7 @@ const Design01 = ({
 }) => {
 
     const router = useRouter()
-    const guest = invitations[0]?.fullname || "Nama Tamu"
+    const guest = router.query.kepada || "Nama Tamu"
     const guestId = invitations[0]?.id
     const [showGiftModal, setShowGiftModal] = useState(false)
     const [dataInvitations, setDataInvitations] = useState(invitations)
@@ -372,6 +372,7 @@ const Design01 = ({
                                 <input
                                     type="number"
                                     placeholder="jumlah yang akan diajak (istri/anak/pasangan)"
+                                    defaultValue="0"
                                     {...register("attend_qty")}
                                 />
                             </div>
@@ -475,7 +476,7 @@ const Design01 = ({
                                     <div dangerouslySetInnerHTML={{ __html: data.rekening }} />
                                 </b>
                             </p>
-                            <Link href={`https://api.whatsapp.com/send?phone=62${data.handphone_wa}&text=Hallo%20Helmi%2C%20maaf%20helmi%20ga%20bisa%20hadir%20dikarenakan%20sedang%20di%20luar%20kota.%20kirim%20salam%20tempel%20aja%20yaaa.`}>
+                            <Link href={`https://api.whatsapp.com/send?phone=62${data.phone}&text=Hallo%20Helmi%2C%20maaf%20helmi%20ga%20bisa%20hadir%20dikarenakan%20sedang%20di%20luar%20kota.%20kirim%20salam%20tempel%20aja%20yaaa.`}>
                                 <button className="btn gift_sendTransferBtn">Kirim Bukti Transfer</button>
                             </Link>
                         </div>

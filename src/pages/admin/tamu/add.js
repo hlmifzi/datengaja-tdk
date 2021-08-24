@@ -17,31 +17,36 @@ const add = ({
 
   const [showAddCategory, setShowAddCategory] = useState(false)
   const [notifUpdate, setNotifUpdate] = useState(false)
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit, formState: { errors } } = useForm()
+  const { register: registerCategory, handleSubmit: handleSubmitCategory } = useForm()
   const router = useRouter()
 
   let currentDate = new Date();
   let time = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
 
   const handleAdd = async (payload) => {
+    const totalErrorForm = Object.keys(errors).length
+
     const { data, error } = await postInvitation({
       ...payload,
       buyerProductId,
       phone_wa: `62${payload.phone_wa}`,
       attend_status: 'Menunggu Konfirmasi'
     })
-    if (data) router.push('/admin/tamu')
+    if (data && totalErrorForm === 0) router.push('/admin/tamu')
     else alert(error.error.errors[0].message)
   }
 
   const handleUpdate = async (payload) => {
+    const totalErrorForm = Object.keys(errors).length
+
     if (prevUrl.includes("admin/bukuTamu")) Object.assign(payload, { present_time: time });
     const { data, error } = await putInvitation(dataInvitation.id, {
       ...payload,
       buyerProductId,
       phone_wa: `62${payload.phone_wa}`,
     })
-    if (data) setNotifUpdate(true)
+    if (data && totalErrorForm === 0) setNotifUpdate(true)
     else alert(error.error.errors[0].message)
   }
 
@@ -58,6 +63,7 @@ const add = ({
       buyerProductId
     })
 
+    console.log("🚀 ~ file: add.js ~ line 61 ~ onSubmitCategory ~ error", error)
     if (!error) {
       router.push('/admin/tamu/add')
       setShowAddCategory(false)
@@ -78,22 +84,24 @@ const add = ({
                   <label htmlFor="exampleFormControlInput1" class="form-label">Nama Undangan</label>
                   <input
                     type="text"
-                    class="form-control"
+                    class={`form-control ${errors.fullname && "input_failed"}`}
                     id="exampleFormControlInput1"
                     placeholder="Nama Panggilan"
                     defaultValue={dataInvitation && dataInvitation?.fullname}
-                    {...register("fullname")}
+                    {...register("fullname", { required: true })}
                   />
+                  {errors.fullname && <span className="input_failedText">Wajib Diisi</span>}
                 </div>
                 <div class="user_addGuestCategory mb-3">
                   <label htmlFor="exampleFormControlInput1" class="form-label">Kategori</label>
                   <div className="input-group">
                     <select
                       className="custom-select"
+                      class={`form-control ${errors.invitation_category_id && "input_failed"}`}
                       id="kategori_invitation"
-                      {...register("invitation_category_id")}
+                      {...register("invitation_category_id", { required: true })}
                     >
-                      <option>Cari Kategori</option>
+                      <option value="">Cari Kategori</option>
                       {data?.map((v, i) => {
                         return (
                           <option
@@ -107,32 +115,36 @@ const add = ({
                     </select>
                     <button onClick={() => setShowAddCategory(true)} type="button" class="btn btn-main"> + Kategori</button>
                   </div>
+                  {errors.invitation_category_id && <span className="input_failedText">Wajib Diisi</span>}
                 </div>
                 <div class="mb-3">
                   <label htmlFor="exampleFormControlInput1" class="form-label">Nomor Telepon</label>
                   <input
                     type="number"
-                    class="form-control"
+                    class={`form-control ${errors.phone_wa && "input_failed"}`}
                     id="exampleFormControlInput1"
                     placeholder="812 1293 2121"
                     defaultValue={dataInvitation && dataInvitation?.phone_wa}
-                    {...register("phone_wa")}
+                    {...register("phone_wa", { required: true })}
                   />
+                  {errors.phone_wa && <span className="input_failedText">Wajib Diisi</span>}
                 </div>
-                <div class="mb-3">
-                  <label htmlFor="exampleFormControlInput1" class="form-label">Nomor Telepon</label>
-                  <select
-                    className="w-100 form-control"
-                    {...register("attend_status")}
-                    defaultValue={dataInvitation?.attend_status || "Menunggu Konfirmasi"}
-                  >
-                    <option selected>Pilih Status</option>
-                    <option value="Menunggu Konfirmasi">Menunggu Konfirmasi</option>
-                    <option value="Akan Hadir">Akan Hadir</option>
-                    <option value="Berhalangan">Behalangan</option>
-                    <option value="Telah Hadir">Telah Hadir</option>
-                  </select>
-                </div>
+                {dataInvitation.length !== 0 &&
+                  <div class="mb-3">
+                    <label htmlFor="exampleFormControlInput1" class="form-label">Status Kehaditan</label>
+                    <select
+                      class={`form-control`}
+                      {...register("attend_status")}
+                      defaultValue={dataInvitation?.attend_status || "Menunggu Konfirmasi"}
+                    >
+                      <option value="" selected>Pilih Status</option>
+                      <option value="Menunggu Konfirmasi">Menunggu Konfirmasi</option>
+                      <option value="Akan Hadir">Akan Hadir</option>
+                      <option value="Berhalangan">Behalangan</option>
+                      <option value="Telah Hadir">Telah Hadir</option>
+                    </select>
+                  </div>
+                }
               </div>
             </div>
           </section>
@@ -145,8 +157,9 @@ const add = ({
           </section>
         </div>
       </form>
+
       {showAddCategory &&
-        <form onSubmit={handleSubmit(onSubmitCategory)}>
+        <form onSubmit={handleSubmitCategory(onSubmitCategory)}>
           <div className="popUp">
             <div className="popUp_background"></div>
             <div className="popUp_container d-flex flex-column ">
@@ -155,20 +168,20 @@ const add = ({
                 <label htmlFor="exampleFormControlInput1" class="form-label">Kategori</label>
                 <input
                   type="text"
-                  class="form-control"
+                  class={`form-control`}
                   id="exampleFormControlInput1"
                   placeholder="ex: Temen Ayah Laki Laki"
-                  {...register("desc")}
+                  {...registerCategory("desc")}
                 />
               </div>
               <div class="mb-3">
                 <label htmlFor="exampleFormControlInput1" class="form-label">Sesi</label>
                 <input
                   type="text"
-                  class="form-control"
+                  class={`form-control`}
                   id="exampleFormControlInput1"
                   placeholder="ex: sesi I "
-                  {...register("session")}
+                  {...registerCategory("session")}
                 />
               </div>
               <div className="w-100 d-flex">
@@ -176,9 +189,9 @@ const add = ({
                   <label htmlFor="exampleFormControlInput1" class="form-label">Jam Mulai</label>
                   <input
                     type="time"
-                    class="form-control"
+                    class={`form-control`}
                     id="exampleFormControlInput1"
-                    {...register("time_start")}
+                    {...registerCategory("time_start")}
                   />
                   <small>*kosongkan jika tidak ada pembagian waktu pada tamu</small>
                 </div>
@@ -186,9 +199,9 @@ const add = ({
                   <label htmlFor="exampleFormControlInput1" class="form-label">Jam Selesai</label>
                   <input
                     type="time"
-                    class="form-control"
+                    class={`form-control`}
                     id="exampleFormControlInput1"
-                    {...register("time_end")}
+                    {...registerCategory("time_end")}
                   />
                   <small>*kosongkan jika tidak ada pembagian waktu pada tamu</small>
                 </div>

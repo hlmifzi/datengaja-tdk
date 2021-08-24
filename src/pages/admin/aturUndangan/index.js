@@ -398,6 +398,7 @@ const AturUndangan = ({ data }) => {
 
               <div className="mb-3">
                 <label htmlFor="exampleFormControlInput1" className="form-label">Google Maps</label>
+                <small>{"* buka google map -> klik share -> copy iframe"}</small>
                 <textarea
                   className="form-control"
                   placeholder="Alamat Resepsi"

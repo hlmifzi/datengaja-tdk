@@ -110,7 +110,7 @@ const Laporan = ({
                       <tr>
                         <td>{v.bridegroom_full_name}</td>
                         <td>
-                          {v.handphone_wa}
+                          {v.phone}
                         </td>
                         <td>Gratis</td>
                         <td>
