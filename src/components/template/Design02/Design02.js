@@ -20,7 +20,7 @@ const Design02 = ({
 }) => {
     const router = useRouter()
     const guest = invitations[0]?.fullname || "Nama Tamu"
-    const guestId = invitations[0]?.id
+    const guestId = invitations.filter((v) => v.fullname === router?.query?.kepada)[0]?.id
     const [showGiftModal, setShowGiftModal] = useState(false)
     const [dataInvitations, setDataInvitations] = useState(invitations)
     const { register, handleSubmit } = useForm()
@@ -578,7 +578,7 @@ const Design02 = ({
                                     <div dangerouslySetInnerHTML={{ __html: data.rekening }} />
                                 </b>
                             </p>
-                            <Link href={`https://api.whatsapp.com/send?phone=62${data.phone}&text=Hallo%saya%2C%20maaf%20helmi%20ga%20bisa%20hadir%20dikarenakan......`}>
+                            <Link href={`https://api.whatsapp.com/send?phone=62${data.phone}&text=Hallo%20saya%2C%20maaf%20helmi%20ga%20bisa%20hadir%20dikarenakan......`}>
                                 <button className="btn gift_sendTransferBtn">Kirim Bukti Transfer</button>
                             </Link>
                         </div>
