@@ -39,7 +39,6 @@ export default function Home() {
       setSuccess(false)
       setError(error?.meta.message)
     }
-
   }
 
   return (

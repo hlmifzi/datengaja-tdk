@@ -47,9 +47,7 @@ const AturUndangan = ({ data }) => {
       if (e.target.id === "bride_img") setBride_img(imageBase64)
       if (e.target.id === "rekening_qr_img") setRekening_qr_img(imageBase64)
     }
-
   }
-
 
   const onUpdate = async (payload) => {
 
@@ -81,7 +79,7 @@ const AturUndangan = ({ data }) => {
           <h5>Halo, Selamat datang di halaman <b>ATUR UNDANGAN</b></h5>
           <p>Di halaman ini kamu dapat mengatur content undangan kamu</p>
           <div className="admin_welcomeFooter">
-            <Link href={`/undangan0${product_id}/pernikahan-${data?.bridegroom_call_name}-dan-${data?.bride_call_name}`}>
+            <Link href={`/undangan/pernikahan-${data?.bridegroom_call_name}-dan-${data?.bride_call_name}`}>
               <a target="_blank">
                 <button className="btn-second">Lihat disini {">"}</button>
               </a>
@@ -541,9 +539,13 @@ const AturUndangan = ({ data }) => {
                     />
                     <label className="btn-second">Pilih Design</label>
                   </div>
-                  <Link href="/undangan01" as={`/undangan01`}>
-                    <button href="#" className="btn-green mt-4">Live Preview</button>
-                  </Link>
+
+                  <div
+                    onClick={() => router.push(`/undangan/pernikahan-${data?.bridegroom_call_name}-dan-${data?.bride_call_name}?design=1`)}
+                    className="btn-green mt-4"
+                  >
+                    Live Preview
+                  </div>
                 </div>
               </div>
               <div className="home_portofolioCard">
@@ -562,9 +564,12 @@ const AturUndangan = ({ data }) => {
                     />
                     <label className="btn-second">Pilih Design</label>
                   </div>
-                  <Link href="/undangan02" as={`/undangan02`}>
-                    <button href="#" className="btn-green mt-4">Live Preview</button>
-                  </Link>
+                  <div
+                    onClick={() => router.push(`/undangan/pernikahan-${data?.bridegroom_call_name}-dan-${data?.bride_call_name}?design=2`)}
+                    className="btn-green mt-4"
+                  >
+                    Live Preview
+                  </div>
                 </div>
               </div>
             </div>

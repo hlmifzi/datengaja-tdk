@@ -34,7 +34,7 @@ const BukuTamu = ({
           <h5>Halo, Selamat datang di halaman <b>BUKU TAMU</b></h5>
           <p>Aduh udah ga zaman lagi pake buku tamu loh! <br /> Halaman ini penggantinya buku tamu yang akan dipakai <b>Hari-H</b> yang dashboardnya nanti bisa di tampilkan di hari H menggunakan monitor kamu</p>
           <div className="admin_welcomeFooter">
-            <Link href={`/undangan0${data.product_id}/pernikahan-${data?.bridegroom_call_name}-dan-${data?.bride_call_name}`}>
+            <Link href={`/undangan/pernikahan-${data?.bridegroom_call_name}-dan-${data?.bride_call_name}`}>
               <a target="_blank">
                 <button className="btn-second">Lihat disini {">"}</button>
               </a>

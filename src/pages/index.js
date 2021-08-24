@@ -45,7 +45,7 @@ const Home = ({
                   <div class="card-body  text-center">
                     <h5 class="card-title line-through">Rp 200,000 - 400,000</h5>
                     <h5 class="card-title c_main font-weight-bold">GRATIS</h5>
-                    <Link href={`/undangan01/pernikahan-${v.bridegroom_call_name}-dan-${v.bride_call_name}`}>
+                    <Link href={`/undangan/pernikahan-${v.bridegroom_call_name}-dan-${v.bride_call_name}`}>
                       <button href="#" class="btn-main">Lihat Demo</button>
                     </Link>
                   </div>

@@ -93,8 +93,8 @@ const Design01 = ({
         <div className="design01__container">
             <SEO
                 title={eventId}
-                description={`undangan01/${eventId}?kepada=${guest}`}
-                image={data.bride_couple_img}
+                description={`undangan/${eventId}?kepada=${guest}`}
+                image={data?.bride_couple_img}
             />
             <audio src="/music/1.mp3" id="audio"></audio>
             <div className="bgsound-container">
@@ -130,7 +130,7 @@ const Design01 = ({
 
             <div className="container">
                 <section className="guest-section text-center">
-                    <img src={data.bride_couple_img.replace("'", "")} className="circle-img" />
+                    <img src={data?.bride_couple_img.replace("'", "")} className="circle-img" />
                     <p>Kepada Yth. <br /> Bapak/Ibu/Saudara/i</p>
                     <h2 className="font-segoe-ui text-capitalize">{guest}</h2>
                 </section>
@@ -139,7 +139,7 @@ const Design01 = ({
             <div
                 className="banner"
                 style={{
-                    backgroundImage: `linear-gradient(to bottom,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(${data.background1})`,
+                    backgroundImage: `linear-gradient(to bottom,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(${data?.background1})`,
                 }}
                 id="home"
             >
@@ -400,7 +400,6 @@ const Design01 = ({
                                     {...register("category_id")}
                                 >
                                     <option value="" selected>Cari Kategori</option>
-
                                     {dataInvitationCategory?.map((v, i) => {
                                         return (
                                             <option

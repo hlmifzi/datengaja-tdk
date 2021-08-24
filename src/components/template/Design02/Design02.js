@@ -92,7 +92,7 @@ const Design02 = ({
         <div className="design02__container">
             <SEO
                 title={eventId}
-                description={`undangan02/${eventId}?kepada=${guest}`}
+                description={`undangan/${eventId}?kepada=${guest}`}
                 image={data.bride_couple_img}
             />
             <audio src="/music/1.mp3" id="audio"></audio>
