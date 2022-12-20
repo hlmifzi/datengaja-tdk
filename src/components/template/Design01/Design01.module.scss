@@ -59,8 +59,12 @@
 
   .container {
     width: 95%;
-    max-width: 1100px;
+    max-height: fit-content;
     margin: 0 auto;
+  }
+
+  .save-the-date-container {
+    margin-top: 100px;
   }
 
   .text-center {
@@ -80,7 +84,7 @@
   }
 
   section {
-    padding: 4em 0;
+    padding: 2em 0;
   }
 
   .title {
@@ -111,7 +115,8 @@
     display: none;
   }
 
-  .bgsound-container {
+  
+  .bgsoundMp3-container {
     position: fixed;
     background: #5F7496;
     border-radius: 50%;
@@ -122,6 +127,118 @@
     padding: 10px;
   }
 
+  .bgsound-container {
+    width: 100%;
+    max-width: fit-content;
+    z-index: 2;
+    max-height: 100px;
+    overflow: hidden;
+
+    iframe {
+      margin-top: -50px;
+      border-radius: 20px;
+    }
+
+    @media screen and (max-width: 768px) {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 53px;
+      width: 100vw;
+      max-width: 100vw;
+      z-index: 2;
+      max-height: 90px;
+      overflow: hidden;
+
+      iframe {
+        margin-top: -55px;
+        border-radius: 20px;
+        min-width: 100vw;
+      }
+    }
+  }
+
+  .bgsoundmp3-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    background: #5F7496;
+    z-index: 2;
+    right: 16px;
+    top: 30vh;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    max-width: 40px;
+    max-height: 40px;
+
+    svg {
+      width: 18px;
+      color: #fff;
+    }
+
+    div {
+      z-index: 3;
+    }
+  }
+
+
+  .two {
+    @media screen and (max-width: 768px) {
+      img {
+        width: 120px;
+        height: 120px;
+      }
+    }
+  }
+
+  .three {
+    @media screen and (max-width: 768px) {
+      img {
+        width: 120px;
+        height: 120px;
+      }
+    }
+  }
+
+  .text-opening {
+    width: 500px;
+    margin: 0 auto;
+    margin-top: 24PX;
+
+    @media screen and (max-width: 768px) {
+      max-width: 85vw,
+    }
+  }
+
+  .save-theDate-text {
+    font-size: 42px;
+    
+    @media screen and (max-width: 768px) {
+      font-size: 32px;
+    }
+  }
+
+  .save-theDate-button {
+    align-items: center;
+    justify-content: center;
+    background: #E6A83A;
+    border-radius: 4px;
+    padding: 8px 16px;
+    border: none;
+    margin-top: 16px;
+    font-size: 24px;
+    min-width: 100px;
+    max-width: 80vw;
+    color: #FFF;
+    cursor: pointer;
+
+    &:hover {
+      opacity: .8,
+    }
+  }
+  
   .bgsound-container svg {
     color: #FFF;
     font-size: 14px;
@@ -138,17 +255,19 @@
     z-index: 1;
     background: #FFF;
     box-shadow: 0 0 30px 0 rgba(0,0,0,0.2);
+    max-height: 100px;
   }
 
   .main-nav .container {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+    gap: 16px
   }
 
   .main-nav img {
     width: 100%;
-    max-width: 15%;
+    max-width: 30px;
   }
 
   .main-nav a {
@@ -157,7 +276,7 @@
     justify-content: center;
     align-items: center;
     color: #000;
-    padding: 20px 0;
+    padding: 8px 0;
   }
 
   .main-nav a:hover {
@@ -172,7 +291,7 @@
 
   .banner {
     width: 100%;
-    height: 100vh;
+    padding: 200px 0;
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -182,6 +301,10 @@
     align-items: center;
     color: #FFF;
     position: relative;
+
+    @media screen and (max-width: 768px) {
+      height: 100vh;
+    }
   }
 
   .banner .shape-top {
@@ -190,7 +313,7 @@
     width: 100%;
   }
 
-  .banner svg {
+  .banner > svg {
     height: 20px;
     width: 100%;
   }
@@ -248,11 +371,70 @@
     border-radius: 15px;
     color: #000;
     text-align: left;
+    opacity: .8;
+    margin-top: 50px;
   }
 
   .save-the-date {
-    height: auto;
+    height: fit-content;
     padding: 5em 0;
+
+    @media screen and (max-width: 768px) {
+      height: 1500px;
+    }
+  }
+
+  .user_name > input {
+    background: #F0F0F0;
+  }
+
+  .gift_onlineContainer {
+    margin-bottom: 48px;
+    border-top: 1px solid #F0F0F0;
+    padding-top: 32px;
+    margin-top: 32px;
+  }
+
+  .reception_date {
+    font-size: 24px;
+    background: #E6A83A;
+    color: #FFF;
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+
+  .giftOnlinePage_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 16px;
+    
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+
+    button {
+      margin-top: 16px;
+    }
+
+    img {
+      max-width: calc(100vw - 32px);
+    }
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  .gift_thankYouTextPage {
+    width: 400px;
+    max-width: calc(100vw - 32px);
+  }
+
+  .gift_sendTransferBtnPage {
+    width: 100px;
+    max-width: 80vw;
   }
 
   .save-the-date-gif {
@@ -267,7 +449,8 @@
   }
 
   .save-the-date .card-header {
-    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
   }
 
   .save-the-date .card-header img {
@@ -302,6 +485,8 @@
     width: 100%;
     height: 300px;
     margin-bottom: 50px;
+    border-radius: 20px;
+    overflow: hidden;
   }
 
   .save-the-date .map iframe {
@@ -309,7 +494,7 @@
     height: 100%;
   }
 
-  .save-the-date .countdown {
+  .countdown {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -317,11 +502,11 @@
     margin-bottom: 50px;
   }
 
-  .save-the-date .countdown-container {
+  .countdown-container {
     display: flex;
   }
 
-  .save-the-date .countdown-container div {
+   .countdown-container div {
     background: #FFF;
     color: #000;
     margin: 0 10px;
@@ -331,7 +516,7 @@
     font-size: 2rem;
   }
 
-  .save-the-date .countdown-container div:before {
+   .countdown-container div:before {
     content: "";
     position: absolute;
     bottom: -10px;
@@ -342,30 +527,33 @@
     font-size: 0.8rem;
   }
 
-  .save-the-date .countdown-container div#day:before {
+  .countdown-container div#day:before {
     content: "HARI";
   }
 
-  .save-the-date .countdown-container div#hour:before {
+  .countdown-container div#hour:before {
     content: "JAM";
   }
 
-  .save-the-date .countdown-container div#minute:before {
+  .countdown-container div#minute:before {
     content: "MENIT";
   }
 
-  .save-the-date .countdown-container div#second:before {
+  .countdown-container div#second:before {
     content: "DETIK";
   }
 
-  .save-the-date .countdown p {
+  .countdown p {
     margin-bottom: 5px;
   }
 
   .gallery img {
     width: 100%;
-    margin-bottom: 20px;
     transition: 300ms;
+
+    iframe {
+      margin-top: 16px;
+    }
   }
 
   .gallery p {
@@ -465,7 +653,6 @@
 
   .contact .form-control {
     width: 100%;
-    margin-top: 10px;
   }
 
   .contact .form-control input,.contact .form-control textarea {
@@ -485,9 +672,9 @@
 
   .contact .comment {
     width: 100%;
-    height: 400px;
+    height: fit-content;
+    max-height: 400px;
     overflow-y: auto;
-    margin-top: 25px;
   }
 
   .contact .comment-user {
@@ -526,12 +713,37 @@
     font-size: 0.9rem;
   }
 
+  .ourWedding_img {
+    width: 250px !important;
+  }
+
+  .galleryContainer {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+    
+    @media screen and (max-width: 768px) {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+  }
+
   footer {
     background: #000;
     color: #FFF;
     padding: 32px 0 120px 0;
+    
+    @media screen and (max-width: 768px) {
+      padding: 32px 0 200px 0;
+    }
   }
 
+  .bismillah_text {
+    @media (max-width:768px) {
+      font-size: 20px !important;
+    }
+
+  }
   @media (max-width:768px) {
     h1 {
       font-size: 42px;

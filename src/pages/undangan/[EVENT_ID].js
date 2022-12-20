@@ -11,7 +11,8 @@ const Undangan = ({
   dataInvitationCategory,
   invitations,
   product_id,
-  EVENT_ID
+  EVENT_ID,
+  invitationCategoryId
 }) => {
   const router = useRouter()
   const productId = Number(router.query.design) ? Number(router.query.design) : product_id;
@@ -30,6 +31,7 @@ const Undangan = ({
             eventId={EVENT_ID}
             invitations={invitations}
             dataInvitationCategory={dataInvitationCategory}
+            invitationCategoryId={invitationCategoryId}
           />
         }
         {productId === 2 &&
@@ -47,11 +49,22 @@ const Undangan = ({
 }
 
 
-export const getServerSideProps = async ({ params }) => {
+export const getServerSideProps = async ({ params, query }) => {
   let { EVENT_ID } = params
+  const guest = query?.kepada
   const splitParam = EVENT_ID.split("-")
+
   const { data: dataBuyerProducts } = await getBuyerProductsClientName(splitParam[1], splitParam[3])
-  const { data: invitations } = await getInvitations(dataBuyerProducts.id)
+  const { data: categoryID } = await getInvitations(dataBuyerProducts.id, {
+    params: {
+      invitation_name: guest
+    },
+  })
+  const { data: invitations } = await getInvitations(dataBuyerProducts.id, {
+    params: {
+      category_id: categoryID?.[0]?.invitation_category_id
+    },
+  })
   const { data: dataInvitationCategory } = await getCategoriesByBuyerProductId(dataBuyerProducts.id)
 
   return {
@@ -60,7 +73,8 @@ export const getServerSideProps = async ({ params }) => {
       dataInvitationCategory: dataInvitationCategory || [],
       invitations: invitations || [],
       EVENT_ID: EVENT_ID || null,
-      product_id: dataBuyerProducts.product_id
+      product_id: dataBuyerProducts.product_id || null,
+      invitationCategoryId: categoryID?.[0]?.invitation_category_id || null,
     },
   };
 }

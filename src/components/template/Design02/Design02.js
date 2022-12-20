@@ -441,13 +441,6 @@ const Design02 = ({
                                     </select>
                                 </div>
                             </div>
-                            <div className="form-control border-0 user_qtyPartner">
-                                <input
-                                    type="number"
-                                    placeholder="jumlah yang akan diajak (istri/anak/pasangan)"
-                                    {...register("attend_qty")}
-                                />
-                            </div>
                         </div>
                         <div className="form-control border-0">
                             <textarea

@@ -13,8 +13,13 @@ const Home = ({
     <Layout className="home">
       <section className="container home_create p-section">
         <div className="home_promotionWord" >
-          <h1>Buat Undangan Nikah online <span>mudah</span> dan <span>cepat</span> secara <span>GRATIS</span>!</h1>
-          <Link href="/buat-undangan" as={`/buat-undangan`}>
+          <h1>Buat Undangan Nikah online <span>mudah</span> dan <span>cepat</span> dan <span>Terjangkau</span>!</h1>
+          {/* <Link href="/buat-undangan" as={`/buat-undangan`}> */}
+          <Link 
+            href={`https://api.whatsapp.com/send?phone=6281294923207&text=Hallo saya ingin membuat undangan online`} 
+            target="_blank"
+          >
+
             <button className="btn-main">Buat Sekarang</button>
           </Link>
         </div>
@@ -43,8 +48,7 @@ const Home = ({
                   <h5 class="card-title">{v.bridegroom_call_name} & {v.bride_call_name}</h5>
                   <img class="card-img-top" src="/img/design01.png" alt="Card image cap" />
                   <div class="card-body  text-center">
-                    <h5 class="card-title line-through">Rp 200,000 - 400,000</h5>
-                    <h5 class="card-title c_main font-weight-bold">GRATIS</h5>
+                    <h5 class="card-title">Rp 250,000 - 400,000</h5>
                     <Link href={`/undangan/pernikahan-${v.bridegroom_call_name}-dan-${v.bride_call_name}`}>
                       <button href="#" class="btn-main">Lihat Demo</button>
                     </Link>
@@ -61,8 +65,11 @@ const Home = ({
           <h2>
             Buat undangan nikah online Anda hanya dalam 1 menit
           </h2>
-          <Link href="/buat-undangan" as={`/buat-undangan`}>
-            <button className="btn-main">Buat Undangan Sekarang</button>
+          <Link 
+            href={`https://api.whatsapp.com/send?phone=6281294923207&text=Hallo saya ingin membuat undangan online`} 
+            target="_blank"
+          >            
+          <button className="btn-main">Buat Undangan Sekarang</button>
           </Link>
         </section>
       </LazyLoadComponent>

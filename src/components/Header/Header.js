@@ -27,11 +27,11 @@ const Header = () => {
         </div>
 
         <div className={`navbar_menu d-flex ${toogleMenu && 'slide'}`}>
-          <Link href="/buat-undangan" as={`/buat-undangan`}>
+          {/* <Link href="/buat-undangan" as={`/buat-undangan`}>
             <div className={`navbar_menuItem ${getIsActive("/buat-undangan")}`}>
               Buat Undangan
             </div>
-          </Link>
+          </Link> */}
           {/* <Link href="/harga" as={`/harga`}>
             <div className={`navbar_menuItem ${getIsActive("/harga")}`}>
               Harga

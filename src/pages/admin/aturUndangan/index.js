@@ -185,7 +185,7 @@ const AturUndangan = ({ data }) => {
                   className="form-control"
                   placeholder="Nama Mempelai Laki-Laki"
                   defaultValue={data.bridegroom_full_name}
-                  {...register("bridegroom_full_full_name")}
+                  {...register("bridegroom_full_name")}
                 />
               </div>
               <div className="mb-3">
