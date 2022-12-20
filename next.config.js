@@ -1,7 +1,6 @@
 const withSass = require('@zeit/next-sass')
-const withPWA = require("next-pwa");
 
-module.exports = withPWA(
+module.exports =
   withSass((phase, { defaultConfig }) => {
     const isDev = phase === PHASE_DEVELOPMENT_SERVER
     const isProd = phase === PHASE_PRODUCTION_BUILD && process.env.STAGING !== '1'
@@ -35,4 +34,3 @@ module.exports = withPWA(
       },
     }
   })
-)
