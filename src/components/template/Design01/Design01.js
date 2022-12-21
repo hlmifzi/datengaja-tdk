@@ -594,7 +594,7 @@ const Design01 = ({
               <form onSubmit={handleSubmit(onSubmitConfirmation)}>
                 <div className="d-flex">
                   <div className="form-control border-0 user_name">
-                    <input type="text" value={guest} disabled />
+                    <input type="text" value={guest}  {...register("invitation_name")} disabled />
                   </div>
                   <div className="user_statusChoose">
                     <div className="input-group">
@@ -648,7 +648,6 @@ const Design01 = ({
                     className="form-control user_searchName"
                     placeholder="Cari Nama Tamu"
                     aria-describedby="basic-addon2"
-                    value={router?.query?.kepada}
                     {...register("invitation_name")}
                   />
                   <button type="submit" class="btn user_btnSearch">
