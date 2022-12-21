@@ -55,13 +55,15 @@ const Design01 = ({
   };
 
   const onSubmitConfirmation = async (payload) => {
-    const { data: postUpdateData } = await putInvitation(guestId, payload);
+    const { data: postUpdateData, error } = await putInvitation(guestId, payload);
     const { data: invitations } = await getInvitations(data?.id, {
       params: {
         category_id: invitationCategoryId,
       },
     });
-    if (postUpdateData) {
+    if (error) {
+        console.error("terjadi kesalahan")
+    } else {
       setDataInvitations(invitations);
       setShowGiftModal(payload.attend_status);
     }
@@ -224,7 +226,7 @@ const Design01 = ({
           className="save-theDate-button d-flex cursor-pointer"
           onClick={() =>
             window.open(
-              "https://calendar.google.com/calendar/u/0/r/eventedit/MnZwOWVxOW5sazE2ZzkzMWNhcXMzaDBlMWUgaGxtaWZ6aUBt",
+              "https://calendar.google.com/calendar/u/0/r/eventedit?text=Acara+Pernikahan+Jannah+dan+Helmi&details&dates=20230128T090000/20230128T160000&location=SMK%20Negeri%2026%20Jakarta,%20Jl.%20Balai%20Pustaka%20Baru%20I%20No.2,%20RT.2/RW.7,%20Rawamangun,%20Kec.%20Pulo%20Gadung,%20Kota%20Jakarta%20Timur,%20Daerah%20Khusus%20Ibukota%20Jakarta%2013220,%20Indonesia",
               "_blank"
             )
           }
