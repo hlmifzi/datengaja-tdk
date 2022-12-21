@@ -648,6 +648,7 @@ const Design01 = ({
                     className="form-control user_searchName"
                     placeholder="Cari Nama Tamu"
                     aria-describedby="basic-addon2"
+                    value={router?.query?.kepada}
                     {...register("invitation_name")}
                   />
                   <button type="submit" class="btn user_btnSearch">
