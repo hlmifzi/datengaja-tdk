@@ -25,7 +25,7 @@ const Design01 = ({
 
   const guest = router?.query?.kepada?.replace(/-/g, " ") || "Nama Tamu";
   const guestGeneral = router?.query?.to?.replace(/-/g, " ") || false;
-  const guestId = invitations.filter(
+  const guestId = invitations?.filter(
     (v) => v.fullname === router?.query?.kepada
   )[0]?.id;
   const [showGiftModal, setShowGiftModal] = useState(false);
@@ -124,9 +124,9 @@ const Design01 = ({
               width="350"
               height="200"
               src="https://www.youtube.com/embed/fA9lWWuOJfU?autoplay=1&loop=1&playlist=fA9lWWuOJfU&rel=0&showinfo=0&color=white&iv_load_policy=3"
-              frameborder="0"
+              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
+              allowFullScreen
             />
           </div>
           <a href="#event">
@@ -418,7 +418,7 @@ const Design01 = ({
                   </li>
                   <li>
                     <i className="far fa-clock"></i>
-                    <p>
+                    <p className="time_reception">
                       Pukul {data.reception_start_time} WIB s.d{" "}
                       {data.reception_end_time + " WIB" || "selesai"}
                     </p>
@@ -511,9 +511,9 @@ const Design01 = ({
               maxWidth: "calc(100vw - 16px)",
             }}
             src="https://www.youtube.com/embed/y8GYhpIPOeA"
-            frameborder="0"
+            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
+            allowFullScreen
           />
         </div>
       </section>
@@ -604,7 +604,7 @@ const Design01 = ({
                       >
                         <option selected>Pilih Status</option>
                         <option value="Akan Hadir">Akan Hadir</option>
-                        <option value="Berhalangan">Behalangan</option>
+                        <option value="Berhalangan">Berhalangan</option>
                       </select>
                     </div>
                   </div>
@@ -650,7 +650,7 @@ const Design01 = ({
                     aria-describedby="basic-addon2"
                     {...register("invitation_name")}
                   />
-                  <button type="submit" class="btn user_btnSearch">
+                  <button type="submit" className="btn user_btnSearch">
                     Cari
                   </button>
                 </div>
