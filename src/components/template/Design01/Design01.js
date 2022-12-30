@@ -319,7 +319,7 @@ const Design01 = ({
         </section>
       </div>
       <div
-        className="banner save-the-date text-center"
+        className="save-the-date text-center banner"
         id="event"
         style={{
           backgroundImage: `linear-gradient(to bottom,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(${data.background2})`,
