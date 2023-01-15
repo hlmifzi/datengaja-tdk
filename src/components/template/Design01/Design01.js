@@ -85,6 +85,8 @@ const Design01 = ({
     "Telah Hadir": "sticker_present",
   };
 
+  const receptionDate = moment(new Date(data.reception_date)).format("LL");
+  
   useEffect(() => {
     setInterval(() => {
       timeToEvent();
@@ -95,7 +97,7 @@ const Design01 = ({
     <div className="design01__container">
       <SEO
         title={eventId}
-        description={`undangan/${eventId}?kepada=${guest}`}
+        description={receptionDate}
         image={data?.bride_couple_img}
       />
       {/* <audio src="/music/barakallah.mp3" id="audio" autoPlay  /> */}
@@ -213,14 +215,14 @@ const Design01 = ({
         <div className="countdown">
           <p>WAKTU MENUJU ACARA</p>
           <div className="countdown-container">
-            <div id="day">NA</div>
-            <div id="hour">NA</div>
-            <div id="minute">NA</div>
-            <div id="second">NA</div>
+            <div id="day"></div>
+            <div id="hour"></div>
+            <div id="minute"></div>
+            <div id="second"></div>
           </div>
         </div>
         <p className="save-theDate-text">
-          - {moment(new Date(data.reception_date)).format("LL")} -
+          - {receptionDate} -
         </p>
         <button
           className="save-theDate-button d-flex cursor-pointer"

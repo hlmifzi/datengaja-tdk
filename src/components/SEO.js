@@ -1,16 +1,20 @@
 import Head from 'next/head'
 
 const SEO = ({
-  title,
-  description,
+  title = "The Wedding of Jannah &amp; Helmi",
+  description = "28 Januari 2023",
   keywords,
-  image,
-  url,
+  image = "https://ibb.co/XLJybQw",
+  url = "http://datengaja.online/undangan/pernikahan-Helmi-dan-Jannah",
   hideFromSearchEngine,
   children
 }) => (
   <Head>
-    { hideFromSearchEngine && (
+    	<meta charset="utf-8" />	
+			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		  <meta property="og:type" content="article" /> 
+		
+    {hideFromSearchEngine && (
       <meta name="robots" content="noindex, nofollow"></meta>
     )}
     {title && (
@@ -42,6 +46,7 @@ const SEO = ({
     )}
     {keywords && <meta name="keyword" content={keywords}></meta>}
     <link rel="manifest" href="/manifest.json" />
+		
     {children}
   </Head>
 );
