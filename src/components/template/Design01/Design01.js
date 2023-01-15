@@ -98,7 +98,7 @@ const Design01 = ({
       <SEO
         title={eventId}
         description={receptionDate}
-        image={data?.bride_couple_img}
+        image={"http://datengaja.online/img/meta-helmi-jannah-mini.jpg"}
       />
       {/* <audio src="/music/barakallah.mp3" id="audio" autoPlay  /> */}
       {/* <div className="bgsoundmp3-container">
@@ -215,10 +215,10 @@ const Design01 = ({
         <div className="countdown">
           <p>WAKTU MENUJU ACARA</p>
           <div className="countdown-container">
-            <div id="day"></div>
-            <div id="hour"></div>
-            <div id="minute"></div>
-            <div id="second"></div>
+            <div id="day">NA</div>
+            <div id="hour">NA</div>
+            <div id="minute">NA</div>
+            <div id="second">NA</div>
           </div>
         </div>
         <p className="save-theDate-text">
